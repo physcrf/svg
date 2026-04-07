@@ -165,7 +165,7 @@ cd ~/.quicklisp/local-projects
 #### text - 文本
 
 ```lisp
-(text position content &rest attrs)
+(text position content &rest attrs &key &allow-other-keys)
 ```
 
 **示例：**
@@ -183,7 +183,7 @@ cd ~/.quicklisp/local-projects
 #### tspan - 文本片段
 
 ```lisp
-(tspan content &rest attrs)
+(tspan content &rest attrs &key &allow-other-keys)
 ```
 
 **特殊关键字参数：**
@@ -203,7 +203,7 @@ cd ~/.quicklisp/local-projects
 使用 `path` 宏创建复杂的路径：
 
 ```lisp
-(path (commands...) &rest attrs)
+(path (commands...) &rest attrs &key &allow-other-keys)
 ```
 
 ### 绝对路径命令
@@ -310,7 +310,7 @@ cd ~/.quicklisp/local-projects
 
 ;; 之后的所有图形都会继承这些属性
 (line (p 50 100) (p 150 100) 
-      :marker-end (marker-url 'my-arrow))  ; 自动获得 stroke="red" stroke-width="3"
+      :marker-end 'my-arrow)  ; 自动获得 stroke="red" stroke-width="3"
 
 ;; 清除全局属性
 (clear-default-attributes)
@@ -353,7 +353,7 @@ cd ~/.quicklisp/local-projects
 ```lisp
 (define-arrow my-arrow)
 (setf (getf *default-attributes* :stroke) "purple")
-(line (p 50 100) (p 150 100) :marker-end (marker-url 'my-arrow))
+(line (p 50 100) (p 150 100) :marker-end 'my-arrow)
 ;; 箭头会变成紫色
 ```
 
@@ -390,10 +390,15 @@ cd ~/.quicklisp/local-projects
 ### 使用标记
 
 ```lisp
-;; 在线条端点使用标记
+;; 在线条端点使用标记（直接使用符号引用）
 (line (p 50 100) (p 150 100) 
       :stroke "black" :stroke-width 2
-      :marker-start (marker-url 'my-dot)
+      :marker-start 'my-dot
+      :marker-end 'my-arrow)
+
+;; 也可以使用 marker-url 函数
+(line (p 50 150) (p 150 150)
+      :stroke "blue" :stroke-width 2
       :marker-end (marker-url 'my-arrow))
 ```
 

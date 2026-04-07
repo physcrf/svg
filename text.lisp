@@ -1,11 +1,11 @@
 (in-package #:svg)
 
-(defun text (position content &rest attrs)
+(defun text (position content &rest attrs &key &allow-other-keys)
   (write-element "text"
                 (append (list 'x (x position) 'y (y position)) attrs)
                 content))
 
-(defun tspan (content &rest attrs)
+(defun tspan (content &rest attrs &key &allow-other-keys)
   (let ((position (getf attrs :position))
         (dx (getf attrs :dx))
         (dy (getf attrs :dy))
