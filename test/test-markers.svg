@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="200">
+  <line x1="30" y1="30" x2="80" y2="30" stroke="black" stroke-width="2" marker-end="url(#ARROW1)" />
+  <line x1="30" y1="50" x2="80" y2="50" stroke="black" stroke-width="2" marker-end="url(#DOT1)" />
+  <line x1="30" y1="70" x2="80" y2="70" stroke="black" stroke-width="2" marker-end="url(#SQUARE1)" />
+  <line x1="30" y1="90" x2="80" y2="90" stroke="black" stroke-width="2" marker-end="url(#DIAMOND1)" />
+  <line x1="30" y1="110" x2="80" y2="110" stroke="black" stroke-width="2" marker-end="url(#TRIANGLE1)" />
+  <line x1="30" y1="130" x2="80" y2="130" stroke="black" stroke-width="2" marker-end="url(#CROSS1)" />
+  <line x1="30" y1="150" x2="80" y2="150" stroke="black" stroke-width="2" marker-end="url(#ARROW-OPEN1)" />
+  <line x1="30" y1="170" x2="80" y2="170" stroke="black" stroke-width="2" marker-end="url(#ARROW-FILLED1)" />
+  <text x="90" y="35" font-size="12" >arrow</text>
+  <text x="90" y="55" font-size="12" >circle-dot</text>
+  <text x="90" y="75" font-size="12" >square-dot</text>
+  <text x="90" y="95" font-size="12" >diamond</text>
+  <text x="90" y="115" font-size="12" >triangle</text>
+  <text x="90" y="135" font-size="12" >cross</text>
+  <text x="90" y="155" font-size="12" >arrow-open</text>
+  <text x="90" y="175" font-size="12" >arrow-filled</text>
+  <defs>
+    <marker id="ARROW1" refX="0" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,10 L10,5 z" fill="context-stroke" />
+    </marker>
+    <marker id="DOT1" refX="5" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="5" fill="context-stroke" />
+    </marker>
+    <marker id="SQUARE1" refX="5" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="10" height="10" fill="context-stroke" />
+    </marker>
+    <marker id="DIAMOND1" refX="5" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M5,0 L10,5 L5,10 L0,5 z" fill="context-stroke" />
+    </marker>
+    <marker id="TRIANGLE1" refX="0" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,10 L10,5 z" fill="context-stroke" />
+    </marker>
+    <marker id="CROSS1" refX="5" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M3,0 L7,0 M5,0 L5,10 M3,10 L7,10" stroke="context-stroke" stroke-width="2" fill="none" />
+    </marker>
+    <marker id="ARROW-OPEN1" refX="0" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,10 L10,5 z" fill="white" stroke="context-stroke" stroke-width="1.5" />
+    </marker>
+    <marker id="ARROW-FILLED1" refX="0" refY="5" markerWidth="10" markerHeight="10" viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,10 L10,5 z" fill="context-stroke" />
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="150">
+  <text x="50" y="30" font-size="24" fill="black" >Hello SVG!</text>
+  <text x="50" y="60" font-size="18" fill="darkblue" >中文测试</text>
+  <text x="50" y="90" font-size="16" font-weight="bold" fill="red" >Bold Text</text>
+  <text x="50" y="120" font-size="14" font-style="italic" fill="purple" >Italic Text</text>
+</svg>

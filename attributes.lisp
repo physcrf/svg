@@ -1,0 +1,21 @@
+(in-package #:svg)
+
+(defvar *default-attributes* nil)
+
+(defun set-default-attributes (&rest attrs)
+  (setf *default-attributes* attrs))
+
+(defun get-default-attributes ()
+  *default-attributes*)
+
+(defun clear-default-attributes ()
+  (setf *default-attributes* nil))
+
+(defun merge-attributes (local-attrs)
+  (if *default-attributes*
+      (append local-attrs *default-attributes*)
+      local-attrs))
+
+(defmacro with-attributes (attrs &body body)
+  `(let ((*default-attributes* (append (list ,@attrs) *default-attributes*)))
+     ,@body))
