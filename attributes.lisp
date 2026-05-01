@@ -13,7 +13,11 @@
 
 (defun merge-attributes (local-attrs)
   (if *default-attributes*
-      (append local-attrs *default-attributes*)
+      (let ((local-keys (loop for (key) on local-attrs by #'cddr collect key)))
+        (append local-attrs
+                (loop for (key value) on *default-attributes* by #'cddr
+                      unless (member key local-keys)
+                      append (list key value))))
       local-attrs))
 
 (defmacro with-attributes (attrs &body body)

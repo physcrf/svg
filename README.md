@@ -1,4 +1,4 @@
-# CL-SVG - A Common Lisp SVG Generation Library
+# SVG - A Common Lisp SVG Generation Library
 
 An AI-generated Common Lisp library for generating SVG (Scalable Vector Graphics) files with LaTeX math formula rendering and custom marker system.
 
@@ -92,6 +92,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Parameters:**
+
 - `position` - Top-left corner position (complex number)
 - `width` - Width
 - `height` - Height
@@ -99,6 +100,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 - `attrs` - Other SVG attributes
 
 **Examples:**
+
 ```lisp
 (rect (p 10 10) 100 60 :fill "#3498db")              ; Normal rectangle
 (rect (p 20 20) 80 80 :rx 10 :ry 10 :fill "#e74c3c") ; Rounded rectangle
@@ -111,6 +113,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Example:**
+
 ```lisp
 (circle (p 100 100) 50 :fill "#e74c3c" :stroke "#2c3e50" :stroke-width 2)
 ```
@@ -122,6 +125,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Example:**
+
 ```lisp
 (ellipse (p 150 100) 80 40 :fill "#2ecc71")
 ```
@@ -133,6 +137,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Example:**
+
 ```lisp
 (line (p 0 0) (p 100 100) :stroke "#2c3e50" :stroke-width 2)
 ```
@@ -144,6 +149,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Example:**
+
 ```lisp
 (polyline (list (p 10 10) (p 50 30) (p 90 10))
           :stroke "#3498db" :fill "none")
@@ -156,6 +162,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Example:**
+
 ```lisp
 (polygon (list (p 50 10) (p 90 90) (p 10 90))
          :fill "#f39c12")
@@ -170,6 +177,7 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Examples:**
+
 ```lisp
 (text (p 100 200) "Hello, World!"
       :font-size 24 :font-family "Arial" :fill "#2c3e50")
@@ -188,11 +196,13 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 ```
 
 **Special Keyword Arguments:**
+
 - `:position` - Position (complex number)
 - `:dx`, `:dy` - Relative offset
 - `:rotate` - Rotation angle
 
 **Example:**
+
 ```lisp
 (text (p 100 250) nil :font-size 16)
 (tspan "Bold text" :font-weight "bold" :fill "#e74c3c")
@@ -209,32 +219,32 @@ Use the `path` macro to create complex paths:
 
 ### Absolute Path Commands
 
-| Command | Parameters | Description |
-|---------|------------|-------------|
-| `moveto` | `(point)` | Move to point |
-| `lineto` | `(point)` | Draw line to point |
-| `hlineto` | `(x)` | Horizontal line to x |
-| `vlineto` | `(y)` | Vertical line to y |
-| `curveto` | `(p1 p2 p3)` | Cubic Bezier curve |
-| `smooth-curveto` | `(p2 p3)` | Smooth cubic Bezier |
-| `quadto` | `(p1 p2)` | Quadratic Bezier curve |
-| `smooth-quadto` | `(point)` | Smooth quadratic Bezier |
-| `arc` | `(radii point &key ...)` | Arc |
-| `closepath` | None | Close path |
+| Command          | Parameters               | Description             |
+| ---------------- | ------------------------ | ----------------------- |
+| `moveto`         | `(point)`                | Move to point           |
+| `lineto`         | `(point)`                | Draw line to point      |
+| `hlineto`        | `(x)`                    | Horizontal line to x    |
+| `vlineto`        | `(y)`                    | Vertical line to y      |
+| `curveto`        | `(p1 p2 p3)`             | Cubic Bezier curve      |
+| `smooth-curveto` | `(p2 p3)`                | Smooth cubic Bezier     |
+| `quadto`         | `(p1 p2)`                | Quadratic Bezier curve  |
+| `smooth-quadto`  | `(point)`                | Smooth quadratic Bezier |
+| `arc`            | `(radii point &key ...)` | Arc                     |
+| `closepath`      | None                     | Close path              |
 
-### Relative Path Commands (with * suffix)
+### Relative Path Commands (with \* suffix)
 
-| Command | Parameters | Description |
-|---------|------------|-------------|
-| `moveto*` | `(dpoint)` | Relative move |
-| `lineto*` | `(dpoint)` | Relative line |
-| `hlineto*` | `(dx)` | Relative horizontal line |
-| `vlineto*` | `(dy)` | Relative vertical line |
-| `curveto*` | `(dp1 dp2 dp3)` | Relative cubic Bezier |
-| `smooth-curveto*` | `(dp2 dp3)` | Relative smooth cubic Bezier |
-| `quadto*` | `(dp1 dp2)` | Relative quadratic Bezier |
-| `smooth-quadto*` | `(dpoint)` | Relative smooth quadratic Bezier |
-| `arc*` | `(radii dpoint &key ...)` | Relative arc |
+| Command           | Parameters                | Description                      |
+| ----------------- | ------------------------- | -------------------------------- |
+| `moveto*`         | `(dpoint)`                | Relative move                    |
+| `lineto*`         | `(dpoint)`                | Relative line                    |
+| `hlineto*`        | `(dx)`                    | Relative horizontal line         |
+| `vlineto*`        | `(dy)`                    | Relative vertical line           |
+| `curveto*`        | `(dp1 dp2 dp3)`           | Relative cubic Bezier            |
+| `smooth-curveto*` | `(dp2 dp3)`               | Relative smooth cubic Bezier     |
+| `quadto*`         | `(dp1 dp2)`               | Relative quadratic Bezier        |
+| `smooth-quadto*`  | `(dpoint)`                | Relative smooth quadratic Bezier |
+| `arc*`            | `(radii dpoint &key ...)` | Relative arc                     |
 
 ### Usage Examples
 
@@ -272,16 +282,16 @@ All shape functions support transform attributes, which are automatically merged
 
 ### Available Transform Keywords
 
-| Keyword | Parameter Type | Example | Generated SVG |
-|---------|---------------|---------|---------------|
-| `:translate` | Complex number | `:translate (p 10 20)` | `translate(10,20)` |
-| `:rotate` | Number or list | `:rotate 45` | `rotate(45)` |
-| | | `:rotate (list 45 (p cx cy))` | `rotate(45 cx,cy)` |
-| `:scale` | Number or list | `:scale 2` | `scale(2)` |
-| | | `:scale (list 2 3)` | `scale(2,3)` |
-| `:skew-x` | Number | `:skew-x 15` | `skewX(15)` |
-| `:skew-y` | Number | `:skew-y 15` | `skewY(15)` |
-| `:matrix` | List | `:matrix (list a b c d e f)` | `matrix(a b c d e f)` |
+| Keyword      | Parameter Type | Example                       | Generated SVG         |
+| ------------ | -------------- | ----------------------------- | --------------------- |
+| `:translate` | Complex number | `:translate (p 10 20)`        | `translate(10,20)`    |
+| `:rotate`    | Number or list | `:rotate 45`                  | `rotate(45)`          |
+| <br />       | <br />         | `:rotate (list 45 (p cx cy))` | `rotate(45 cx,cy)`    |
+| `:scale`     | Number or list | `:scale 2`                    | `scale(2)`            |
+| <br />       | <br />         | `:scale (list 2 3)`           | `scale(2,3)`          |
+| `:skew-x`    | Number         | `:skew-x 15`                  | `skewX(15)`           |
+| `:skew-y`    | Number         | `:skew-y 15`                  | `skewY(15)`           |
+| `:matrix`    | List           | `:matrix (list a b c d e f)`  | `matrix(a b c d e f)` |
 
 ### Usage Examples
 
@@ -362,15 +372,15 @@ Global `stroke` attribute affects marker color because markers use `fill="contex
 
 ### Built-in Marker Types
 
-| Macro | Description |
-|-------|-------------|
-| `define-arrow` | Arrow |
-| `define-circle-dot` | Circle dot |
-| `define-square-dot` | Square dot |
-| `define-diamond` | Diamond |
-| `define-triangle` | Triangle |
-| `define-cross` | Cross |
-| `define-arrow-open` | Open arrow |
+| Macro                 | Description  |
+| --------------------- | ------------ |
+| `define-arrow`        | Arrow        |
+| `define-circle-dot`   | Circle dot   |
+| `define-square-dot`   | Square dot   |
+| `define-diamond`      | Diamond      |
+| `define-triangle`     | Triangle     |
+| `define-cross`        | Cross        |
+| `define-arrow-open`   | Open arrow   |
 | `define-arrow-filled` | Filled arrow |
 
 ### Defining Markers
@@ -405,19 +415,20 @@ Global `stroke` attribute affects marker color because markers use `fill="contex
 
 ### Marker Attributes
 
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| `:refx` | Reference point X | 0 (arrow) / 5 (dot) |
-| `:refy` | Reference point Y | 5 |
-| `:markerwidth` | Marker width | 10 |
-| `:markerheight` | Marker height | 10 |
-| `:viewbox` | View box | "0 0 width height" |
-| `:orient` | Orientation | "auto" |
-| `:scale` | Scale | 1 |
+| Attribute       | Description       | Default             |
+| --------------- | ----------------- | ------------------- |
+| `:refx`         | Reference point X | 0 (arrow) / 5 (dot) |
+| `:refy`         | Reference point Y | 5                   |
+| `:markerwidth`  | Marker width      | 10                  |
+| `:markerheight` | Marker height     | 10                  |
+| `:viewbox`      | View box          | "0 0 width height"  |
+| `:orient`       | Orientation       | "auto"              |
+| `:scale`        | Scale             | 1                   |
 
 ### scale Attribute
 
 `scale` can accept:
+
 - **Single value** - Same scale for x and y
 - **Pair of values** - Separate x and y scales
 
@@ -459,6 +470,7 @@ Render LaTeX math formulas to SVG elements via the `latex` function.
 ```
 
 **Parameters:**
+
 - `position` - Formula position (complex number)
 - `formula` - LaTeX string
 - `:scale` - Scale factor (optional)
@@ -635,6 +647,6 @@ svg/
 4. **Composability** - Path macro allows free combination of various path commands
 5. **Order Guarantee** - Predictable attribute output order, transform always last
 
----
+***
 
-*This project was generated by [TRAE](https://www.trae.ai) with [GLM-5](https://www.zhipuai.cn/)*
+*This project was generated by* *[TRAE](https://www.trae.ai)* *with* *[GLM-5.1](https://www.zhipuai.cn/)*

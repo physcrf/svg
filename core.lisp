@@ -24,7 +24,7 @@
                                   :width width
                                   :height height)))
              (format stream "<?xml version=\"1.0\" encoding=\"UTF-8\"?>~%")
-             (format stream "<svg width=\"~a\" height=\"~a\">~%"
+             (format stream "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"~a\" height=\"~a\">~%"
                      (svg-width svg)
                      (svg-height svg))
              (setf *svg* svg)
@@ -41,9 +41,9 @@
             (*svg* svg))
        (reset-markers)
        (format stream "<?xml version=\"1.0\" encoding=\"UTF-8\"?>~%")
-       (format stream "<svg width=\"~a\" height=\"~a\">~%"
-               (svg-width svg)
-               (svg-height svg))
+       (format stream "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"~a\" height=\"~a\">~%"
+       (svg-width svg)
+       (svg-height svg))
        ,@body
        (emit-marker-defs)
        (format stream "</svg>~%")

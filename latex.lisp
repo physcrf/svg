@@ -60,14 +60,8 @@
       (str:trim inner))))
 
 (defun adjust-position (svg-content x y)
-  (if (or (null x) (null y) (str:blank? svg-content))
-      svg-content
-      (let ((transform-str (format nil "translate(~a,~a)" (fmt x) (fmt y))))
-        (if (ppcre:scan "transform=" svg-content)
-            svg-content
-            (ppcre:regex-replace "(<g\\s*)"
-                                 svg-content
-                                 (format nil "\\1transform=\"~a\" " transform-str))))))
+  (declare (ignore x y))
+  svg-content)
 
 (defun latex (position formula &rest attrs)
   (init-latex-env)
@@ -94,7 +88,13 @@
                       (inner-content (remove-svg-wrapper raw-svg))
                       (adjusted-content (adjust-position inner-content px py)))
                  (if adjusted-content
-                     (let* ((final-attrs (append (when scale (list :scale scale)) clean-attrs))
+                     (let* ((scale-str (if scale
+                                           (format nil "scale(~a)" scale)
+                                           nil))
+                            (transform-attr (if scale
+                                                (format nil "translate(~a,~a) ~a" (fmt px) (fmt py) scale-str)
+                                                (format nil "translate(~a,~a)" (fmt px) (fmt py))))
+                            (final-attrs (append (list :transform transform-attr) clean-attrs))
                             (attrs-str (serialize-attributes final-attrs)))
                        (format (if *svg* (svg-stream *svg*) *standard-output*)
                                "  <g ~a>~a</g>~%"
