@@ -1,16 +1,14 @@
 (in-package #:svg)
 
 (defun remove-from-plist (plist &rest keys)
-  (trivia:match plist
-    (nil nil)
-    ((list* key value rest) (if (member key keys)
-                                (apply #'remove-from-plist rest keys)
-                                (list* key value (apply #'remove-from-plist rest keys))))))
+  (loop for (key value) on plist by #'cddr
+        unless (member key keys)
+        append (list key value)))
 
 (defun fmt (value)
-  (if (= value (floor value))
-      (format nil "~d" (floor value))
-      (format nil "~,2f" value)))
+  (alexandria:if-let ((int (ignore-errors (coerce value 'integer))))
+    (format nil "~d" int)
+    (format nil "~,2f" value)))
 
 (defun translate (tx ty)
   (format nil "translate(~a,~a)" (fmt tx) (fmt ty)))

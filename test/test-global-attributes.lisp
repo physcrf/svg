@@ -8,7 +8,7 @@
   (define-arrow test-arrow :scale 1.5)
   (define-circle-dot test-dot)
   
-  (with-svg ("test/test-global-attributes.svg" 600 250)
+  (with-svg ("test/test-global-attributes.svg" 600 350)
     (text (p 50 20) "Without global attributes:" :font-size 12 :fill "black")
     (line (p 50 40) (p 150 40) :stroke "black" :stroke-width 2 
           :marker-end 'test-arrow)
@@ -42,8 +42,8 @@
     
     (clear-default-attributes)
     (setf (getf *default-attributes* :rotate) 15)
-    (text (p 50 220) "Global rotate=15:" :font-size 12 :fill "black")
-    (line (p 50 240) (p 150 240) :stroke "orange" :stroke-width 2 
+    (text (p 50 280) "Global rotate=15:" :font-size 12 :fill "black")
+    (line (p 100 280) (p 200 280) :stroke "orange" :stroke-width 2 
           :marker-end 'test-arrow))
   
   (clear-default-attributes)
