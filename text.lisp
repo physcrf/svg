@@ -15,5 +15,5 @@
                           (when dx (list 'dx dx))
                           (when dy (list 'dy dy))
                           (when rotate (list 'rotate rotate))
-                          (remove-from-plist attrs :position :dx :dy :rotate))
+                          (alexandria:remove-from-plist attrs :position :dx :dy :rotate))
                   content)))

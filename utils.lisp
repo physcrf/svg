@@ -1,17 +1,17 @@
 (in-package #:svg)
 
-(defun remove-from-plist (plist &rest keys)
-  (loop for (key value) on plist by #'cddr
-        unless (member key keys)
-        append (list key value)))
-
 (defun fmt (value)
   (alexandria:if-let ((int (ignore-errors (coerce value 'integer))))
     (format nil "~d" int)
     (format nil "~,2f" value)))
 
-(defun translate (tx ty)
-  (format nil "translate(~a,~a)" (fmt tx) (fmt ty)))
+(defmacro def-transform (name format-string args)
+  `(defun ,name ,args
+     (format nil ,format-string ,@(loop for s in args collect `(fmt ,s)))))
+
+(def-transform translate "translate(~a,~a)" (tx ty))
+(def-transform skew-x "skewX(~a)" (angle))
+(def-transform skew-y "skewY(~a)" (angle))
 
 (defun rotate (angle &optional cx cy)
   (if (and cx cy)
@@ -22,12 +22,6 @@
   (if sy
       (format nil "scale(~a,~a)" (fmt sx) (fmt sy))
       (format nil "scale(~a)" (fmt sx))))
-
-(defun skew-x (angle)
-  (format nil "skewX(~a)" (fmt angle)))
-
-(defun skew-y (angle)
-  (format nil "skewY(~a)" (fmt angle)))
 
 (defun matrix (a b c d e f)
   (format nil "matrix(~a ~a ~a ~a ~a ~a)" a b c d e f))

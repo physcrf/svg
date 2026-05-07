@@ -21,5 +21,5 @@
       local-attrs))
 
 (defmacro with-attributes (attrs &body body)
-  `(let ((*default-attributes* (append (list ,@attrs) *default-attributes*)))
+  `(let ((*default-attributes* (append ,attrs *default-attributes*)))
      ,@body))

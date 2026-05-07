@@ -6,13 +6,9 @@
 
 (defun init-latex-env ()
   (unless *latex-tmp-dir*
-    (let* ((pid-str (uiop:run-program "echo $$" :output :string))
-           (pid (str:trim pid-str)))
+    (let ((pid (str:trim (uiop:run-program "echo $$" :output :string))))
       (setf *latex-tmp-dir* (uiop:ensure-directory-pathname
                              (format nil "/tmp/svg-latex-~a/" pid))))))
-
-(defun reset-latex-counter ()
-  (setf *latex-counter* 0))
 
 (defun next-latex-id ()
   (incf *latex-counter*))
@@ -48,6 +44,11 @@
         ("(?s)<svg[^>]*>(.+)</svg>" content)
       (str:trim inner))))
 
+(defun cleanup-latex-files (id)
+  (dolist (ext '("tex" "dvi" "svg" "aux" "log"))
+    (let ((file (merge-pathnames (format nil "latex-~d.~a" id ext) *latex-tmp-dir*)))
+      (ignore-errors (delete-file file)))))
+
 (defun latex (position formula &rest attrs)
   (init-latex-env)
   (ensure-directories-exist *latex-tmp-dir*)
@@ -55,7 +56,7 @@
   (let* ((px (x position))
          (py (y position))
          (scale (getf attrs :scale))
-         (clean-attrs (remove-from-plist attrs :scale))
+         (clean-attrs (alexandria:remove-from-plist attrs :scale))
          (id (next-latex-id))
          (base-name (format nil "latex-~d" id))
          (tex-file (merge-pathnames (format nil "~a.tex" base-name) *latex-tmp-dir*))
@@ -76,22 +77,4 @@
                  (format (if *svg* (svg-stream *svg*) *standard-output*)
                          "  <g ~a>~a</g>~%"
                          attrs-str content)))))
-
       (cleanup-latex-files id))))
-
-(defun cleanup-latex-files (&optional id)
-  (when id
-    (let ((pattern (format nil "latex-~d.*" id)))
-      (dolist (file (directory (merge-pathnames pattern *latex-tmp-dir*)))
-        (ignore-errors (delete-file file))))))
-
-(defun cleanup-all-latex ()
-  (when (and *latex-tmp-dir* (probe-file *latex-tmp-dir*))
-    (ignore-errors (uiop:delete-directory-tree *latex-tmp-dir* :validate t)))
-  (setf *latex-tmp-dir* nil)
-  (reset-latex-counter))
-
-(defmacro with-latex-env (&body body)
-  `(unwind-protect
-       (progn (init-latex-env) ,@body)
-     (cleanup-all-latex)))
