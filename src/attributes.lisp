@@ -21,5 +21,8 @@
       local-attrs))
 
 (defmacro with-attributes (attrs &body body)
-  `(let ((*default-attributes* (append ,attrs *default-attributes*)))
-     ,@body))
+  (let ((resolved-attrs (if (and (consp attrs) (keywordp (first attrs)))
+                            `(list ,@attrs)
+                            attrs)))
+    `(let ((*default-attributes* (append ,resolved-attrs *default-attributes*)))
+       ,@body)))

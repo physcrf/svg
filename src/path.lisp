@@ -38,5 +38,7 @@
 
 (defmacro path (commands &rest attrs &key &allow-other-keys)
   `(write-element "path"
-                  (append (list 'd (format nil "~{~a ~}" (list ,@commands)))
+                  (append (list 'd (with-output-to-string (s)
+                                     ,@(loop for cmd in commands
+                                             collect `(format s "~a " ,cmd))))
                           ',attrs)))

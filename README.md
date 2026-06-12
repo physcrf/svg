@@ -7,6 +7,8 @@ An AI-generated Common Lisp library for generating SVG (Scalable Vector Graphics
 - **Complex Number Coordinates** - Use complex numbers to represent 2D coordinate points, clean and intuitive
 - **Global SVG Stream Mode** - No need to explicitly pass SVG objects
 - **with-svg Macro** - Automatic file opening and closing management
+- **Nested SVG Frames** - Create sub-viewport with independent coordinate systems
+- **Cartesian Frame** - Dedicated macro for Cartesian (y-up) coordinate system
 - **Direct Transform Attributes** - Use `:translate`, `:rotate`, `:scale` keywords directly
 - **Path Macro Syntax** - Intuitive path command composition
 - **Global Attributes System** - Support global default attributes with dynamic modification
@@ -45,6 +47,8 @@ For LaTeX functionality, ensure latex and dvisvgm are installed.
 
 ## 🚀 Quick Start
 
+### Using `with-svg` (Recommended)
+
 ```lisp
 (in-package :svg)
 
@@ -53,6 +57,22 @@ For LaTeX functionality, ensure latex and dvisvgm are installed.
   (circle (p 200 100) 30 :fill "#e74c3c")
   (text (p 150 200) "Hello SVG!" :font-size 24 :fill "black"))
 ```
+
+### Using `open-svg` / `close-svg` (Manual Control)
+
+```lisp
+(in-package :svg)
+
+(open-svg "output.svg" 400 300)
+
+(rect (p 10 10) 100 60 :fill "#3498db")
+(circle (p 200 100) 30 :fill "#e74c3c")
+(text (p 150 200) "Hello SVG!" :font-size 24 :fill "black")
+
+(close-svg)
+```
+
+`open-svg` and `close-svg` are useful when you need fine-grained control over the SVG lifecycle, such as generating SVG content across multiple functions or in REPL-driven workflows.
 
 ### Complex Number Coordinate System
 
@@ -153,19 +173,82 @@ All shape functions support `&key &rest &allow-other-keys`, accepting SVG attrib
 (text (p 100 300) "Bold Text" :font-size 16 :font-weight "bold" :fill "red")
 ```
 
-### tspan - Text Span
+### frame - Sub-viewport
+
+Create a nested SVG viewport with its own coordinate system.
 
 ```lisp
-(tspan content &rest attrs &key &allow-other-keys)
+(frame attributes &body body)
 ```
 
-**Special Keyword Arguments:** `:position` (complex number), `:dx`, `:dy` (relative offset), `:rotate`
+**Common Attributes:**
+
+- `:x`, `:y` - Position in parent viewport
+- `:width`, `:height` - Size of the viewport
+- `:viewbox` - Internal coordinate system (e.g., "0 0 100 100")
+- `:id`, `:class` - Standard SVG attributes
+
+**Examples:**
 
 ```lisp
-(text (p 100 250) nil :font-size 16)
-(tspan "Bold text" :font-weight "bold" :fill "#e74c3c")
-(tspan " normal text" :font-weight "normal")
+;; Create a sub-viewport with independent coordinates
+(frame (:x 50 :y 50 :width 150 :height 150 :viewbox "0 0 100 100")
+  (rect (p 0 0) 100 100 :fill "#e3f2fd")
+  (circle (p 50 50) 30 :fill "#ff5722")
+  (text (p 50 80) "Frame 1" :font-size 12 :text-anchor "middle"))
+
+;; Nested frames
+(frame (:x 50 :y 220 :width 300 :height 60 :viewbox "0 0 300 60")
+  (rect (p 0 0) 300 60 :fill "#f3e5f5")
+  
+  ;; Nested sub-frame
+  (frame (:x 10 :y 10 :width 80 :height 40 :viewbox "0 0 40 20")
+    (rect (p 0 0) 40 20 :fill "#e1bee7")
+    (text (p 20 14) "Nested" :font-size 8 :text-anchor "middle"))
+  
+  (text (p 150 35) "Outer frame" :font-size 12 :text-anchor "middle"))
 ```
+
+**Use Cases:**
+
+- Create reusable components with local coordinate systems
+- Scale content independently using viewBox
+- Organize complex SVGs into logical groups
+- Apply transformations to entire sections
+
+### cartesian-frame - Cartesian Coordinate Frame
+
+Create a nested SVG viewport with a Cartesian (y-up) coordinate system. Content inside uses mathematical convention where y increases upward.
+
+```lisp
+(cartesian-frame attributes &body body)
+```
+
+**Common Attributes:**
+
+- `:x`, `:y` - Position in parent viewport
+- `:width`, `:height` - Size of the viewport
+- `:viewbox` - Internal coordinate system (e.g., `(0 0 100 100)` or `"0 0 100 100"`)
+- `:id`, `:class` - Standard SVG attributes
+
+**Examples:**
+
+```lisp
+;; With viewBox — origin at bottom-left
+(cartesian-frame (:x 50 :y 50 :width 200 :height 200 :viewbox (0 0 100 100))
+  (rect (p 0 0) 100 100 :fill "#fff3e0")
+  (circle (p 50 50) 30 :fill "#ff5722")
+  (text (p 50 95) "y=0 at bottom" :font-size 10 :text-anchor "middle"))
+
+;; Without viewBox — uses pixel coordinates with y-up
+(cartesian-frame (:x 50 :y 300 :width 200 :height 100)
+  (rect (p 0 0) 200 100 :fill "#fce4ec")
+  (circle (p 100 50) 20 :fill "#c2185b"))
+```
+
+**How It Works:**
+
+`cartesian-frame` is a macro that wraps content with `<svg>` and applies `transform="translate(0, height) scale(1, -1)"`, flipping the y-axis so that y=0 is at the bottom and positive y goes upward. Text inside cartesian frames will be rendered upside down — use labels sparingly or place them outside the frame.
 
 ## 🎨 Path Commands
 
@@ -376,13 +459,33 @@ LaTeX temporary files (`.tex`, `.dvi`, `.svg`, `.aux`, `.log`) are automatically
 
 ## 🔧 Utility Functions
 
-### Coordinates and Formatting
+### Coordinates
 
 ```lisp
 (p x y)              ; Create complex point
 (x point)            ; Get X coordinate
 (y point)            ; Get Y coordinate
-(fmt number)         ; Format number
+```
+
+### Unit Conversion
+
+SVG 标准中 1in = 96px，以下函数将各种单位转换为像素值：
+
+```lisp
+(px x)               ; 像素，原样返回
+(in x)               ; 英寸，1in = 96px
+(cm x)               ; 厘米，1cm = 96/2.54 px
+(mm x)               ; 毫米，1mm = 96/25.4 px
+(pt x)               ; 磅，1pt = 96/72 px
+(pc x)               ; 派卡，1pc = 16px
+```
+
+**示例：**
+
+```lisp
+(rect (p 10 10) (cm 2) (cm 1) :fill "red")     ; 2cm x 1cm 矩形
+(circle (p 100 50) (mm 10) :fill "blue")        ; 半径 10mm 的圆
+(ellipse (p 200 100) (in 1) (pt 36) :fill "green") ; 1in x 36pt 椭圆
 ```
 
 ### Transform Helpers
@@ -463,15 +566,16 @@ These are generated by the `def-transform` macro.
 ```
 svg/
 ├── svg.asd           # ASDF system definition (v0.3.0)
-├── package.lisp      # Package definition and exports
-├── utils.lisp        # Utility functions and transform helpers
-├── core.lisp         # Core functionality (open/close/with-svg/serialize)
-├── attributes.lisp   # Global attributes system
-├── shapes.lisp       # Basic shape primitives
-├── text.lisp         # Text elements
-├── path.lisp         # Path commands (generated by def-path-cmd)
-├── latex.lisp        # LaTeX rendering with auto-cleanup
-├── marker.lisp       # Marker system (built-in types)
+├── src/
+│   ├── package.lisp  # Package definition and exports
+│   ├── utils.lisp    # Utility functions and transform helpers
+│   ├── core.lisp     # Core functionality (open/close/with-svg/frame)
+│   ├── attributes.lisp # Global attributes system
+│   ├── shapes.lisp   # Basic shape primitives
+│   ├── text.lisp     # Text elements
+│   ├── path.lisp     # Path commands (generated by def-path-cmd)
+│   ├── latex.lisp    # LaTeX rendering with auto-cleanup
+│   └── marker.lisp   # Marker system (built-in types)
 └── test/
     ├── test-shapes.lisp
     ├── test-text.lisp
@@ -480,7 +584,10 @@ svg/
     ├── test-markers.lisp
     ├── test-marker-scale.lisp
     ├── test-global-attributes.lisp
-    └── test-latex.lisp
+    ├── test-latex.lisp
+    ├── test-frame.lisp
+    ├── test-units.lisp
+    └── test-cartesian.lisp
 ```
 
 ## 🎓 Design Philosophy

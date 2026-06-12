@@ -1,9 +1,9 @@
 (in-package #:svg)
 
 (defun fmt (value)
-  (alexandria:if-let ((int (ignore-errors (coerce value 'integer))))
-    (format nil "~d" int)
-    (format nil "~,2f" value)))
+  (if (integerp value)
+      (format nil "~d" value)
+      (format nil "~,2f" value)))
 
 (defmacro def-transform (name format-string args)
   `(defun ,name ,args
@@ -24,7 +24,7 @@
       (format nil "scale(~a)" (fmt sx))))
 
 (defun matrix (a b c d e f)
-  (format nil "matrix(~a ~a ~a ~a ~a ~a)" a b c d e f))
+  (format nil "matrix(~a ~a ~a ~a ~a ~a)" (fmt a) (fmt b) (fmt c) (fmt d) (fmt e) (fmt f)))
 
 (defun title (text-content)
   (write-element "title" nil text-content))
@@ -37,3 +37,16 @@
 
 (defun viewbox (min-x min-y width height)
   (format nil "~a ~a ~a ~a" min-x min-y width height))
+
+;; Unit conversion functions (convert to pixels, SVG default unit)
+;; SVG standard: 1in = 96px
+(defconstant +cm-to-px+ (/ 96 2.54))
+(defconstant +mm-to-px+ (/ 96 25.4))
+(defconstant +pt-to-px+ (/ 96 72))
+
+(defun px (x) x)
+(defun in (x) (* x 96))
+(defun cm (x) (* x +cm-to-px+))
+(defun mm (x) (* x +mm-to-px+))
+(defun pt (x) (* x +pt-to-px+))
+(defun pc (x) (* x 16))

@@ -1,8 +1,7 @@
 (in-package #:svg)
 
 (defun points-to-string (points)
-  (let ((coords (loop for p in points append (list (x p) (y p)))))
-    (format nil "~{~a,~a ~}" coords)))
+  (format nil "~{~a,~a ~}" (mapcan (lambda (p) (list (x p) (y p))) points)))
 
 (defun circle (center r &rest rest &key &allow-other-keys)
   (write-element "circle"

@@ -7,11 +7,12 @@
    set-default-attributes clear-default-attributes
    p x y
    rect circle ellipse line polyline polygon path
-   text tspan
+   text frame cartesian-frame
    moveto lineto hlineto vlineto curveto smooth-curveto quadto smooth-quadto arc closepath
    moveto* lineto* hlineto* vlineto* curveto* smooth-curveto* quadto* smooth-quadto* arc*
    translate rotate scale skew-x skew-y matrix
-   fmt title desc script viewbox
+   title desc script viewbox
+   px in cm mm pt pc
    latex
    *latex-packages*
    set-latex-packages get-latex-packages
@@ -22,6 +23,14 @@
 
 (in-package #:svg)
 
-(setf (fdefinition 'p) #'complex)
-(setf (fdefinition 'x) #'realpart)
-(setf (fdefinition 'y) #'imagpart)
+(defun p (x y)
+  "Create a 2D point as a complex number."
+  (complex x y))
+
+(defun x (point)
+  "Get the X coordinate (real part) of a point."
+  (realpart point))
+
+(defun y (point)
+  "Get the Y coordinate (imaginary part) of a point."
+  (imagpart point))

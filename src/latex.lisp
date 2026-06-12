@@ -6,9 +6,10 @@
 
 (defun init-latex-env ()
   (unless *latex-tmp-dir*
-    (let ((pid (str:trim (uiop:run-program "echo $$" :output :string))))
-      (setf *latex-tmp-dir* (uiop:ensure-directory-pathname
-                             (format nil "/tmp/svg-latex-~a/" pid))))))
+    (setf *latex-tmp-dir* (uiop:ensure-directory-pathname
+                           (format nil "/tmp/svg-latex-~a-~a/"
+                                   (get-universal-time)
+                                   (random 1000000))))))
 
 (defun next-latex-id ()
   (incf *latex-counter*))
@@ -30,13 +31,13 @@
   (let ((cmd (format nil "cd ~a && latex -interaction=nonstopmode -output-format=dvi ~a > /dev/null 2>&1"
                      (namestring *latex-tmp-dir*)
                      (file-namestring tex-file))))
-    (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t))))
+    (= 0 (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t)))))
 
 (defun convert-dvi-to-svg (dvi-file svg-file)
   (let ((cmd (format nil "dvisvgm --no-fonts --exact -o ~a ~a"
                      (namestring svg-file)
                      (namestring dvi-file))))
-    (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t))))
+    (= 0 (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t)))))
 
 (defun extract-svg-inner (svg-file)
   (alexandria:when-let ((content (uiop:read-file-string svg-file)))
@@ -69,12 +70,12 @@
            (when (and (compile-latex-to-dvi tex-file)
                       (convert-dvi-to-svg dvi-file svg-file))
              (alexandria:when-let ((content (extract-svg-inner svg-file)))
-               (let* ((transform (if scale
+               (let* ((stream (current-stream))
+                      (transform (if scale
                                      (format nil "translate(~a,~a) scale(~a)" (fmt px) (fmt py) scale)
                                      (format nil "translate(~a,~a)" (fmt px) (fmt py))))
-                      (final-attrs (append (list :transform transform) clean-attrs))
-                      (attrs-str (serialize-attributes final-attrs)))
-                 (format (if *svg* (svg-stream *svg*) *standard-output*)
-                         "  <g ~a>~a</g>~%"
-                         attrs-str content)))))
+                      (final-attrs (append (list :transform transform) clean-attrs)))
+                 (format stream "  <g ")
+                 (write-attributes stream final-attrs)
+                 (format stream ">~a</g>~%" content)))))
       (cleanup-latex-files id))))

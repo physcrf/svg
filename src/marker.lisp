@@ -78,13 +78,13 @@
 
 (defun resolve-scale (scale-val)
   (trivia:match scale-val
-    ((list sx sy) (list (or sx 1) sy))
-    ((list sx) (list (or sx 1) (or sx 1)))
-    ((type number) (list (or scale-val 1) (or scale-val 1)))
+    ((list sx sy) (list sx sy))
+    ((list sx) (list sx sx))
+    ((type number) (list scale-val scale-val))
     (_ (list 1 1))))
 
 (defun emit-marker-defs ()
-  (let ((stream (if *svg* (svg-stream *svg*) *standard-output*)))
+  (let ((stream (current-stream)))
     (when *used-markers*
       (format stream "  <defs>~%")
       (dolist (m (reverse *used-markers*))
@@ -95,7 +95,7 @@
                (brx (or (marker-refx m) 5)) (bry (or (marker-refy m) 5))
                (srx (* brx sx)) (sry (* bry sy)))
           (format stream "    <marker id=\"~a\" refX=\"~a\" refY=\"~a\" markerWidth=\"~a\" markerHeight=\"~a\" viewBox=\"0 0 ~a ~a\" orient=\"~a\" markerUnits=\"userSpaceOnUse\">~%"
-                  (marker-id m) srx sry sw sh sw sh (or (marker-orient m) "auto"))
+                  (marker-id m) (fmt srx) (fmt sry) (fmt sw) (fmt sh) (fmt sw) (fmt sh) (or (marker-orient m) "auto"))
           (format stream "      ~a~%" (if (and (= sx 1) (= sy 1))
                                           (marker-content m)
                                           (format nil "<g transform=\"scale(~a,~a)\">~a</g>" sx sy (marker-content m))))
