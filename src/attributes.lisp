@@ -12,8 +12,9 @@
   (setf *default-attributes* nil))
 
 (defun merge-attributes (local-attrs)
+  "Merge local attributes with *default-attributes*, local keys take precedence."
   (if *default-attributes*
-      (let ((local-keys (loop for (key) on local-attrs by #'cddr collect key)))
+      (let ((local-keys (serapeum:plist-keys local-attrs)))
         (append local-attrs
                 (loop for (key value) on *default-attributes* by #'cddr
                       unless (member key local-keys)
@@ -21,6 +22,7 @@
       local-attrs))
 
 (defmacro with-attributes (attrs &body body)
+  "Execute BODY with additional default attributes prepended to the current defaults."
   (let ((resolved-attrs (if (and (consp attrs) (keywordp (first attrs)))
                             `(list ,@attrs)
                             attrs)))

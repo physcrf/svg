@@ -1,18 +1,20 @@
 (in-package #:svg)
 
 (defun points-to-string (points)
-  (format nil "~{~a,~a ~}" (mapcan (lambda (p) (list (x p) (y p))) points)))
+  "Convert a list of points to an SVG points attribute string."
+  (str:join " " (mapcar (lambda (p) (format nil "~a,~a" (x p) (y p))) points)))
 
 (defun circle (center r &rest rest &key &allow-other-keys)
   (write-element "circle"
                  (append (list 'cx (x center) 'cy (y center) 'r r) rest)))
 
 (defun rect (position width height &rest rest &key rx ry &allow-other-keys)
-  (write-element "rect"
-                 (append (list 'x (x position) 'y (y position) 'width width 'height height)
-                         (when rx (list 'rx rx))
-                         (when ry (list 'ry ry))
-                         (alexandria:remove-from-plist rest :rx :ry))))
+  (let ((clean-rest (alexandria:remove-from-plist rest :rx :ry)))
+    (write-element "rect"
+                   (append (list 'x (x position) 'y (y position) 'width width 'height height)
+                           (when rx (list 'rx rx))
+                           (when ry (list 'ry ry))
+                           clean-rest))))
 
 (defun ellipse (center rx ry &rest rest &key &allow-other-keys)
   (write-element "ellipse"

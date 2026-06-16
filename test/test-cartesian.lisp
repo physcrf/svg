@@ -3,20 +3,20 @@
 (in-package :svg)
 
 ;; Comprehensive Cartesian coordinate system comparison
-(with-svg ("test/test-cartesian.svg" 900 780)
-  (rect (p 0 0) 900 780 :fill "#fafafa")
+(with-svg ("test/test-cartesian.svg" 900 1020)
+  (rect (p 0 0) 900 1020 :fill "#fafafa")
   (text (p 450 22) "Standard SVG vs Cartesian Frame — Coordinate System Comparison"
         :font-size 14 :text-anchor "middle" :font-weight "bold" :fill "#333")
 
   ;; ============================================================
   ;; Row 1: Basic point comparison
   ;; ============================================================
-  (text (p 225 42) "Standard SVG (y increases down)"
+  (text (p 200 42) "Standard SVG (y increases down)"
         :font-size 11 :text-anchor "middle" :font-weight "bold" :fill "#444")
-  (text (p 675 42) "Cartesian (y increases up)"
+  (text (p 700 42) "Cartesian (y increases up)"
         :font-size 11 :text-anchor "middle" :font-weight "bold" :fill "#444")
 
-  (frame (:x 30 :y 55 :width 380 :height 200 :viewbox (0 0 100 100))
+  (frame (:x 50 :y 55 :width 300 :height 300 :viewbox (0 0 100 100))
     (rect (p 0 0) 100 100 :fill "#e3f2fd" :stroke "#1976d2" :stroke-width 1)
     ;; Grid
     (line (p 0 20) (p 100 20) :stroke "#bbdefb" :stroke-width 0.5)
@@ -44,10 +44,10 @@
     (circle (p 70 70) 5 :fill "#8e44ad")
     (text (p 70 82) "(70,70)" :font-size 8 :text-anchor "middle" :fill "#8e44ad"))
 
-  (text (p 220 270) "y=0 at top, y=100 at bottom"
+  (text (p 200 365) "y=0 at top, y=100 at bottom"
         :font-size 9 :text-anchor "middle" :fill "#666")
 
-  (cartesian-frame (:x 490 :y 55 :width 380 :height 200 :viewbox (0 0 100 100))
+  (cartesian-frame (:x 550 :y 55 :width 300 :height 300 :viewbox (0 0 100 100))
     (rect (p 0 0) 100 100 :fill "#fff3e0" :stroke "#f57c00" :stroke-width 1)
     (line (p 0 20) (p 100 20) :stroke "#ffe0b2" :stroke-width 0.5)
     (line (p 0 40) (p 100 40) :stroke "#ffe0b2" :stroke-width 0.5)
@@ -71,18 +71,18 @@
     (circle (p 70 30) 5 :fill "#8e44ad")
     (text (p 70 42) "(70,30)" :font-size 8 :text-anchor "middle" :fill "#8e44ad"))
 
-  (text (p 680 270) "y=0 at bottom, y=100 at top"
+  (text (p 700 365) "y=0 at bottom, y=100 at top"
         :font-size 9 :text-anchor "middle" :fill "#666")
 
   ;; ============================================================
   ;; Row 2: Line slopes
   ;; ============================================================
-  (text (p 225 298) "Standard SVG — y=x, y=40, x=60"
+  (text (p 200 390) "Standard SVG — y=x, y=40, x=60"
         :font-size 11 :text-anchor "middle" :font-weight "bold" :fill "#444")
-  (text (p 675 298) "Cartesian — y=x, y=40, x=60"
+  (text (p 700 390) "Cartesian — y=x, y=40, x=60"
         :font-size 11 :text-anchor "middle" :font-weight "bold" :fill "#444")
 
-  (frame (:x 30 :y 310 :width 380 :height 200 :viewbox (0 0 100 100))
+  (frame (:x 50 :y 405 :width 300 :height 300 :viewbox (0 0 100 100))
     (rect (p 0 0) 100 100 :fill "#fbe9e7" :stroke "#d84315" :stroke-width 1)
     (line (p 0 20) (p 100 20) :stroke "#ffccbc" :stroke-width 0.5)
     (line (p 0 40) (p 100 40) :stroke "#ffccbc" :stroke-width 0.5)
@@ -102,10 +102,10 @@
     (text (p 5 38) "y=40" :font-size 8 :fill "#1565c0" :font-weight "bold")
     (text (p 61 7) "x=60" :font-size 8 :fill "#2e7d32" :font-weight "bold"))
 
-  (text (p 220 525) "y=x slopes downward; y=40 near top; x=60 vertical"
+  (text (p 200 715) "y=x slopes downward; y=40 near top; x=60 vertical"
         :font-size 8 :text-anchor "middle" :fill "#666")
 
-  (cartesian-frame (:x 490 :y 310 :width 380 :height 200 :viewbox (0 0 100 100))
+  (cartesian-frame (:x 550 :y 405 :width 300 :height 300 :viewbox (0 0 100 100))
     (rect (p 0 0) 100 100 :fill "#fbe9e7" :stroke "#d84315" :stroke-width 1)
     (line (p 0 20) (p 100 20) :stroke "#ffccbc" :stroke-width 0.5)
     (line (p 0 40) (p 100 40) :stroke "#ffccbc" :stroke-width 0.5)
@@ -125,17 +125,17 @@
     (text (p 5 38) "y=40" :font-size 8 :fill "#1565c0" :font-weight "bold")
     (text (p 61 7) "x=60" :font-size 8 :fill "#2e7d32" :font-weight "bold"))
 
-  (text (p 680 525) "y=x slopes upward; y=40 near bottom; x=60 vertical"
+  (text (p 700 715) "y=x slopes upward; y=40 near bottom; x=60 vertical"
         :font-size 8 :text-anchor "middle" :fill "#666")
 
   ;; ============================================================
   ;; Row 3: Extra Cartesian demos (3 panels)
   ;; ============================================================
-  (text (p 450 555) "More Cartesian demos (y always increases up)"
+  (text (p 450 740) "More Cartesian demos (y always increases up)"
         :font-size 11 :text-anchor "middle" :font-weight "bold" :fill "#444")
 
   ;; --- Panel 1: House ---
-  (cartesian-frame (:x 30 :y 570 :width 260 :height 170 :viewbox "0 0 100 100")
+  (cartesian-frame (:x 50 :y 755 :width 210 :height 210 :viewbox "0 0 100 100")
     (rect (p 0 0) 100 100 :fill "#f3e5f5" :stroke "#7b1fa2" :stroke-width 1)
     (line (p 0 25) (p 100 25) :stroke "#ce93d8" :stroke-width 0.5)
     (line (p 0 50) (p 100 50) :stroke "#ce93d8" :stroke-width 0.5)
@@ -150,11 +150,11 @@
     (line (p 5 10) (p 95 10) :stroke "#27ae60" :stroke-width 2)
     (text (p 50 5) "ground (y=0)" :font-size 7 :text-anchor "middle" :fill "#27ae60"))
 
-  (text (p 160 752) "House: y=ground, shapes sit on it"
+  (text (p 155 975) "House: y=ground, shapes sit on it"
         :font-size 8 :text-anchor "middle" :fill "#7b1fa2")
 
   ;; --- Panel 2: Function plot ---
-  (cartesian-frame (:x 320 :y 570 :width 260 :height 170 :viewbox "0 0 100 100")
+  (cartesian-frame (:x 345 :y 755 :width 210 :height 210 :viewbox "0 0 100 100")
     (rect (p 0 0) 100 100 :fill "#e0f2f1" :stroke "#00695c" :stroke-width 1)
     (line (p 0 20) (p 100 20) :stroke "#b2dfdb" :stroke-width 0.5)
     (line (p 0 40) (p 100 40) :stroke "#b2dfdb" :stroke-width 0.5)
@@ -191,11 +191,11 @@
           :stroke "#d32f2f" :stroke-width 1.5 :fill "none")
     (text (p 10 98) "y=x/100" :font-size 7 :fill "#d32f2f"))
 
-  (text (p 450 752) "Function: y = x^2 (parabola, origin at center)"
+  (text (p 450 975) "Function: y = x^2 (parabola, origin at center)"
         :font-size 8 :text-anchor "middle" :fill "#00695c")
 
   ;; --- Panel 3: Concentric circles ---
-  (cartesian-frame (:x 610 :y 570 :width 260 :height 170 :viewbox "0 0 100 100")
+  (cartesian-frame (:x 640 :y 755 :width 210 :height 210 :viewbox "0 0 100 100")
     (rect (p 0 0) 100 100 :fill "#fffde7" :stroke "#f9a825" :stroke-width 1)
     (line (p 0 20) (p 100 20) :stroke "#fff9c4" :stroke-width 0.5)
     (line (p 0 40) (p 100 40) :stroke "#fff9c4" :stroke-width 0.5)
@@ -215,7 +215,7 @@
     (line (p 50 5) (p 50 95) :stroke "#f9a825" :stroke-width 0.5 :stroke-dasharray "3,2")
     (text (p 50 5) "center (50,50)" :font-size 7 :text-anchor "middle" :fill "#f57f17"))
 
-  (text (p 740 752) "Circles: center at (50,50), y up"
+  (text (p 745 975) "Circles: center at (50,50), y up"
         :font-size 8 :text-anchor "middle" :fill "#f9a825"))
 
 (format t "Generated test/test-cartesian.svg~%")

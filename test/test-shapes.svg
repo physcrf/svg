@@ -4,6 +4,6 @@
   <rect x="100" y="30" width="60" height="40" rx="5" ry="5" fill="blue" />
   <ellipse cx="250" cy="50" rx="40" ry="25" fill="green" />
   <line x1="320" y1="30" x2="380" y2="70" stroke="purple" stroke-width="3" />
-  <polyline points="50,120 100,100 150,130 200,110 " stroke="orange" fill="none" stroke-width="2" />
-  <polygon points="280,100 330,80 380,100 350,150 310,150 " fill="cyan" stroke="black" />
+  <polyline points="50,120 100,100 150,130 200,110" stroke="orange" fill="none" stroke-width="2" />
+  <polygon points="280,100 330,80 380,100 350,150 310,150" fill="cyan" stroke="black" />
 </svg>

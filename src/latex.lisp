@@ -5,11 +5,13 @@
 (defvar *latex-packages* '("amsmath,amssymb" "physics"))
 
 (defun init-latex-env ()
+  "Initialize the LaTeX temporary directory if not already set."
   (unless *latex-tmp-dir*
     (setf *latex-tmp-dir* (uiop:ensure-directory-pathname
-                           (format nil "/tmp/svg-latex-~a-~a/"
-                                   (get-universal-time)
-                                   (random 1000000))))))
+                           (merge-pathnames (format nil "svg-latex-~a-~a/"
+                                                    (get-universal-time)
+                                                    (random 1000000))
+                                            (uiop:temporary-directory))))))
 
 (defun next-latex-id ()
   (incf *latex-counter*))
@@ -28,29 +30,37 @@
     (format stream "\\begin{document}~%~a~%\\end{document}~%" content)))
 
 (defun compile-latex-to-dvi (tex-file)
-  (let ((cmd (format nil "cd ~a && latex -interaction=nonstopmode -output-format=dvi ~a > /dev/null 2>&1"
-                     (namestring *latex-tmp-dir*)
-                     (file-namestring tex-file))))
-    (= 0 (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t)))))
+  "Compile a .tex file to .dvi. Returns T on success."
+  (= 0 (nth-value 2 (uiop:run-program
+                     (list "latex" "-interaction=nonstopmode" "-output-format=dvi"
+                           (file-namestring tex-file))
+                     :directory *latex-tmp-dir*
+                     :ignore-error-status t))))
 
 (defun convert-dvi-to-svg (dvi-file svg-file)
-  (let ((cmd (format nil "dvisvgm --no-fonts --exact -o ~a ~a"
-                     (namestring svg-file)
-                     (namestring dvi-file))))
-    (= 0 (nth-value 2 (uiop:run-program cmd :shell t :ignore-error-status t)))))
+  "Convert a .dvi file to .svg using dvisvgm. Returns T on success."
+  (= 0 (nth-value 2 (uiop:run-program
+                     (list "dvisvgm" "--no-fonts" "--exact" "-o"
+                           (namestring svg-file) (namestring dvi-file))
+                     :directory *latex-tmp-dir*
+                     :ignore-error-status t))))
 
 (defun extract-svg-inner (svg-file)
+  "Extract the inner content of an SVG file (between <svg> tags)."
   (alexandria:when-let ((content (uiop:read-file-string svg-file)))
     (ppcre:register-groups-bind (inner)
         ("(?s)<svg[^>]*>(.+)</svg>" content)
       (str:trim inner))))
 
 (defun cleanup-latex-files (id)
+  "Remove temporary LaTeX files for the given ID."
   (dolist (ext '("tex" "dvi" "svg" "aux" "log"))
     (let ((file (merge-pathnames (format nil "latex-~d.~a" id ext) *latex-tmp-dir*)))
       (ignore-errors (delete-file file)))))
 
 (defun latex (position formula &rest attrs)
+  "Render a LaTeX formula as SVG and embed it at POSITION.
+   :SCALE keyword controls the scaling factor."
   (init-latex-env)
   (ensure-directories-exist *latex-tmp-dir*)
 

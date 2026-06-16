@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="200">
-  <rect x="50" y="50" width="40" height="30" fill="purple" transform="rotate(15) " />
-  <circle cx="150" cy="65" r="20" fill="orange" transform="scale(1.50) " />
-  <rect x="220" y="50" width="40" height="40" fill="pink" transform="translate(20,10) " />
-  <circle cx="300" cy="65" r="20" fill="cyan" transform="rotate(30) scale(0.80) " />
-  <rect x="50" y="120" width="40" height="30" fill="lightblue" transform="translate(100,50) " />
-  <circle cx="200" cy="135" r="20" fill="lightgreen" transform="rotate(-20) " />
+  <rect x="50" y="50" width="40" height="30" fill="purple" transform="rotate(15)" />
+  <circle cx="150" cy="65" r="20" fill="orange" transform="scale(1.50)" />
+  <rect x="220" y="50" width="40" height="40" fill="pink" transform="translate(20,10)" />
+  <circle cx="300" cy="65" r="20" fill="cyan" transform="rotate(30) scale(0.80)" />
+  <rect x="50" y="120" width="40" height="30" fill="lightblue" transform="translate(100,50)" />
+  <circle cx="200" cy="135" r="20" fill="lightgreen" transform="rotate(-20)" />
 </svg>
