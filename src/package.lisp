@@ -7,7 +7,7 @@
    set-default-attributes clear-default-attributes
    p x y
    rect circle ellipse line polyline polygon path
-   text frame cartesian-frame
+   text frame cartesian-frame plot-frame
    moveto lineto hlineto vlineto curveto smooth-curveto quadto smooth-quadto arc closepath
    moveto* lineto* hlineto* vlineto* curveto* smooth-curveto* quadto* smooth-quadto* arc*
    translate rotate scale skew-x skew-y matrix

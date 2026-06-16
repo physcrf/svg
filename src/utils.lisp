@@ -46,7 +46,7 @@
 
 (defun viewbox (min-x min-y width height)
   "Construct a viewBox attribute value."
-  (str:join " " (list min-x min-y width height)))
+  (format nil "~a ~a ~a ~a" min-x min-y width height))
 
 ;;; Unit conversion (convert to pixels, SVG standard: 1in = 96px)
 

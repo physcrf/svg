@@ -250,6 +250,110 @@ Create a nested SVG viewport with a Cartesian (y-up) coordinate system. Content 
 
 `cartesian-frame` is a macro that wraps content with `<svg>` and applies `transform="translate(0, height) scale(1, -1)"`, flipping the y-axis so that y=0 is at the bottom and positive y goes upward. Text inside cartesian frames will be rendered upside down — use labels sparingly or place them outside the frame.
 
+### plot-frame - Data Plotting Frame
+
+Create a data plotting frame with automatic coordinate transformation and gnuplot-style tics.
+
+```lisp
+(plot-frame (&key x y width height xmin xmax ymin ymax xtics ytics xmtics ymtics tic-length)
+  &body body)
+```
+
+**Parameters:**
+
+- `:x`, `:y` - Position in parent viewport (pixels)
+- `:width`, `:height` - Size of the plotting area (pixels)
+- `:xmin`, `:xmax`, `:ymin`, `:ymax` - Data coordinate range
+- `:xtics`, `:ytics` - Major tic specification (number or list)
+- `:xmtics`, `:ymtics` - Number of minor tics between major tics (default 0)
+- `:tic-length` - Length of major tics in pixels (default 5)
+
+**Tic Specification:**
+
+The `:xtics` and `:ytics` parameters accept:
+- A number (interval): e.g., `:xtics 2` means tics every 2 units
+- A list (start interval end): e.g., `:xtics '(0 2 10)` means tics from 0 to 10 with interval 2
+- NIL: automatically compute a nice interval
+
+**Coordinate Conversion:**
+
+Inside `plot-frame`, use the `dp` function to convert data coordinates to pixel coordinates:
+
+```lisp
+(dp data-x data-y)  ; Convert data coordinates to pixel coordinates
+```
+
+**Examples:**
+
+```lisp
+;; Simple sine wave plot
+(with-svg ("sine.svg" 600 400)
+  (plot-frame (:x 50 :y 50 :width 500 :height 300
+                  :xmin 0 :xmax 10 :ymin -1.5 :ymax 1.5
+                  :xtics 2 :ytics 0.5)
+    ;; Plot sine curve
+    (path ((moveto (dp 0 0))
+           (lineto (dp 1 0.841))
+           (lineto (dp 2 0.909))
+           (lineto (dp 3 0.141))
+           (lineto (dp 4 -0.757))
+           (lineto (dp 5 -0.959))
+           (lineto (dp 6 -0.279))
+           (lineto (dp 7 0.657))
+           (lineto (dp 8 0.989))
+           (lineto (dp 9 0.412))
+           (lineto (dp 10 -0.544)))
+          :stroke "#d32f2f" :stroke-width 2 :fill "none")
+    
+    ;; Add data points
+    (circle (dp 1.57 1.0) 4 :fill "#d32f2f")
+    (circle (dp 4.71 -1.0) 4 :fill "#d32f2f")
+    (circle (dp 7.85 1.0) 4 :fill "#d32f2f")))
+
+;; Plot with minor tics and custom tic specification
+(with-svg ("plot-with-minor-tics.svg" 600 400)
+  (plot-frame (:x 50 :y 50 :width 500 :height 300
+                  :xmin 0 :xmax 100 :ymin 0 :ymax 100
+                  :xtics '(0 20 100) :ytics 20
+                  :xmtics 4 :ymtics 4)
+    ;; Plot linear function
+    (line (dp 0 10) (dp 100 90) 
+          :stroke "#1976d2" :stroke-width 1.5 :stroke-dasharray "4,3")
+    
+    ;; Scatter points
+    (circle (dp 10 20) 3 :fill "#e65100")
+    (circle (dp 30 35) 3 :fill "#e65100")
+    (circle (dp 50 48) 3 :fill "#e65100")
+    (circle (dp 70 70) 3 :fill "#e65100")
+    (circle (dp 90 80) 3 :fill "#e65100")))
+
+;; Plot with automatic tic intervals
+(with-svg ("auto-tics.svg" 600 400)
+  (plot-frame (:x 50 :y 50 :width 500 :height 300
+                  :xmin -5 :xmax 5 :ymin 0 :ymax 25)
+    ;; Plot y = x^2 parabola
+    (path ((moveto (dp -5 25))
+           (lineto (dp -4 16))
+           (lineto (dp -3 9))
+           (lineto (dp -2 4))
+           (lineto (dp -1 1))
+           (lineto (dp 0 0))
+           (lineto (dp 1 1))
+           (lineto (dp 2 4))
+           (lineto (dp 3 9))
+           (lineto (dp 4 16))
+           (lineto (dp 5 25)))
+          :stroke "#2e7d32" :stroke-width 2 :fill "none")))
+```
+
+**Features:**
+
+- Automatic coordinate transformation from data space to pixel space
+- Gnuplot-style tics pointing inward on all four sides
+- Major and minor tic marks
+- Border rectangle around the plotting area
+- Use `dp` function to convert data coordinates in body forms
+
 ## 🎨 Path Commands
 
 Use the `path` macro to compose complex paths:

@@ -102,9 +102,15 @@
 (defun current-stream ()
   (if *svg* (svg-stream *svg*) *standard-output*))
 
+(defun attr-name (key)
+  "Convert a keyword attribute name to its SVG string representation.
+   Handles camelCase attributes like VIEWBOX -> viewBox."
+  (let ((name (string-downcase (symbol-name key))))
+    (if (string= name "viewbox") "viewBox" name)))
+
 (defun write-attributes (stream attributes)
   (loop for (key value) on attributes by #'cddr
-        do (format stream "~(~a~)=\"~a\" " key (serialize-value value))))
+        do (format stream "~a=\"~a\" " (attr-name key) (serialize-value value))))
 
 (defun write-element (name attributes &optional content)
   (let* ((stream (current-stream))

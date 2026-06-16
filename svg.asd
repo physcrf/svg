@@ -11,4 +11,5 @@
                (:file "src/text")
                (:file "src/path")
                (:file "src/latex")
-               (:file "src/marker")))
+               (:file "src/marker")
+               (:file "src/plot")))
