@@ -14,7 +14,7 @@ SPEC can be:
         (list range-min spec range-max))))
 
 (defmacro plot-frame ((&key x y width height xmin xmax ymin ymax
-                            xtics ytics (xmtics 0) (ymtics 0) (tic-length 5))
+                            xtics ytics (xmtics 0) (ymtics 0) tic-length)
                       &body body)
   "Create a data-plotting frame (nested SVG) with Cartesian coordinates
 and gnuplot-style tics inside the frame box.
@@ -23,17 +23,13 @@ and gnuplot-style tics inside the frame box.
 :xmin, :xmax, :ymin, :ymax — data coordinate range.
 :xtics, :ytics — tic spec: a number (interval) or a list (start interval end).
 :xmtics, :ymtics — number of minor tics between major tics (default 0).
-:tic-length — major tic length in pixels (default 5).
+:tic-length — major tic length in pixels (default: min(width,height)/40, auto-scaled).
 
 Inside the body, use (dp x y) to convert data coordinates to pixel coordinates.
 Visual sizes (circle radius, stroke-width etc.) are in pixel units."
-  (let ((sx (gensym "SX"))
-        (sy (gensym "SY"))
-        (vb (gensym "VB"))
-        (stream (gensym "STREAM"))
-        (xspec (gensym "XSPEC"))
-        (yspec (gensym "YSPEC")))
-    `(let* ((,sx (/ ,width (- ,xmax ,xmin)))
+  (alexandria:with-gensyms (sx sy vb stream xspec yspec tl)
+    `(let* ((,tl (or ,tic-length (max 3 (round (/ (min ,width ,height) 40)))))
+            (,sx (/ ,width (- ,xmax ,xmin)))
             (,sy (/ ,height (- ,ymax ,ymin)))
             (,vb (viewbox 0 0 ,width ,height))
             (,stream (current-stream))
@@ -52,7 +48,7 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
          ;; xtics — bottom edge (upward) and top edge (downward)
          (when ,xspec
            (destructuring-bind (xstart xint xend) ,xspec
-             (let ((dx (* ,tic-length (/ (- ,ymax ,ymin) ,height))))
+             (let ((dx (* ,tl (/ (- ,ymax ,ymin) ,height))))
                (loop for xi from (+ xstart xint) to xend by xint
                      do (line (dp xi ,ymin) (dp xi (+ ,ymin dx))
                               :stroke "black" :stroke-width 1)
@@ -60,7 +56,7 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
                               :stroke "black" :stroke-width 1))
                ;; xmtics — minor tics
                (when (> ,xmtics 0)
-                 (let ((mdx (* (/ ,tic-length 2) (/ (- ,ymax ,ymin) ,height)))
+                 (let ((mdx (* (/ ,tl 2) (/ (- ,ymax ,ymin) ,height)))
                        (step (/ xint (1+ ,xmtics))))
                    (loop for xi from (+ xstart step) below xend by step
                          unless (zerop (mod (- xi xstart) xint))
@@ -71,7 +67,7 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
          ;; ytics — left edge (rightward) and right edge (leftward)
          (when ,yspec
            (destructuring-bind (ystart yint yend) ,yspec
-             (let ((dx (* ,tic-length (/ (- ,xmax ,xmin) ,width))))
+             (let ((dx (* ,tl (/ (- ,xmax ,xmin) ,width))))
                (loop for yi from (+ ystart yint) to yend by yint
                      do (line (dp ,xmin yi) (dp (+ ,xmin dx) yi)
                               :stroke "black" :stroke-width 1)
@@ -79,7 +75,7 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
                               :stroke "black" :stroke-width 1))
                ;; ymtics — minor tics
                (when (> ,ymtics 0)
-                 (let ((mdx (* (/ ,tic-length 2) (/ (- ,xmax ,xmin) ,width)))
+                 (let ((mdx (* (/ ,tl 2) (/ (- ,xmax ,xmin) ,width)))
                        (step (/ yint (1+ ,ymtics))))
                    (loop for yi from (+ ystart step) below yend by step
                          unless (zerop (mod (- yi ystart) yint))
