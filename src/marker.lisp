@@ -52,8 +52,8 @@
                           :orient ,(or orient "auto") :scale ,scale)))))
 
 (def-simple-marker define-arrow
-  ("<path d=\"M0,0 L0,~a L~a,~a z\" fill=\"context-stroke\" />" h w (/ h 2))
-  :default-refx 0 :default-refy (/ h 2))
+  ("<path d=\"M0,0 L0,~a L~a,~a z\" fill=\"context-stroke\" />" h w (float (/ h 2)))
+  :default-refx 0 :default-refy (float (/ h 2)))
 
 (def-simple-marker define-circle-dot
   ("<circle cx=\"~a\" cy=\"~a\" r=\"~a\" fill=\"context-stroke\" />" (/ w 2) (/ h 2) (/ (min w h) 2))
@@ -64,8 +64,8 @@
   :default-refx (/ w 2) :default-refy (/ h 2))
 
 (def-simple-marker define-triangle
-  ("<path d=\"M0,0 L0,~a L~a,~a z\" fill=\"context-stroke\" />" h w (/ h 2))
-  :default-refx 0 :default-refy (/ h 2))
+  ("<path d=\"M0,0 L0,~a L~a,~a z\" fill=\"context-stroke\" />" h w (float (/ h 2)))
+  :default-refx 0 :default-refy (float (/ h 2)))
 
 (def-simple-marker define-diamond
   ("<path d=\"M~a,0 L~a,~a L~a,~a L0,~a z\" fill=\"context-stroke\" />" (/ w 2) w (/ h 2) (/ w 2) h (/ h 2))
@@ -80,8 +80,8 @@
 
 (def-simple-marker define-arrow-open
   ("<path d=\"M0,0 L0,~a L~a,~a z\" fill=\"white\" stroke=\"context-stroke\" stroke-width=\"~a\" />"
-   h w (/ h 2) stroke-width)
-  :default-refx 0 :default-refy (/ h 2)
+   h w (float (/ h 2)) stroke-width)
+  :default-refx 0 :default-refy (float (/ h 2))
   :extra-keys ((stroke-width 1.5)))
 
 ;;; Marker emission
