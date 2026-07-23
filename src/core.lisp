@@ -60,6 +60,7 @@
   (trivia:match value
     ((type string) value)
     ((type number) (fmt value))
+    ((list 'quote sym) (serialize-value sym))
     ((type list) (format nil "~{~a~^ ~}" value))
     ((type symbol)
      (alexandria:if-let ((m (use-marker value)))
