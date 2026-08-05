@@ -62,10 +62,7 @@
     ((type number) (fmt value))
     ((list 'quote sym) (serialize-value sym))
     ((type list) (format nil "~{~a~^ ~}" value))
-    ((type symbol)
-     (alexandria:if-let ((m (use-marker value)))
-       (format nil "url(#~a)" (marker-id m))
-       (str:downcase (string value))))
+    ((type symbol) (marker-url value))
     (_ (format nil "~a" value))))
 
 ;;; Transform attribute processing
@@ -82,7 +79,8 @@
               (_ (scale value))))
     (:skew-x (skew-x value))
     (:skew-y (skew-y value))
-    (:matrix (apply #'matrix value))))
+    (:matrix (apply #'matrix value))
+    (_ nil)))
 
 (defun process-transform-attributes (attributes)
   "Separate transform keywords from other attributes, combining transforms into one :transform entry."

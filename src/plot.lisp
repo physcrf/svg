@@ -35,9 +35,23 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
             (,stream (current-stream))
             (,xspec (parse-tics-spec ,xtics ,xmin ,xmax))
             (,yspec (parse-tics-spec ,ytics ,ymin ,ymax)))
-       (flet ((dp (dx dy)
-                (complex (* (- dx ,xmin) ,sx)
-                         (* (- ,ymax dy) ,sy))))
+       (labels ((dp (dx dy)
+                  (complex (* (- dx ,xmin) ,sx)
+                           (* (- ,ymax dy) ,sy)))
+                ;; Vertical tic at data x=XI, drawn on the bottom and top edges.
+                ;; EXTENT is the inward tic length, already in data-y units.
+                (draw-x-tic (xi extent)
+                  (line (dp xi ,ymin) (dp xi (+ ,ymin extent))
+                        :stroke "black" :stroke-width 1)
+                  (line (dp xi ,ymax) (dp xi (- ,ymax extent))
+                        :stroke "black" :stroke-width 1))
+                ;; Horizontal tic at data y=YI, drawn on the left and right edges.
+                ;; EXTENT is the inward tic length, already in data-x units.
+                (draw-y-tic (yi extent)
+                  (line (dp ,xmin yi) (dp (+ ,xmin extent) yi)
+                        :stroke "black" :stroke-width 1)
+                  (line (dp ,xmax yi) (dp (- ,xmax extent) yi)
+                        :stroke "black" :stroke-width 1)))
          ;; nested SVG with pixel-coordinate viewBox
          (format ,stream "  <svg ")
          (write-attributes ,stream (list :x ,x :y ,y :width ,width :height ,height :viewbox ,vb))
@@ -45,44 +59,32 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
          ;; frame border
          (rect (dp ,xmin ,ymax) ,width ,height
                :fill "none" :stroke "black" :stroke-width 1)
-         ;; xtics — bottom edge (upward) and top edge (downward)
+         ;; x-axis tics on the bottom and top edges.
+         ;; ,tl is a pixel length; the y-scale converts it to data-y units.
          (when ,xspec
            (destructuring-bind (xstart xint xend) ,xspec
-             (let ((dx (* ,tl (/ (- ,ymax ,ymin) ,height))))
+             (let ((major-extent (* ,tl (/ (- ,ymax ,ymin) ,height))))
                (loop for xi from (+ xstart xint) to xend by xint
-                     do (line (dp xi ,ymin) (dp xi (+ ,ymin dx))
-                              :stroke "black" :stroke-width 1)
-                        (line (dp xi ,ymax) (dp xi (- ,ymax dx))
-                              :stroke "black" :stroke-width 1))
-               ;; xmtics — minor tics
+                     do (draw-x-tic xi major-extent))
+               ;; minor tics: half as long, skipping any spot a major tic already occupies
                (when (> ,xmtics 0)
-                 (let ((mdx (* (/ ,tl 2) (/ (- ,ymax ,ymin) ,height)))
+                 (let ((minor-extent (* (/ ,tl 2) (/ (- ,ymax ,ymin) ,height)))
                        (step (/ xint (1+ ,xmtics))))
                    (loop for xi from (+ xstart step) below xend by step
                          unless (zerop (mod (- xi xstart) xint))
-                         do (line (dp xi ,ymin) (dp xi (+ ,ymin mdx))
-                                  :stroke "black" :stroke-width 1)
-                            (line (dp xi ,ymax) (dp xi (- ,ymax mdx))
-                                  :stroke "black" :stroke-width 1)))))))
-         ;; ytics — left edge (rightward) and right edge (leftward)
+                         do (draw-x-tic xi minor-extent)))))))
+         ;; y-axis tics on the left and right edges, mirroring the x-axis logic.
          (when ,yspec
            (destructuring-bind (ystart yint yend) ,yspec
-             (let ((dx (* ,tl (/ (- ,xmax ,xmin) ,width))))
+             (let ((major-extent (* ,tl (/ (- ,xmax ,xmin) ,width))))
                (loop for yi from (+ ystart yint) to yend by yint
-                     do (line (dp ,xmin yi) (dp (+ ,xmin dx) yi)
-                              :stroke "black" :stroke-width 1)
-                        (line (dp ,xmax yi) (dp (- ,xmax dx) yi)
-                              :stroke "black" :stroke-width 1))
-               ;; ymtics — minor tics
+                     do (draw-y-tic yi major-extent))
                (when (> ,ymtics 0)
-                 (let ((mdx (* (/ ,tl 2) (/ (- ,xmax ,xmin) ,width)))
+                 (let ((minor-extent (* (/ ,tl 2) (/ (- ,xmax ,xmin) ,width)))
                        (step (/ yint (1+ ,ymtics))))
                    (loop for yi from (+ ystart step) below yend by step
                          unless (zerop (mod (- yi ystart) yint))
-                         do (line (dp ,xmin yi) (dp (+ ,xmin mdx) yi)
-                                  :stroke "black" :stroke-width 1)
-                            (line (dp ,xmax yi) (dp (- ,xmax mdx) yi)
-                                  :stroke "black" :stroke-width 1)))))))
+                         do (draw-y-tic yi minor-extent)))))))
          ;; user data plotting forms
          ,@body
          (format ,stream "  </svg>~%")))))

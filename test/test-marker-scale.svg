@@ -13,23 +13,23 @@
   <defs>
     <marker id="S1" refX="0.00" refY="2.50" markerWidth="5.00" markerHeight="5.00"
             viewBox="0 0 5.00 5.00" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(0.5,0.5)"><path d="M0,0 L0,10 L10,5 z" fill="context-stroke" /></g>
+      <g transform="scale(0.5,0.5)"><path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" /></g>
     </marker>
-    <marker id="S2" refX="0" refY="5" markerWidth="10" markerHeight="10"
+    <marker id="S2" refX="0" refY="5.00" markerWidth="10" markerHeight="10"
             viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L0,10 L10,5 z" fill="context-stroke" />
+      <path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" />
     </marker>
-    <marker id="S3" refX="0" refY="10" markerWidth="20" markerHeight="20"
+    <marker id="S3" refX="0" refY="10.00" markerWidth="20" markerHeight="20"
             viewBox="0 0 20 20" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(2,2)"><path d="M0,0 L0,10 L10,5 z" fill="context-stroke" /></g>
+      <g transform="scale(2,2)"><path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" /></g>
     </marker>
-    <marker id="S4" refX="0" refY="5" markerWidth="30" markerHeight="10"
+    <marker id="S4" refX="0" refY="5.00" markerWidth="30" markerHeight="10"
             viewBox="0 0 30 10" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(3,1)"><path d="M0,0 L0,10 L10,5 z" fill="context-stroke" /></g>
+      <g transform="scale(3,1)"><path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" /></g>
     </marker>
-    <marker id="S5" refX="0" refY="15" markerWidth="10" markerHeight="30"
+    <marker id="S5" refX="0" refY="15.00" markerWidth="10" markerHeight="30"
             viewBox="0 0 10 30" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(1,3)"><path d="M0,0 L0,10 L10,5 z" fill="context-stroke" /></g>
+      <g transform="scale(1,3)"><path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" /></g>
     </marker>
   </defs>
 </svg>

@@ -83,7 +83,7 @@
                (let* ((stream (current-stream))
                       (transform (if scale
                                      (format nil "translate(~a,~a) scale(~a)" (fmt px) (fmt py) scale)
-                                     (format nil "translate(~a,~a)" (fmt px) (fmt py))))
+                                     (translate px py)))
                       (final-attrs (append (list :transform transform) clean-attrs)))
                  (format stream "  <g ")
                  (write-attributes stream final-attrs)
