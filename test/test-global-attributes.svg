@@ -15,7 +15,7 @@
   <defs>
     <marker id="TEST-ARROW" refX="0.00" refY="7.50" markerWidth="15.00" markerHeight="15.00"
             viewBox="0 0 15.00 15.00" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(1.5,1.5)"><path d="M0,0 L0,10 L10,5.0 z" fill="context-stroke" /></g>
+      <g transform="scale(1.5,1.5)"><path d="M0,0 L0,10 L10,5.00 z" fill="context-stroke" /></g>
     </marker>
     <marker id="TEST-DOT" refX="5" refY="5" markerWidth="10" markerHeight="10"
             viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">

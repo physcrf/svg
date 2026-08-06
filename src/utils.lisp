@@ -6,6 +6,18 @@
       (format nil "~d" value)
       (format nil "~,2f" value)))
 
+(defun xml-escape (string)
+  "Escape XML special characters in STRING for safe insertion as element content."
+  (if (stringp string)
+      (with-output-to-string (out)
+        (loop for char across string
+              do (case char
+                   (#\< (write-string "&lt;" out))
+                   (#\> (write-string "&gt;" out))
+                   (#\& (write-string "&amp;" out))
+                   (otherwise (write-char char out)))))
+      string))
+
 ;;; Transform functions
 
 (defmacro def-transform (name format-string args)
@@ -49,7 +61,7 @@
 
 (defun viewbox (min-x min-y width height)
   "Construct a viewBox attribute value."
-  (format nil "~a ~a ~a ~a" min-x min-y width height))
+  (format nil "~a ~a ~a ~a" (fmt min-x) (fmt min-y) (fmt width) (fmt height)))
 
 ;;; Unit conversion (convert to pixels, SVG standard: 1in = 96px)
 

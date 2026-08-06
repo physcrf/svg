@@ -11,7 +11,7 @@
 
 (defun points-to-string (points)
   "Convert a list of points to an SVG points attribute string."
-  (str:join " " (mapcar (lambda (p) (format nil "~a,~a" (x p) (y p))) points)))
+  (str:join " " (mapcar (lambda (p) (format nil "~a,~a" (fmt (x p)) (fmt (y p)))) points)))
 
 (defun circle (center r &rest rest &key &allow-other-keys)
   (write-element "circle"

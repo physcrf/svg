@@ -64,26 +64,41 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
          (when ,xspec
            (destructuring-bind (xstart xint xend) ,xspec
              (let ((major-extent (* ,tl (/ (- ,ymax ,ymin) ,height))))
-               (loop for xi from (+ xstart xint) to xend by xint
+               ;; Integer counter + multiplication avoids the floating-point
+               ;; accumulation that `loop ... by` suffers from; the small
+               ;; epsilon on the bound ensures the final tic (e.g. xint=0.1)
+               ;; is not lost to rounding.
+               (loop for i from 0
+                     for xi = (+ xstart (* i xint))
+                     while (<= xi (+ xend 1e-6))
                      do (draw-x-tic xi major-extent))
-               ;; minor tics: half as long, skipping any spot a major tic already occupies
+               ;; minor tics: half as long, skipping every spot a major tic already
+               ;; occupies. Since step = xint/(1+xmtics), a major tic lands exactly
+               ;; every (1+xmtics) steps — track the step index with an integer
+               ;; counter to avoid fragile floating-point `mod` comparisons.
                (when (> ,xmtics 0)
                  (let ((minor-extent (* (/ ,tl 2) (/ (- ,ymax ,ymin) ,height)))
                        (step (/ xint (1+ ,xmtics))))
-                   (loop for xi from (+ xstart step) below xend by step
-                         unless (zerop (mod (- xi xstart) xint))
+                   (loop for i from 1
+                         for xi = (+ xstart (* i step))
+                         while (<= xi (+ xend 1e-6))
+                         unless (zerop (mod i (1+ ,xmtics)))
                          do (draw-x-tic xi minor-extent)))))))
          ;; y-axis tics on the left and right edges, mirroring the x-axis logic.
          (when ,yspec
            (destructuring-bind (ystart yint yend) ,yspec
              (let ((major-extent (* ,tl (/ (- ,xmax ,xmin) ,width))))
-               (loop for yi from (+ ystart yint) to yend by yint
+               (loop for i from 0
+                     for yi = (+ ystart (* i yint))
+                     while (<= yi (+ yend 1e-6))
                      do (draw-y-tic yi major-extent))
                (when (> ,ymtics 0)
                  (let ((minor-extent (* (/ ,tl 2) (/ (- ,xmax ,xmin) ,width)))
                        (step (/ yint (1+ ,ymtics))))
-                   (loop for yi from (+ ystart step) below yend by step
-                         unless (zerop (mod (- yi ystart) yint))
+                   (loop for i from 1
+                         for yi = (+ ystart (* i step))
+                         while (<= yi (+ yend 1e-6))
+                         unless (zerop (mod i (1+ ,ymtics)))
                          do (draw-y-tic yi minor-extent)))))))
          ;; user data plotting forms
          ,@body

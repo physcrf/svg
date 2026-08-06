@@ -77,15 +77,25 @@
     (unwind-protect
          (progn
            (write-latex-file tex-file formula)
-           (when (and (compile-latex-to-dvi tex-file)
-                      (convert-dvi-to-svg dvi-file svg-file))
-             (alexandria:when-let ((content (extract-svg-inner svg-file)))
-               (let* ((stream (current-stream))
-                      (transform (if scale
-                                     (format nil "translate(~a,~a) scale(~a)" (fmt px) (fmt py) scale)
-                                     (translate px py)))
-                      (final-attrs (append (list :transform transform) clean-attrs)))
-                 (format stream "  <g ")
-                 (write-attributes stream final-attrs)
-                 (format stream ">~a</g>~%" content)))))
+           (cond
+             ((not (compile-latex-to-dvi tex-file))
+              (warn "LaTeX compilation failed for formula: ~a" formula))
+             ((not (convert-dvi-to-svg dvi-file svg-file))
+              (warn "DVI to SVG conversion (dvisvgm) failed for formula: ~a" formula))
+             (t
+              (alexandria:when-let ((content (extract-svg-inner svg-file)))
+                ;; Write the <g> directly (not via write-element) because CONTENT
+                ;; is pre-rendered SVG markup from dvisvgm that must not be
+                ;; XML-escaped. We still go through merge-attributes /
+                ;; process-transform-attributes so :translate/:scale and any
+                ;; user transform keywords are folded consistently.
+                (let* ((stream (current-stream))
+                       (final-attrs (append (list :translate (p px py))
+                                            (when scale (list :scale scale))
+                                            clean-attrs))
+                       (processed (process-transform-attributes
+                                   (merge-attributes final-attrs))))
+                  (format stream "  <g ")
+                  (write-attributes stream processed)
+                  (format stream ">~a</g>~%" content))))))
       (cleanup-latex-files id))))

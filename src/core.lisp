@@ -4,7 +4,7 @@
 
 (defstruct svg
   (stream nil :type (or null stream))
-  (filename nil :type (or null string))
+  (filename nil :type (or null string pathname))
   (width 325 :type number)
   (height 201 :type number))
 
@@ -61,7 +61,9 @@
     ((type string) value)
     ((type number) (fmt value))
     ((list 'quote sym) (serialize-value sym))
-    ((type list) (format nil "~{~a~^ ~}" value))
+    ((type list) (str:join " "
+                           (mapcar (lambda (v) (if (numberp v) (fmt v) v))
+                                   value)))
     ((type symbol) (marker-url value))
     (_ (format nil "~a" value))))
 
@@ -83,12 +85,18 @@
     (_ nil)))
 
 (defun process-transform-attributes (attributes)
-  "Separate transform keywords from other attributes, combining transforms into one :transform entry."
+  "Separate transform keywords from other attributes, combining transforms into one :transform entry.
+   A user-supplied :transform string is treated as another transform fragment and
+   folded into the same combined attribute, so passing both :transform and keyword
+   transforms (e.g. :translate) produces a single transform attribute rather than
+   two duplicate ones."
   (let (transforms others)
     (loop for (key value) on attributes by #'cddr
           for tf = (transform-value key value)
           if tf
             do (push tf transforms)
+          else if (eq key :transform)
+            do (push value transforms)
           else
             do (push key others) (push value others))
     (if transforms
@@ -112,12 +120,15 @@
         do (format stream "~a=\"~a\" " (attr-name key) (serialize-value value))))
 
 (defun write-element (name attributes &optional content)
+  "Write an SVG element. String CONTENT is XML-escaped for safety;
+   `latex` writes its <g> directly (see latex.lisp) because its content
+   is pre-rendered SVG markup that must not be escaped."
   (let* ((stream (current-stream))
          (processed-attrs (process-transform-attributes (merge-attributes attributes))))
     (format stream "  <~a " name)
     (write-attributes stream processed-attrs)
     (if content
-        (format stream ">~a</~a>~%" content name)
+        (format stream ">~a</~a>~%" (xml-escape content) name)
         (format stream "/>~%"))))
 
 ;;; Frame / sub-viewport

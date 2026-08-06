@@ -3,7 +3,7 @@
 (defvar *markers* nil)
 (defvar *used-markers* nil)
 
-(defstruct marker id content refx refy markerwidth markerheight viewbox orient scale)
+(defstruct marker id content refx refy markerwidth markerheight orient scale)
 
 (defun register-marker (m)
   (push m *markers*)
@@ -17,13 +17,15 @@
     (pushnew m *used-markers* :test #'eq)
     m))
 
-(defun define-marker (id content &key (refx 5) (refy 5) (markerwidth 10) (markerheight 10) viewbox (orient "auto") scale)
-  (register-marker
-   (make-marker :id id :content content
-                :refx refx :refy refy
-                :markerwidth markerwidth :markerheight markerheight
-                :viewbox (or viewbox (format nil "0 0 ~a ~a" markerwidth markerheight))
-                :orient orient :scale scale)))
+(defmacro define-marker (id content &key (refx 5) (refy 5) (markerwidth 10) (markerheight 10) (orient "auto") scale)
+  "Define a marker with ID (a symbol, not evaluated) and SVG CONTENT string.
+   ID is not evaluated, consistent with define-arrow and the other built-in
+   marker-defining macros, so no quote is needed: (define-marker my-arrow ...)."
+  `(register-marker
+    (make-marker :id ',id :content ,content
+                 :refx ,refx :refy ,refy
+                 :markerwidth ,markerwidth :markerheight ,markerheight
+                 :orient ,orient :scale ,scale)))
 
 ;;; Marker definition macros
 ;;;
@@ -39,23 +41,24 @@
 (defmacro def-simple-marker (name (content-fmt &rest fmt-args) &key (default-refx 5) (default-refy 5) extra-keys)
   "Define a marker-defining macro NAME. The content is computed from CONTENT-FMT/FMT-ARGS.
    DEFAULT-REFX/DEFAULT-REFY provide the fallback ref values.
-   EXTRA-KEYS is a list of (KEY DEFAULT-VALUE) for additional &key parameters."
+   EXTRA-KEYS is a list of (KEY DEFAULT-VALUE) for additional &key parameters.
+   Each FMT-ARG is wrapped in (fmt ...) so numbers are always emitted as valid
+   SVG values (e.g. 9/2 -> \"4.50\"), never as Lisp ratios."
   (let ((extra-key-names (mapcar #'first extra-keys))
         (extra-let-bindings (mapcar (lambda (spec)
                                       `(,(first spec) (or ,(first spec) ,(second spec))))
                                     extra-keys)))
     `(defmacro ,name (id &rest rest
-                       &key refx refy markerwidth markerheight viewbox orient scale
+                       &key refx refy markerwidth markerheight orient scale
                        ,@extra-key-names
                        &allow-other-keys)
        (let ((w (or markerwidth 10))
              (h (or markerheight 10))
              ,@extra-let-bindings)
-         `(define-marker ',id
-                          ,(format nil ,content-fmt ,@fmt-args)
+         `(define-marker ,id
+                          ,(format nil ,content-fmt ,@(mapcar (lambda (a) `(fmt ,a)) fmt-args))
                           :refx ,(or refx ,default-refx) :refy ,(or refy ,default-refy)
                           :markerwidth ,w :markerheight ,h
-                          :viewbox ,(or viewbox (format nil "0 0 ~a ~a" w h))
                           :orient ,(or orient "auto") :scale ,scale)))))
 
 ;;; Built-in markers. Each draws a simple shape sized to the W x H marker box;
@@ -89,9 +92,12 @@
 
 ;; Cross (plus sign): two stroked segments crossing at the box center.
 (def-simple-marker define-cross
-  ("<path d=\"M~a,0 L~a,0 M~a,0 L~a,~a M~a,~a L~a,~a\" stroke=\"context-stroke\" stroke-width=\"~a\" fill=\"none\" />"
-   (- (/ w 2) stroke-width) (+ (/ w 2) stroke-width) (/ w 2) (/ w 2) h
-   (- (/ w 2) stroke-width) h (+ (/ w 2) stroke-width) h stroke-width)
+  ("<path d=\"M~a,~a L~a,~a M~a,~a L~a,~a\" stroke=\"context-stroke\" stroke-width=\"~a\" fill=\"none\" />"
+   (- (/ w 2) stroke-width) (/ h 2)
+   (+ (/ w 2) stroke-width) (/ h 2)
+   (/ w 2) (- (/ h 2) stroke-width)
+   (/ w 2) (+ (/ h 2) stroke-width)
+   stroke-width)
   :default-refx (/ w 2) :default-refy (/ h 2)
   :extra-keys ((stroke-width 2)))
 

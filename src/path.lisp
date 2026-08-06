@@ -4,15 +4,21 @@
 
 (defmacro def-path-cmd (abs-name abs-letter abs-params rel-params format-string &rest format-args)
   "Define absolute and relative SVG path command functions.
-   ABS-LETTER is the uppercase SVG command letter; the lowercase variant is automatic."
+   ABS-LETTER is the uppercase SVG command letter; the lowercase variant is automatic.
+   FORMAT-ARGS are written in terms of ABS-PARAMS; for the relative variant they are
+   rewritten to reference the corresponding REL-PARAMS names."
   (let ((abs-fn (intern (string-upcase abs-name) (find-package :svg)))
         (rel-fn (intern (format nil "~a*" (string-upcase abs-name)) (find-package :svg)))
-        (rel-letter (char-downcase abs-letter)))
+        (rel-letter (char-downcase abs-letter))
+        ;; Map each absolute parameter name to its relative counterpart so the
+        ;; shared body can be reused verbatim inside the relative function.
+        (renaming (pairlis abs-params rel-params)))
     `(progn
        (defun ,abs-fn ,abs-params
          (format nil ,(format nil "~a ~a" abs-letter format-string) ,@format-args))
        (defun ,rel-fn ,rel-params
-         (format nil ,(format nil "~a ~a" rel-letter format-string) ,@format-args)))))
+         (format nil ,(format nil "~a ~a" rel-letter format-string)
+                 ,@(sublis renaming format-args))))))
 
 (def-path-cmd "moveto" #\M (point) (dpoint) "~a,~a" (fmt (x point)) (fmt (y point)))
 (def-path-cmd "lineto" #\L (point) (dpoint) "~a,~a" (fmt (x point)) (fmt (y point)))
