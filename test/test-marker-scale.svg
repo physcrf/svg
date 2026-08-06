@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="150">
+  <rect x="0" y="0" width="600" height="150" fill="white" />
   <line x1="30" y1="30" x2="100" y2="30" stroke="black" stroke-width="2" marker-end="url(#S1)" />
   <line x1="30" y1="55" x2="100" y2="55" stroke="black" stroke-width="2" marker-end="url(#S2)" />
   <line x1="30" y1="80" x2="100" y2="80" stroke="black" stroke-width="2" marker-end="url(#S3)" />
@@ -13,7 +14,7 @@
   <defs>
     <marker id="S1" refX="0.00" refY="2.50" markerWidth="5.00" markerHeight="5.00"
             viewBox="0 0 5.00 5.00" orient="auto" markerUnits="userSpaceOnUse">
-      <g transform="scale(0.5,0.5)"><path d="M0,0 L0,10 L10,5.00 z" fill="context-stroke" /></g>
+      <g transform="scale(0.50,0.50)"><path d="M0,0 L0,10 L10,5.00 z" fill="context-stroke" /></g>
     </marker>
     <marker id="S2" refX="0" refY="5.00" markerWidth="10" markerHeight="10"
             viewBox="0 0 10 10" orient="auto" markerUnits="userSpaceOnUse">

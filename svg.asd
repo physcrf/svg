@@ -5,11 +5,11 @@
   :serial t
   :components ((:file "src/package")
                (:file "src/utils")
-               (:file "src/core")
                (:file "src/attributes")
+               (:file "src/marker")
+               (:file "src/core")
                (:file "src/shapes")
                (:file "src/text")
                (:file "src/path")
                (:file "src/latex")
-               (:file "src/marker")
                (:file "src/plot")))

@@ -23,6 +23,7 @@
                    (append (list 'x (x position) 'y (y position) 'width width 'height height)
                            (when rx (list 'rx rx))
                            (when ry (list 'ry ry))
+                           (when (and rx (not ry)) (list 'ry rx))
                            clean-rest))))
 
 (defun ellipse (center rx ry &rest rest &key &allow-other-keys)
@@ -34,7 +35,9 @@
                  (append (list 'x1 (x start) 'y1 (y start) 'x2 (x end) 'y2 (y end)) rest)))
 
 (defun polyline (points &rest rest &key &allow-other-keys)
+  (check-type points list)
   (write-element "polyline" (append (list 'points (points-to-string points)) rest)))
 
 (defun polygon (points &rest rest &key &allow-other-keys)
+  (check-type points list)
   (write-element "polygon" (append (list 'points (points-to-string points)) rest)))

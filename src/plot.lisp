@@ -10,7 +10,10 @@ SPEC can be:
   - NIL: returns NIL"
   (when spec
     (if (listp spec)
-        spec
+        (progn
+          (assert (= (length spec) 3) (spec)
+                  "Tics spec list must have exactly 3 elements (start interval end), got ~a" spec)
+          spec)
         (list range-min spec range-max))))
 
 (defmacro plot-frame ((&key x y width height xmin xmax ymin ymax
@@ -29,12 +32,14 @@ Inside the body, use (dp x y) to convert data coordinates to pixel coordinates.
 Visual sizes (circle radius, stroke-width etc.) are in pixel units."
   (alexandria:with-gensyms (sx sy vb stream xspec yspec tl)
     `(let* ((,tl (or ,tic-length (max 3 (round (/ (min ,width ,height) 40)))))
-            (,sx (/ ,width (- ,xmax ,xmin)))
-            (,sy (/ ,height (- ,ymax ,ymin)))
+            (,sx (if (= ,xmax ,xmin) 1 (/ ,width (- ,xmax ,xmin))))
+            (,sy (if (= ,ymax ,ymin) 1 (/ ,height (- ,ymax ,ymin))))
             (,vb (viewbox 0 0 ,width ,height))
             (,stream (current-stream))
             (,xspec (parse-tics-spec ,xtics ,xmin ,xmax))
             (,yspec (parse-tics-spec ,ytics ,ymin ,ymax)))
+       (assert (and (> ,width 0) (> ,height 0)) ()
+               "Plot frame width and height must be positive, got ~a x ~a" ,width ,height)
        (labels ((dp (dx dy)
                   (complex (* (- dx ,xmin) ,sx)
                            (* (- ,ymax dy) ,sy)))
@@ -51,7 +56,35 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
                   (line (dp ,xmin yi) (dp (+ ,xmin extent) yi)
                         :stroke "black" :stroke-width 1)
                   (line (dp ,xmax yi) (dp (- ,xmax extent) yi)
-                        :stroke "black" :stroke-width 1)))
+                        :stroke "black" :stroke-width 1))
+                ;; Shared tic loop for both axes. SPEC is (start interval end);
+                ;; a major tic is drawn every INTERVAL, with MTICKS minor tics in
+                ;; between. DRAW is called as (DRAW POS EXTENT) for each tic.
+                (emit-tics (spec mticks major-extent minor-extent draw)
+                  (destructuring-bind (start interval end) spec
+                    ;; A non-positive interval (e.g. :xtics 0) would keep the tic
+                    ;; positions from ever advancing and hang the loop — skip tics.
+                    (when (plusp interval)
+                      ;; Integer counter + multiplication avoids the floating-point
+                      ;; accumulation that `loop ... by` suffers from; the small
+                      ;; epsilon on the bound ensures the final tic (e.g. 0.1)
+                      ;; is not lost to rounding.
+                      (loop for i from 0
+                            for pos = (+ start (* i interval))
+                            while (<= pos (+ end 1e-6))
+                            do (funcall draw pos major-extent))
+                      ;; Minor tics are half as long, skipping every spot a major
+                      ;; tic already occupies. Since step = interval/(1+mticks), a
+                      ;; major tic lands exactly every (1+mticks) steps — track the
+                      ;; step index with an integer counter to avoid fragile
+                      ;; floating-point `mod` comparisons.
+                      (when (> mticks 0)
+                        (let ((step (/ interval (1+ mticks))))
+                          (loop for i from 1
+                                for pos = (+ start (* i step))
+                                while (<= pos (+ end 1e-6))
+                                unless (zerop (mod i (1+ mticks)))
+                                do (funcall draw pos minor-extent))))))))
          ;; nested SVG with pixel-coordinate viewBox
          (format ,stream "  <svg ")
          (write-attributes ,stream (list :x ,x :y ,y :width ,width :height ,height :viewbox ,vb))
@@ -62,44 +95,18 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
          ;; x-axis tics on the bottom and top edges.
          ;; ,tl is a pixel length; the y-scale converts it to data-y units.
          (when ,xspec
-           (destructuring-bind (xstart xint xend) ,xspec
-             (let ((major-extent (* ,tl (/ (- ,ymax ,ymin) ,height))))
-               ;; Integer counter + multiplication avoids the floating-point
-               ;; accumulation that `loop ... by` suffers from; the small
-               ;; epsilon on the bound ensures the final tic (e.g. xint=0.1)
-               ;; is not lost to rounding.
-               (loop for i from 0
-                     for xi = (+ xstart (* i xint))
-                     while (<= xi (+ xend 1e-6))
-                     do (draw-x-tic xi major-extent))
-               ;; minor tics: half as long, skipping every spot a major tic already
-               ;; occupies. Since step = xint/(1+xmtics), a major tic lands exactly
-               ;; every (1+xmtics) steps — track the step index with an integer
-               ;; counter to avoid fragile floating-point `mod` comparisons.
-               (when (> ,xmtics 0)
-                 (let ((minor-extent (* (/ ,tl 2) (/ (- ,ymax ,ymin) ,height)))
-                       (step (/ xint (1+ ,xmtics))))
-                   (loop for i from 1
-                         for xi = (+ xstart (* i step))
-                         while (<= xi (+ xend 1e-6))
-                         unless (zerop (mod i (1+ ,xmtics)))
-                         do (draw-x-tic xi minor-extent)))))))
+           (let ((y-scale (/ (- ,ymax ,ymin) ,height)))
+             (emit-tics ,xspec ,xmtics
+                        (abs (* ,tl y-scale))
+                        (abs (* (/ ,tl 2) y-scale))
+                        #'draw-x-tic)))
          ;; y-axis tics on the left and right edges, mirroring the x-axis logic.
          (when ,yspec
-           (destructuring-bind (ystart yint yend) ,yspec
-             (let ((major-extent (* ,tl (/ (- ,xmax ,xmin) ,width))))
-               (loop for i from 0
-                     for yi = (+ ystart (* i yint))
-                     while (<= yi (+ yend 1e-6))
-                     do (draw-y-tic yi major-extent))
-               (when (> ,ymtics 0)
-                 (let ((minor-extent (* (/ ,tl 2) (/ (- ,xmax ,xmin) ,width)))
-                       (step (/ yint (1+ ,ymtics))))
-                   (loop for i from 1
-                         for yi = (+ ystart (* i step))
-                         while (<= yi (+ yend 1e-6))
-                         unless (zerop (mod i (1+ ,ymtics)))
-                         do (draw-y-tic yi minor-extent)))))))
+           (let ((x-scale (/ (- ,xmax ,xmin) ,width)))
+             (emit-tics ,yspec ,ymtics
+                        (abs (* ,tl x-scale))
+                        (abs (* (/ ,tl 2) x-scale))
+                        #'draw-y-tic)))
          ;; user data plotting forms
          ,@body
          (format ,stream "  </svg>~%")))))

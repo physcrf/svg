@@ -5,7 +5,7 @@
 ;; Test nested SVG frames (sub-viewport)
 (with-svg ("test/test-frame.svg" 400 300)
   ;; Background
-  (rect (p 0 0) 400 300 :fill "#f0f0f0")
+  (rect (p 0 0) 400 300 :fill "white")
 
   ;; Main frame with its own coordinate system
   (frame (:x 50 :y 50 :width 150 :height 150 :viewbox "0 0 100 100")

@@ -4,7 +4,7 @@
 
 ;; Comprehensive Cartesian coordinate system comparison
 (with-svg ("test/test-cartesian.svg" 900 1020)
-  (rect (p 0 0) 900 1020 :fill "#fafafa")
+  (rect (p 0 0) 900 1020 :fill "white")
   (text (p 450 22) "Standard SVG vs Cartesian Frame — Coordinate System Comparison"
         :font-size 14 :text-anchor "middle" :font-weight "bold" :fill "#333")
 

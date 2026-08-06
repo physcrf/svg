@@ -12,6 +12,7 @@
   (define-arrow s5 :scale '(1 3))
   
   (with-svg ("test/test-marker-scale.svg" 600 150)
+    (rect (p 0 0) 600 150 :fill "white")
     (line (p 30 30) (p 100 30) :stroke "black" :stroke-width 2 
           :marker-end 's1)
     (line (p 30 55) (p 100 55) :stroke "black" :stroke-width 2 

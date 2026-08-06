@@ -1,10 +1,17 @@
 (in-package #:svg)
 
 (defun fmt (value)
-  "Format a number for SVG output: integers as-is, floats to 2 decimal places."
-  (if (integerp value)
-      (format nil "~d" value)
-      (format nil "~,2f" value)))
+  "Format a number for SVG output: integers as-is, floats to 2 decimal places.
+   For extreme values where fixed-point loses precision, scientific notation is used."
+  (cond ((integerp value) (format nil "~d" value))
+        ((complexp value) (format nil "~a,~a" (fmt (realpart value)) (fmt (imagpart value))))
+        ((floatp value)
+         (let ((absval (abs value)))
+           (if (or (and (not (zerop absval)) (< absval 0.001))
+                   (> absval 1000000))
+               (format nil "~,6e" value)
+               (format nil "~,2f" value))))
+        (t (format nil "~,2f" value))))
 
 (defun xml-escape (string)
   "Escape XML special characters in STRING for safe insertion as element content."
@@ -15,6 +22,8 @@
                    (#\< (write-string "&lt;" out))
                    (#\> (write-string "&gt;" out))
                    (#\& (write-string "&amp;" out))
+                   (#\" (write-string "&quot;" out))
+                   (#\' (write-string "&apos;" out))
                    (otherwise (write-char char out)))))
       string))
 
@@ -31,9 +40,10 @@
 
 (defun rotate (angle &optional cx cy)
   "SVG rotate transform. With CX/CY, rotates around (CX, CY)."
-  (if (and cx cy)
-      (format nil "rotate(~a ~a,~a)" (fmt angle) (fmt cx) (fmt cy))
-      (format nil "rotate(~a)" (fmt angle))))
+  (cond ((and cx cy)
+         (format nil "rotate(~a ~a,~a)" (fmt angle) (fmt cx) (fmt cy)))
+        (cx (error "rotate: CX given without CY — pass both or neither"))
+        (t (format nil "rotate(~a)" (fmt angle)))))
 
 (defun scale (sx &optional sy)
   "SVG scale transform. With SY, scales X and Y independently."

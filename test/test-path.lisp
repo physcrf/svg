@@ -5,6 +5,7 @@
 (defun test-path ()
   (format t "~%=== Test Path ===~%")
   (with-svg ("test/test-path.svg" 400 200)
+    (rect (p 0 0) 400 200 :fill "white")
     (path ((moveto (p 50 50))
            (lineto (p 100 50))
            (quadto (p 125 20) (p 150 50))

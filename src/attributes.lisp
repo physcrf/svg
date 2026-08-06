@@ -28,7 +28,7 @@
                       when (and (not (member key local-keys))
                                 (not (member key seen)))
                       do (push key seen)
-                      and nconc (list key value))))
+                      and append (list key value))))
       local-attrs))
 
 (defmacro with-attributes (attrs &body body)

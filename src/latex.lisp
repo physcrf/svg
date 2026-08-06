@@ -10,8 +10,9 @@
     (setf *latex-tmp-dir* (uiop:ensure-directory-pathname
                            (merge-pathnames (format nil "svg-latex-~a-~a/"
                                                     (get-universal-time)
-                                                    (random 1000000))
-                                            (uiop:temporary-directory))))))
+                                                    (random 1000000 (make-random-state t)))
+                                            (uiop:temporary-directory))))
+    (ensure-directories-exist *latex-tmp-dir*)))
 
 (defun next-latex-id ()
   (incf *latex-counter*))
@@ -33,7 +34,7 @@
   "Compile a .tex file to .dvi. Returns T on success."
   (= 0 (nth-value 2 (uiop:run-program
                      (list "latex" "-interaction=nonstopmode" "-output-format=dvi"
-                           (file-namestring tex-file))
+                           (namestring tex-file))
                      :directory *latex-tmp-dir*
                      :ignore-error-status t))))
 
@@ -49,20 +50,20 @@
   "Extract the inner content of an SVG file (between <svg> tags)."
   (alexandria:when-let ((content (uiop:read-file-string svg-file)))
     (ppcre:register-groups-bind (inner)
-        ("(?s)<svg[^>]*>(.+)</svg>" content)
+        ("(?s)<svg[^>]*>(.*)</svg>" content)
       (str:trim inner))))
 
 (defun cleanup-latex-files (id)
   "Remove temporary LaTeX files for the given ID."
-  (dolist (ext '("tex" "dvi" "svg" "aux" "log"))
-    (let ((file (merge-pathnames (format nil "latex-~d.~a" id ext) *latex-tmp-dir*)))
-      (ignore-errors (delete-file file)))))
+  (when *latex-tmp-dir*
+    (dolist (ext '("tex" "dvi" "svg" "aux" "log"))
+      (let ((file (merge-pathnames (format nil "latex-~d.~a" id ext) *latex-tmp-dir*)))
+        (ignore-errors (delete-file file))))))
 
 (defun latex (position formula &rest attrs)
   "Render a LaTeX formula as SVG and embed it at POSITION.
    :SCALE keyword controls the scaling factor."
   (init-latex-env)
-  (ensure-directories-exist *latex-tmp-dir*)
 
   (let* ((px (x position))
          (py (y position))
@@ -91,7 +92,7 @@
                 ;; user transform keywords are folded consistently.
                 (let* ((stream (current-stream))
                        (final-attrs (append (list :translate (p px py))
-                                            (when scale (list :scale scale))
+                                            (when (and scale (plusp scale)) (list :scale scale))
                                             clean-attrs))
                        (processed (process-transform-attributes
                                    (merge-attributes final-attrs))))

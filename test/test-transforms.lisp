@@ -5,6 +5,7 @@
 (defun test-transforms ()
   (format t "~%=== Test Transforms ===~%")
   (with-svg ("test/test-transforms.svg" 400 200)
+    (rect (p 0 0) 400 200 :fill "white")
     (rect (p 50 50) 40 30 :fill "purple" :rotate 15)
     (circle (p 150 65) 20 :fill "orange" :scale 1.5)
     (rect (p 220 50) 40 40 :fill "pink" :translate (p 20 10))

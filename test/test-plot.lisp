@@ -4,7 +4,7 @@
 
 ;; Test data-plotting frame with gnuplot-style tics inside the frame box.
 (with-svg ("test/test-plot.svg" 800 700)
-  (rect (p 0 0) 800 700 :fill "#fafafa")
+  (rect (p 0 0) 800 700 :fill "white")
   (text (p 400 22) "plot-frame — gnuplot-style tics inside frame"
         :font-size 16 :text-anchor "middle" :font-weight "bold" :fill "#333")
 

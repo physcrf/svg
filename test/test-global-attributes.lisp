@@ -9,6 +9,7 @@
   (define-circle-dot test-dot)
   
   (with-svg ("test/test-global-attributes.svg" 600 350)
+    (rect (p 0 0) 600 350 :fill "white")
     (text (p 50 20) "Without global attributes:" :font-size 12 :fill "black")
     (line (p 50 40) (p 150 40) :stroke "black" :stroke-width 2 
           :marker-end 'test-arrow)

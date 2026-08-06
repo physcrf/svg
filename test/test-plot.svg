@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="700">
-  <rect x="0" y="0" width="800" height="700" fill="#fafafa" />
+  <rect x="0" y="0" width="800" height="700" fill="white" />
   <text x="400" y="22" font-size="16" text-anchor="middle" font-weight="bold" fill="#333" >plot-frame — gnuplot-style tics inside frame</text>
   <svg x="50" y="50" width="340" height="300" viewBox="0 0 340 300" >
   <rect x="0.00" y="0.00" width="340" height="300" fill="none" stroke="black" stroke-width="1" />

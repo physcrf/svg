@@ -5,6 +5,7 @@
 (defun test-shapes ()
   (format t "~%=== Test Shapes ===~%")
   (with-svg ("test/test-shapes.svg" 500 300)
+    (rect (p 0 0) 500 300 :fill "white")
     (circle (p 50 50) 20 :fill "red" :stroke "black")
     (rect (p 100 30) 60 40 :fill "blue" :rx 5 :ry 5)
     (ellipse (p 250 50) 40 25 :fill "green")

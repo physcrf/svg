@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="150">
+  <rect x="0" y="0" width="400" height="150" fill="white" />
   <text x="50" y="30" font-size="24" fill="black" >Hello SVG!</text>
   <text x="50" y="60" font-size="18" fill="darkblue" >中文测试</text>
   <text x="50" y="90" font-size="16" font-weight="bold" fill="red" >Bold Text</text>

@@ -8,7 +8,7 @@
   (with-svg ("test/test-latex.svg" 500 300)
     
     (format t "--- Test 1: Simple formula ---~%")
-    (rect (p 0 0) 500 300 :fill "white" :stroke "none")
+    (rect (p 0 0) 500 300 :fill "white")
     (text (p 50 30) "Simple formula:" :font-size 14 :fill "black")
     (latex (p 50 50) "$E = mc^2$")
     

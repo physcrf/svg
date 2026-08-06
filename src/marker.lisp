@@ -123,7 +123,7 @@
   (let ((content (marker-content m)))
     (if (and (= sx 1) (= sy 1))
         content
-        (format nil "<g transform=\"scale(~a,~a)\">~a</g>" sx sy content))))
+        (format nil "<g transform=\"scale(~a,~a)\">~a</g>" (fmt sx) (fmt sy) content))))
 
 (defun emit-marker (m stream)
   "Write a single <marker> definition for M to STREAM.
@@ -156,13 +156,15 @@ the fallbacks used when the struct slots are unset."
       (format stream "  <defs>~%")
       (dolist (m (reverse *used-markers*))
         (emit-marker m stream))
-      (format stream "  </defs>~%"))))
+      (format stream "  </defs>~%"))
+    (reset-markers)))
 
 (defun marker-url (name)
-  "Get the CSS url() reference for a marker, or downcase the symbol name."
+  "Get the CSS url() reference for a marker. If NAME is a registered marker,
+   returns url(#id); otherwise returns url(#name) with the symbol name downcased."
   (alexandria:if-let ((m (use-marker name)))
     (format nil "url(#~a)" (marker-id m))
-    (str:downcase (string name))))
+    (format nil "url(#~a)" (str:downcase (string name)))))
 
 (defun reset-markers ()
   (setf *used-markers* nil))

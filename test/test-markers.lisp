@@ -14,6 +14,7 @@
   (define-arrow-open arrow-open1)
   
   (with-svg ("test/test-markers.svg" 600 200)
+    (rect (p 0 0) 600 200 :fill "white")
     (line (p 30 30) (p 80 30) :stroke "black" :stroke-width 2 
           :marker-end 'arrow1)
     (line (p 30 50) (p 80 50) :stroke "black" :stroke-width 2 

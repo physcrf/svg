@@ -15,6 +15,7 @@
   
   ;; Test with SVG
   (with-svg ("test/test-units.svg" 400 300)
+    (rect (p 0 0) 400 300 :fill "white")
     ;; Draw rectangles using different units
     (rect (p 10 10) (cm 2) (cm 1) :fill "red")
     (rect (p 10 40) (in 1) (mm 5) :fill "blue")

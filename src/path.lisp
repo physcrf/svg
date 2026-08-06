@@ -34,11 +34,20 @@
 
 ;;; Arc commands (separate because they have keyword parameters)
 
+(defun svg-flag (value)
+  "Convert an SVG flag argument to the integer 0 or 1.
+   Accepts 0/1 as well as NIL/T; any other number or truthy value is 1."
+  (cond ((null value) 0)
+        ((eq value t) 1)
+        ((numberp value) (if (zerop value) 0 1))
+        (t (if value 1 0))))
+
 (defun %arc (letter radii point &key (x-axis-rotation 0) (large-arc-flag 0) (sweep-flag 1))
   "Internal: generate an arc path command with the given LETTER (A or a)."
   (format nil "~a ~a ~a ~a ~a ~a ~a,~a"
           letter (fmt (x radii)) (fmt (y radii))
-          (fmt x-axis-rotation) large-arc-flag sweep-flag
+          (fmt x-axis-rotation)
+          (svg-flag large-arc-flag) (svg-flag sweep-flag)
           (fmt (x point)) (fmt (y point))))
 
 (defun arc (radii point &key (x-axis-rotation 0) (large-arc-flag 0) (sweep-flag 1))
