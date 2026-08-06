@@ -20,17 +20,3 @@
    define-arrow define-circle-dot define-square-dot define-diamond
    define-triangle define-cross define-arrow-open
    marker-url clear-all-markers))
-
-(in-package #:svg)
-
-(defun p (x y)
-  "Create a 2D point as a complex number."
-  (complex x y))
-
-(defun x (point)
-  "Get the X coordinate (real part) of a point."
-  (realpart point))
-
-(defun y (point)
-  "Get the Y coordinate (imaginary part) of a point."
-  (imagpart point))

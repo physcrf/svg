@@ -41,27 +41,49 @@
     svg))
 
 (defmacro with-svg ((filename &optional (width 325) (height 201)) &body body)
-  `(with-open-file (stream ,filename :direction :output :if-exists :supersede)
-     (let* ((svg (create-svg :stream stream :filename ,filename :width ,width :height ,height))
-            (*svg* svg))
-       (begin-svg stream svg)
-       ,@body
-       (emit-marker-defs)
+  "Write an SVG document to FILENAME, evaluating BODY with the SVG bound.
+   The stream is managed manually (not via WITH-OPEN-FILE) and the <defs> block
+   and closing tag are always emitted through UNWIND-PROTECT: even if BODY
+   signals an error, the file is left on disk as well-formed (partial) XML that
+   can be inspected, and the marker registry does not leak into the next
+   document. On SBCL, WITH-OPEN-FILE would instead delete the file entirely."
+  `(let* ((stream (open ,filename :direction :output :if-exists :supersede))
+          (svg (create-svg :stream stream :filename ,filename :width ,width :height ,height))
+          (*svg* svg))
+     (unwind-protect
+          (progn
+            (begin-svg stream svg)
+            ,@body)
+       (emit-marker-defs stream)
        (format stream "</svg>~%")
-       svg)))
+       (close stream))
+     svg))
 
 (defun close-svg (&optional svg)
   (let ((target-svg (or svg *svg*)))
     (when (and target-svg (svg-stream target-svg))
-      (emit-marker-defs)
-      (format (svg-stream target-svg) "</svg>~%")
-      (when (svg-own-stream-p target-svg)
-        (close (svg-stream target-svg)))
+      (let ((stream (svg-stream target-svg)))
+        (emit-marker-defs stream)
+        (format stream "</svg>~%")
+        (when (svg-own-stream-p target-svg)
+          (close stream)))
       (when (eq target-svg *svg*)
         (setf *svg* nil)))
     target-svg))
 
 ;;; Attribute serialization
+
+(defparameter *plain-attribute-values*
+  '("none" "inherit" "hidden" "visible" "collapse" "auto" "normal" "bold"
+    "italic" "start" "middle" "end" "butt" "round" "square" "miter" "bevel"
+    "nonzero" "evenodd" "default")
+  "Symbol names that are plain SVG/CSS keyword values and must never be
+   interpreted as marker references by SERIALIZE-VALUE.")
+
+(defun plain-attribute-symbol-p (sym)
+  "Whether SYM names a plain SVG/CSS keyword value (e.g. NONE, INHERIT).
+   Case-insensitive so both `none' and :none work."
+  (member (symbol-name sym) *plain-attribute-values* :test #'string-equal))
 
 (defun serialize-value (value)
   "Convert a Lisp value to its SVG attribute string representation."
@@ -73,9 +95,10 @@
                            (mapcar (lambda (v) (if (numberp v) (fmt v) v))
                                    value)))
     ((type symbol)
-     ;; SVG keyword symbols are used unquoted in practice (e.g. :fill none);
-     ;; everything else is treated as a marker reference.
-     (if (member value '(none inherit))
+     ;; SVG/CSS keyword values are written as-is; everything else is treated
+     ;; as a marker reference (MARKER-URL handles both registered and
+     ;; forward-referenced markers, normalizing keywords and case).
+     (if (plain-attribute-symbol-p value)
          (string-downcase (symbol-name value))
          (marker-url value)))
     ((type null) "")
@@ -93,13 +116,19 @@
    drops the attribute pair entirely)."
   (when value
     (trivia:match key
-      (:translate (translate (realpart value) (imagpart value)))
+      (:translate (trivia:match value
+                    ((list tx ty) (translate tx ty))
+                    ((type number) (translate (realpart value) (imagpart value)))
+                    (_ (error "Invalid :translate value: ~a (expected a point or (tx ty))" value))))
       (:rotate (trivia:match value
                  ((list angle center) (rotate angle (realpart center) (imagpart center)))
-                 (_ (rotate value))))
+                 ((type number) (rotate value))
+                 (_ (error "Invalid :rotate value: ~a (expected a number or (angle point))" value))))
       (:scale (trivia:match value
                 ((list sx sy) (scale sx sy))
-                (_ (scale value))))
+                ((list sx) (scale sx))
+                ((type number) (scale value))
+                (_ (error "Invalid :scale value: ~a (expected a number or (sx [sy]))" value))))
       (:skew-x (skew-x value))
       (:skew-y (skew-y value))
       (:matrix (apply #'matrix value))
@@ -196,17 +225,34 @@
   (loop for (key value) on attributes by #'cddr
         do (format stream "~a=\"~a\" " (attr-name key) (serialize-value value))))
 
+(defun emit-open-tag (stream name attributes)
+  "Write an opening tag `  <NAME' with ATTRITUTES, after merging with the
+   global defaults and folding transform keywords. The caller writes the
+   closing '>' (or '/>') and any content, so the tag can be re-used by
+   WRITE-ELEMENT, FRAME, and the raw writers. No stray space is emitted when
+   there are no attributes."
+  (let ((processed (process-transform-attributes (merge-attributes attributes))))
+    (format stream "  <~a" name)
+    (when processed
+      (format stream " ")
+      (write-attributes stream processed))))
+
 (defun write-element (name attributes &optional content)
   "Write an SVG element. String CONTENT is XML-escaped for safety;
-   `latex` writes its <g> directly (see latex.lisp) because its content
-   is pre-rendered SVG markup that must not be escaped."
-  (let* ((stream (current-stream))
-         (processed-attrs (process-transform-attributes (merge-attributes attributes))))
-    (format stream "  <~a " name)
-    (write-attributes stream processed-attrs)
+   use WRITE-RAW-ELEMENT for content that is pre-rendered markup or script
+   that must not be escaped (see latex.lisp)."
+  (let ((stream (current-stream)))
+    (emit-open-tag stream name attributes)
     (if (null content)
         (format stream "/>~%")
         (format stream ">~a</~a>~%" (xml-escape content) name))))
+
+(defun write-raw-element (name attributes content)
+  "Write an SVG element whose CONTENT is written verbatim (no XML escaping):
+   pre-rendered SVG markup, JavaScript in <script>, CDATA, etc."
+  (let ((stream (current-stream)))
+    (emit-open-tag stream name attributes)
+    (format stream ">~a</~a>~%" content name)))
 
 ;;; Frame / sub-viewport
 
@@ -257,8 +303,7 @@
         (attrs-var (gensym "attrs")))
     `(let* ((,attrs-var ,(expand-frame-attrs attributes))
             (,stream-var (current-stream)))
-       (format ,stream-var "  <svg ")
-       (write-attributes ,stream-var (process-transform-attributes (merge-attributes ,attrs-var)))
+       (emit-open-tag ,stream-var "svg" ,attrs-var)
        (format ,stream-var ">~%")
        ,@body
        (format ,stream-var "  </svg>~%"))))
@@ -273,8 +318,7 @@
             (,flip-var (cartesian-flip-transform (getf ,attrs-var :viewbox)
                                                   (getf ,attrs-var :height)))
             (,stream-var (current-stream)))
-       (format ,stream-var "  <svg ")
-       (write-attributes ,stream-var (process-transform-attributes (merge-attributes ,attrs-var)))
+       (emit-open-tag ,stream-var "svg" ,attrs-var)
        (format ,stream-var ">~%")
        (when ,flip-var
          (format ,stream-var "    <g transform=\"~a\">~%" ,flip-var))

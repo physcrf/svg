@@ -5,12 +5,23 @@
 
 (defstruct marker id content refx refy markerwidth markerheight orient scale)
 
+(defun marker-id-string (id)
+  "Canonical string form of a marker ID: downcased, with any keyword colon
+   stripped. So `my-arrow', :my-arrow and \"my-arrow\" all refer to the same
+   marker regardless of how the reader cased them."
+  (let ((s (string id)))
+    (str:downcase (if (and (plusp (length s)) (char= (char s 0) #\:))
+                      (subseq s 1)
+                      s))))
+
 (defun register-marker (m)
   (push m *markers*)
   m)
 
 (defun find-marker (name)
-  (find name *markers* :key #'marker-id :test #'equal))
+  (let ((target (marker-id-string name)))
+    (find-if (lambda (m) (string= target (marker-id-string (marker-id m))))
+             *markers*)))
 
 (defun use-marker (name)
   (alexandria:when-let ((m (find-marker name)))
@@ -142,29 +153,31 @@ the fallbacks used when the struct slots are unset."
            (scaled-ref-y   (* ref-y  sy))
            (orient         (or (marker-orient m) "auto")))
       (format stream "    <marker id=\"~a\" refX=\"~a\" refY=\"~a\" markerWidth=\"~a\" markerHeight=\"~a\"~%"
-              (marker-id m) (fmt scaled-ref-x) (fmt scaled-ref-y)
+              (marker-id-string (marker-id m)) (fmt scaled-ref-x) (fmt scaled-ref-y)
               (fmt scaled-width) (fmt scaled-height))
       (format stream "            viewBox=\"0 0 ~a ~a\" orient=\"~a\" markerUnits=\"userSpaceOnUse\">~%"
               (fmt scaled-width) (fmt scaled-height) orient)
       (format stream "      ~a~%" (marker-scaled-content m sx sy))
       (format stream "    </marker>~%"))))
 
-(defun emit-marker-defs ()
-  "Write the <defs> block containing every used marker to the current stream."
+(defun emit-marker-defs (&optional (stream (current-stream)))
+  "Write the <defs> block containing every used marker to STREAM.
+   Defaults to the current stream; callers that close a specific SVG object
+   should pass that object's stream explicitly, since *SVG* may not point at
+   it anymore."
   (when *used-markers*
-    (let ((stream (current-stream)))
-      (format stream "  <defs>~%")
-      (dolist (m (reverse *used-markers*))
-        (emit-marker m stream))
-      (format stream "  </defs>~%"))
+    (format stream "  <defs>~%")
+    (dolist (m (reverse *used-markers*))
+      (emit-marker m stream))
+    (format stream "  </defs>~%")
     (reset-markers)))
 
 (defun marker-url (name)
   "Get the CSS url() reference for a marker. If NAME is a registered marker,
-   returns url(#id); otherwise returns url(#name) with the symbol name downcased."
+   returns url(#id); otherwise returns url(#name) with the name normalized."
   (alexandria:if-let ((m (use-marker name)))
-    (format nil "url(#~a)" (marker-id m))
-    (format nil "url(#~a)" (str:downcase (string name)))))
+    (format nil "url(#~a)" (marker-id-string (marker-id m)))
+    (format nil "url(#~a)" (marker-id-string name))))
 
 (defun reset-markers ()
   (setf *used-markers* nil))

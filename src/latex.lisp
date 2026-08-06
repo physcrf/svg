@@ -30,21 +30,28 @@
       (format stream "\\usepackage{~a}~%" pkg))
     (format stream "\\begin{document}~%~a~%\\end{document}~%" content)))
 
+(defun run-latex-program (program &rest args)
+  "Run PROGRAM with ARGS in the LaTeX temp directory. Returns T on success
+   (exit code 0) and NIL on failure. If the executable cannot be started at
+   all (e.g. the TeX toolchain is not installed), a warning is emitted instead
+   of signalling, so a missing dependency never aborts SVG generation."
+  (handler-case
+      (= 0 (nth-value 2 (uiop:run-program (cons program args)
+                                          :directory *latex-tmp-dir*
+                                          :ignore-error-status t)))
+    (error (e)
+      (warn "Failed to run ~a: ~a" program e)
+      nil)))
+
 (defun compile-latex-to-dvi (tex-file)
   "Compile a .tex file to .dvi. Returns T on success."
-  (= 0 (nth-value 2 (uiop:run-program
-                     (list "latex" "-interaction=nonstopmode" "-output-format=dvi"
-                           (namestring tex-file))
-                     :directory *latex-tmp-dir*
-                     :ignore-error-status t))))
+  (run-latex-program "latex" "-interaction=nonstopmode" "-output-format=dvi"
+                     (namestring tex-file)))
 
 (defun convert-dvi-to-svg (dvi-file svg-file)
   "Convert a .dvi file to .svg using dvisvgm. Returns T on success."
-  (= 0 (nth-value 2 (uiop:run-program
-                     (list "dvisvgm" "--no-fonts" "--exact" "-o"
-                           (namestring svg-file) (namestring dvi-file))
-                     :directory *latex-tmp-dir*
-                     :ignore-error-status t))))
+  (run-latex-program "dvisvgm" "--no-fonts" "--exact" "-o"
+                     (namestring svg-file) (namestring dvi-file)))
 
 (defun extract-svg-inner (svg-file)
   "Extract the inner content of an SVG file (between <svg> tags)."
@@ -85,18 +92,13 @@
               (warn "DVI to SVG conversion (dvisvgm) failed for formula: ~a" formula))
              (t
               (alexandria:when-let ((content (extract-svg-inner svg-file)))
-                ;; Write the <g> directly (not via write-element) because CONTENT
-                ;; is pre-rendered SVG markup from dvisvgm that must not be
+                ;; Write the <g> with WRITE-RAW-ELEMENT because CONTENT is
+                ;; pre-rendered SVG markup from dvisvgm that must not be
                 ;; XML-escaped. We still go through merge-attributes /
                 ;; process-transform-attributes so :translate/:scale and any
                 ;; user transform keywords are folded consistently.
-                (let* ((stream (current-stream))
-                       (final-attrs (append (list :translate (p px py))
-                                            (when (and scale (plusp scale)) (list :scale scale))
-                                            clean-attrs))
-                       (processed (process-transform-attributes
-                                   (merge-attributes final-attrs))))
-                  (format stream "  <g ")
-                  (write-attributes stream processed)
-                  (format stream ">~a</g>~%" content))))))
+                (let ((final-attrs (append (list :translate (p px py))
+                                           (when (and scale (plusp scale)) (list :scale scale))
+                                           clean-attrs)))
+                  (write-raw-element "g" final-attrs content))))))
       (cleanup-latex-files id))))

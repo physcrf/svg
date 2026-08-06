@@ -1,13 +1,27 @@
 (in-package #:svg)
 
+(defun p (x y)
+  "Create a 2D point as a complex number."
+  (complex x y))
+
+(defun x (point)
+  "Get the X coordinate (real part) of a point."
+  (realpart point))
+
+(defun y (point)
+  "Get the Y coordinate (imaginary part) of a point."
+  (imagpart point))
+
 (defun fmt (value)
   "Format a number for SVG output: integers as-is, floats to 2 decimal places.
-   For extreme values where fixed-point loses precision, scientific notation is used."
+   For extreme values where fixed-point loses precision, scientific notation is used.
+   Values up to 0.005 would round to \"0.00\" (or \"-0.00\") and silently lose
+   precision, so they fall back to scientific notation too."
   (cond ((integerp value) (format nil "~d" value))
         ((complexp value) (format nil "~a,~a" (fmt (realpart value)) (fmt (imagpart value))))
         ((floatp value)
          (let ((absval (abs value)))
-           (if (or (and (not (zerop absval)) (< absval 0.001))
+           (if (or (and (not (zerop absval)) (<= absval 0.005))
                    (> absval 1000000))
                (format nil "~,6e" value)
                (format nil "~,2f" value))))
@@ -66,8 +80,9 @@
   (write-element "desc" nil text-content))
 
 (defun script (content &rest attrs)
-  "Write a <script> element with CONTENT and optional attributes."
-  (write-element "script" attrs content))
+  "Write a <script> element with CONTENT and optional attributes.
+   CONTENT is written verbatim (no XML escaping) so JavaScript is not mangled."
+  (write-raw-element "script" attrs content))
 
 (defun viewbox (min-x min-y width height)
   "Construct a viewBox attribute value."

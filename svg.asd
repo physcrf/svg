@@ -9,7 +9,6 @@
                (:file "src/marker")
                (:file "src/core")
                (:file "src/shapes")
-               (:file "src/text")
                (:file "src/path")
                (:file "src/latex")
                (:file "src/plot")))
