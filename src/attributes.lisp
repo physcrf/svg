@@ -1,14 +1,18 @@
 (in-package #:svg)
 
-(defvar *default-attributes* nil)
+(defvar *default-attributes* nil
+  "Global default attributes (a property list) inherited by every element.")
 
 (defun set-default-attributes (&rest attrs)
+  "Replace *default-attributes* with ATTRS (a property list)."
   (setf *default-attributes* attrs))
 
 (defun get-default-attributes ()
+  "Return the current global default attributes."
   *default-attributes*)
 
 (defun clear-default-attributes ()
+  "Clear all global default attributes."
   (setf *default-attributes* nil))
 
 (defun merge-attributes (local-attrs)

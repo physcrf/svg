@@ -1,5 +1,14 @@
 (in-package #:svg)
 
+;;; Shape primitives.
+;;;
+;;; Each shape takes its geometry as complex-number points (a single position
+;;; or a list of points) plus &rest keyword attributes. The attributes are
+;;; passed straight through to `write-element`, which merges them with the
+;;; global defaults (see attributes.lisp) and serializes them to SVG.
+;;; Transform keywords (`:translate`, `:rotate`, ...) are folded into a single
+;;; trailing `transform` attribute.
+
 (defun points-to-string (points)
   "Convert a list of points to an SVG points attribute string."
   (str:join " " (mapcar (lambda (p) (format nil "~a,~a" (x p) (y p))) points)))

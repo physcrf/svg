@@ -36,12 +36,15 @@
 ;;; SVG metadata elements
 
 (defun title (text-content)
+  "Write a <title> element (accessible document title)."
   (write-element "title" nil text-content))
 
 (defun desc (text-content)
+  "Write a <desc> element (accessible description)."
   (write-element "desc" nil text-content))
 
 (defun script (content &rest attrs)
+  "Write a <script> element with CONTENT and optional attributes."
   (write-element "script" attrs content))
 
 (defun viewbox (min-x min-y width height)
