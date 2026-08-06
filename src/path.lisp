@@ -49,10 +49,14 @@
         :large-arc-flag large-arc-flag
         :sweep-flag sweep-flag))
 
-(defun closepath () "Z")
+(defun closepath ()
+  "Emit the SVG closepath command (Z)."
+  "Z")
 
 (defmacro path (commands &rest attrs &key &allow-other-keys)
-  "Create an SVG <path> element from a list of path command forms."
+  "Create an SVG <path> element from a list of path command forms.
+COMMANDS is a list of path-command forms (moveto, lineto, ...); ATTRS are
+keyword attributes, evaluated like any other shape primitive's attributes."
   `(write-element "path"
                   (append (list 'd (str:join " " (list ,@commands)))
-                          ',attrs)))
+                          (list ,@attrs))))
