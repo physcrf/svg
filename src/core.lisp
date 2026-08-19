@@ -40,6 +40,18 @@
     (setf *svg* svg)
     svg))
 
+(defun %finish-svg (svg)
+  "Emit the <defs> block and closing </svg> tag for SVG, and close its stream
+   if SVG owns it. The stream slot is cleared afterwards so a second call is
+   a no-op; safe to call on NIL."
+  (when (and svg (svg-stream svg))
+    (let ((stream (svg-stream svg)))
+      (setf (svg-stream svg) nil)
+      (emit-marker-defs stream)
+      (format stream "</svg>~%")
+      (when (svg-own-stream-p svg)
+        (close stream)))))
+
 (defmacro with-svg ((filename &optional (width 325) (height 201)) &body body)
   "Write an SVG document to FILENAME, evaluating BODY with the SVG bound.
    The stream is managed manually (not via WITH-OPEN-FILE) and the <defs> block
@@ -47,28 +59,22 @@
    signals an error, the file is left on disk as well-formed (partial) XML that
    can be inspected, and the marker registry does not leak into the next
    document. On SBCL, WITH-OPEN-FILE would instead delete the file entirely."
-  `(let* ((stream (open ,filename :direction :output :if-exists :supersede))
-          (svg (create-svg :stream stream :filename ,filename :width ,width :height ,height))
-          (*svg* svg))
+  ;; Bind *SVG* first so the (setf *svg* ...) inside OPEN-SVG updates the
+  ;; dynamic binding rather than leaking into the global value on exit.
+  `(let* ((*svg* nil)
+         (svg (open-svg ,filename ,width ,height)))
      (unwind-protect
-          (progn
-            (begin-svg stream svg)
-            ,@body)
-       (emit-marker-defs stream)
-       (format stream "</svg>~%")
-       (close stream))
+          (progn ,@body)
+       (%finish-svg svg)
+       (setf *svg* nil))
      svg))
 
 (defun close-svg (&optional svg)
+  "Finish and close an SVG document (default: the current *SVG*)."
   (let ((target-svg (or svg *svg*)))
-    (when (and target-svg (svg-stream target-svg))
-      (let ((stream (svg-stream target-svg)))
-        (emit-marker-defs stream)
-        (format stream "</svg>~%")
-        (when (svg-own-stream-p target-svg)
-          (close stream)))
-      (when (eq target-svg *svg*)
-        (setf *svg* nil)))
+    (%finish-svg target-svg)
+    (when (eq target-svg *svg*)
+      (setf *svg* nil))
     target-svg))
 
 ;;; Attribute serialization
@@ -226,7 +232,7 @@
         do (format stream "~a=\"~a\" " (attr-name key) (serialize-value value))))
 
 (defun emit-open-tag (stream name attributes)
-  "Write an opening tag `  <NAME' with ATTRITUTES, after merging with the
+  "Write an opening tag `  <NAME' with ATTRIBUTES, after merging with the
    global defaults and folding transform keywords. The caller writes the
    closing '>' (or '/>') and any content, so the tag can be re-used by
    WRITE-ELEMENT, FRAME, and the raw writers. No stray space is emitted when
@@ -295,34 +301,33 @@
                  else
                    append (list `',k `',v))))
 
+(defun %expand-frame (attributes body flip-p)
+  "Shared expansion for FRAME and CARTESIAN-FRAME: open a nested <svg> element,
+   optionally wrap BODY in a Cartesian Y-flip group, then close the element."
+  (alexandria:with-gensyms (stream attrs flip)
+    `(let* ((,attrs ,(expand-frame-attrs attributes))
+            (,stream (current-stream))
+            ,@(when flip-p
+                `((,flip (cartesian-flip-transform (getf ,attrs :viewbox)
+                                                   (getf ,attrs :height))))))
+       (emit-open-tag ,stream "svg" ,attrs)
+       (format ,stream ">~%")
+       ,@(when flip-p
+           `((when ,flip
+               (format ,stream "    <g transform=\"~a\">~%" ,flip))))
+       ,@body
+       ,@(when flip-p
+           `((when ,flip
+               (format ,stream "    </g>~%"))))
+       (format ,stream "  </svg>~%"))))
+
 (defmacro frame (attributes &body body)
   "Create a nested <svg> element (sub-viewport).
    Attributes: :x, :y, :width, :height, :viewBox, :id, :class, etc.
    Attribute values are evaluated; the viewBox shorthand (0 0 100 100) is kept literal."
-  (let ((stream-var (gensym "stream"))
-        (attrs-var (gensym "attrs")))
-    `(let* ((,attrs-var ,(expand-frame-attrs attributes))
-            (,stream-var (current-stream)))
-       (emit-open-tag ,stream-var "svg" ,attrs-var)
-       (format ,stream-var ">~%")
-       ,@body
-       (format ,stream-var "  </svg>~%"))))
+  (%expand-frame attributes body nil))
 
 (defmacro cartesian-frame (attributes &body body)
   "Create a nested <svg> with Cartesian coordinates (Y-axis points up).
    Wraps content in <g transform=\"translate(0,h) scale(1,-1)\"> to flip Y."
-  (let ((attrs-var (gensym "attrs"))
-        (stream-var (gensym "stream"))
-        (flip-var (gensym "flip")))
-    `(let* ((,attrs-var ,(expand-frame-attrs attributes))
-            (,flip-var (cartesian-flip-transform (getf ,attrs-var :viewbox)
-                                                  (getf ,attrs-var :height)))
-            (,stream-var (current-stream)))
-       (emit-open-tag ,stream-var "svg" ,attrs-var)
-       (format ,stream-var ">~%")
-       (when ,flip-var
-         (format ,stream-var "    <g transform=\"~a\">~%" ,flip-var))
-       ,@body
-       (when ,flip-var
-         (format ,stream-var "    </g>~%"))
-       (format ,stream-var "  </svg>~%"))))
+  (%expand-frame attributes body t))

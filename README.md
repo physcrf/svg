@@ -15,7 +15,7 @@ A Common Lisp library for generating SVG (Scalable Vector Graphics) files, with 
 - **Marker system** — built-in marker types with per-reference scaling.
 - **LaTeX rendering** — compile LaTeX to SVG via `dvisvgm` and embed it inline.
 - **Pattern matching** — elegant dispatch via the `trivia` library.
-- **Built on** `alexandria`, `cl-ppcre`, `str`, `trivia`, `serapeum`.
+- **Built on** `alexandria`, `cl-ppcre`, `str`, `trivia`.
 
 ## 📦 Installation
 
@@ -25,7 +25,6 @@ A Common Lisp library for generating SVG (Scalable Vector Graphics) files, with 
 - `cl-ppcre` — regular expressions
 - `str` — string processing
 - `trivia` — pattern matching
-- `serapeum` — utilities
 
 ### Steps
 
@@ -627,7 +626,7 @@ svg/
 3. **Flexibility** — transforms, style inheritance, LaTeX, markers.
 4. **Composability** — path commands combine freely.
 5. **Order guarantee** — predictable attribute output; `transform` is always last.
-6. **Leverage libraries** — reuse `alexandria`, `cl-ppcre`, `str`, `trivia`, `serapeum` instead of reimplementing.
+6. **Leverage libraries** — reuse `alexandria`, `cl-ppcre`, `str`, `trivia` instead of reimplementing.
 7. **Code generation** — `def-path-cmd` and `def-transform` macros eliminate repetitive code.
 
 ---

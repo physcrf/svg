@@ -36,11 +36,8 @@
 
 (defun svg-flag (value)
   "Convert an SVG flag argument to the integer 0 or 1.
-   Accepts 0/1 as well as NIL/T; any other number or truthy value is 1."
-  (cond ((null value) 0)
-        ((eq value t) 1)
-        ((numberp value) (if (zerop value) 0 1))
-        (t (if value 1 0))))
+   NIL and 0 map to 0; every other value (T, 1, any non-NIL object) maps to 1."
+  (if (and value (or (not (numberp value)) (not (zerop value)))) 1 0))
 
 (defun %arc (letter radii point &key (x-axis-rotation 0) (large-arc-flag 0) (sweep-flag 1))
   "Internal: generate an arc path command with the given LETTER (A or a)."

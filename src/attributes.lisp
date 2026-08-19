@@ -7,10 +7,6 @@
   "Replace *default-attributes* with ATTRS (a property list)."
   (setf *default-attributes* attrs))
 
-(defun get-default-attributes ()
-  "Return the current global default attributes."
-  *default-attributes*)
-
 (defun clear-default-attributes ()
   "Clear all global default attributes."
   (setf *default-attributes* nil))
@@ -30,21 +26,12 @@
 
 (defun merge-attributes (local-attrs)
   "Merge local attributes with *default-attributes*, local keys take precedence.
-   Both LOCAL-ATTRS and *DEFAULT-ATTRIBUTES* are deduplicated so that no key
-   appears more than once in the result (with-attributes can otherwise create
+   LOCAL-ATTRS is placed first so DEDUPE-PLIST (which keeps the first
+   occurrence of each key) both resolves conflicts in favor of the locals and
+   removes duplicate keys from either source (with-attributes can create
    duplicate keys in *DEFAULT-ATTRIBUTES* by prepending new bindings, and a
    caller can pass the same key twice)."
-  (dedupe-plist
-   (if *default-attributes*
-       (let ((local-keys (serapeum:plist-keys local-attrs))
-             (seen nil))
-         (append local-attrs
-                 (loop for (key value) on *default-attributes* by #'cddr
-                       when (and (not (member key local-keys))
-                                 (not (member key seen)))
-                         do (push key seen)
-                         and append (list key value))))
-       local-attrs)))
+  (dedupe-plist (append local-attrs *default-attributes*)))
 
 (defmacro with-attributes (attrs &body body)
   "Execute BODY with additional default attributes prepended to the current defaults."
