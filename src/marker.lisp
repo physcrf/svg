@@ -59,10 +59,10 @@
         (extra-let-bindings (mapcar (lambda (spec)
                                       `(,(first spec) (or ,(first spec) ,(second spec))))
                                     extra-keys)))
-    `(defmacro ,name (id &rest rest
-                       &key refx refy markerwidth markerheight orient scale
-                       ,@extra-key-names
-                       &allow-other-keys)
+    `(defmacro ,name (id
+                      &key refx refy markerwidth markerheight orient scale
+                      ,@extra-key-names
+                      &allow-other-keys)
        (let ((w (or markerwidth 10))
              (h (or markerheight 10))
              ,@extra-let-bindings)
