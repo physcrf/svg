@@ -17,7 +17,8 @@ SPEC can be:
         (list range-min spec range-max))))
 
 (defmacro plot-frame ((&key x y width height xmin xmax ymin ymax
-                            xtics ytics (xmtics 0) (ymtics 0) tic-length)
+                            xtics ytics (xmtics 0) (ymtics 0) tic-length
+                            prebody)
                       &body body)
   "Create a data-plotting frame (nested SVG) with Cartesian coordinates
 and gnuplot-style tics inside the frame box.
@@ -27,6 +28,8 @@ and gnuplot-style tics inside the frame box.
 :xtics, :ytics — tic spec: a number (interval) or a list (start interval end).
 :xmtics, :ymtics — number of minor tics between major tics (default 0).
 :tic-length — major tic length in pixels (default: min(width,height)/40, auto-scaled).
+:prebody — drawing forms emitted BEFORE the frame border and tics (e.g. an
+opaque background band that must not cover the border/tics).
 
 Inside the body, use (dp x y) to convert data coordinates to pixel coordinates.
 Visual sizes (circle radius, stroke-width etc.) are in pixel units."
@@ -46,17 +49,22 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
                 ;; Vertical tic at data x=XI, drawn on the bottom and top edges.
                 ;; EXTENT is the inward tic length, already in data-y units.
                 (draw-x-tic (xi extent)
-                  (line (dp xi ,ymin) (dp xi (+ ,ymin extent))
-                        :stroke "black" :stroke-width 1)
-                  (line (dp xi ,ymax) (dp xi (- ,ymax extent))
-                        :stroke "black" :stroke-width 1))
+                  ;; clip to the data range: a spec end (e.g. 1.6) may lie
+                  ;; beyond xmax — gnuplot drops such tics rather than
+                  ;; drawing them outside the frame box.
+                  (when (and (>= xi ,xmin) (<= xi ,xmax))
+                    (line (dp xi ,ymin) (dp xi (+ ,ymin extent))
+                          :stroke "black" :stroke-width 1)
+                    (line (dp xi ,ymax) (dp xi (- ,ymax extent))
+                          :stroke "black" :stroke-width 1)))
                 ;; Horizontal tic at data y=YI, drawn on the left and right edges.
                 ;; EXTENT is the inward tic length, already in data-x units.
                 (draw-y-tic (yi extent)
-                  (line (dp ,xmin yi) (dp (+ ,xmin extent) yi)
-                        :stroke "black" :stroke-width 1)
-                  (line (dp ,xmax yi) (dp (- ,xmax extent) yi)
-                        :stroke "black" :stroke-width 1))
+                  (when (and (>= yi ,ymin) (<= yi ,ymax))
+                    (line (dp ,xmin yi) (dp (+ ,xmin extent) yi)
+                          :stroke "black" :stroke-width 1)
+                    (line (dp ,xmax yi) (dp (- ,xmax extent) yi)
+                          :stroke "black" :stroke-width 1)))
                 ;; Shared tic loop for both axes. SPEC is (start interval end);
                 ;; a major tic is drawn every INTERVAL, with MTICKS minor tics in
                 ;; between. DRAW is called as (DRAW POS EXTENT) for each tic.
@@ -85,10 +93,16 @@ Visual sizes (circle radius, stroke-width etc.) are in pixel units."
                                 while (<= pos (+ end 1e-6))
                                 unless (zerop (mod i (1+ mticks)))
                                 do (funcall draw pos minor-extent))))))))
-         ;; nested SVG with pixel-coordinate viewBox
+         ;; nested SVG with pixel-coordinate viewBox; overflow=visible so that
+         ;; labels drawn outside the frame box (axis labels, tick numbers,
+         ;; legends placed by root-canvas coordinates) are not clipped.
          (format ,stream "  <svg ")
-         (write-attributes ,stream (list :x ,x :y ,y :width ,width :height ,height :viewbox ,vb))
+         (write-attributes ,stream (list :x ,x :y ,y :width ,width :height ,height :viewbox ,vb
+                                         :overflow "visible"))
          (format ,stream ">~%")
+         ;; user background forms (drawn before border/tics so they stay
+         ;; underneath)
+         ,@prebody
          ;; frame border
          (rect (dp ,xmin ,ymax) ,width ,height
                :fill "none" :stroke "black" :stroke-width 1)
