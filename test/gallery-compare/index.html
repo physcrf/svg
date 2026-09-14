@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>latex vs latex* gallery</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:2em;background:#fafafa}
+h1{font-size:1.4em}p.lead{color:#555}
+.card{background:#fff;border:1px solid #ddd;border-radius:6px;padding:0.8em 1em;margin:0 0 1em}
+.card h3{font-size:0.95em;margin:0 0 0.3em;font-family:monospace}
+.card .box{font-size:0.75em;color:#888;font-family:monospace}
+.card img{max-width:100%;height:auto;display:block}
+.ok{color:#2e7d32}.bad{color:#c62828}
+</style></head><body>
+<h1><code>latex</code> (dvisvgm) vs <code>latex*</code> (native)</h1>
+<p class="lead">64 formulas, one card each: the same source string typeset by the external pipeline and by the in-process TeX engine, both in display style, on a shared baseline (the light grey line). Below each card the two box geometries, measured in pt.</p>
+<div class="card"><h3>char-x</h3>
+<img src="char-x.svg" alt="char-x">
+<div class="box">latex* 5.715 4.306 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 5.715 4.306 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>italic-letters</h3>
+<img src="italic-letters.svg" alt="italic-letters">
+<div class="box">latex* 38.885 8.640 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 38.885 8.640 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>superscript</h3>
+<img src="superscript.svg" alt="superscript">
+<div class="box">latex* 10.201 8.640 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 10.201 8.640 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>subscript</h3>
+<img src="subscript.svg" alt="subscript">
+<div class="box">latex* 10.201 4.306 1.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 10.201 4.306 1.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>both-scripts</h3>
+<img src="both-scripts.svg" alt="both-scripts">
+<div class="box">latex* 10.201 8.640 2.472&nbsp;&nbsp;|&nbsp;&nbsp;latex 10.201 8.640 2.472 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>deep-scripts</h3>
+<img src="deep-scripts.svg" alt="deep-scripts">
+<div class="box">latex* 18.553 12.387 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 18.553 12.387 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>spacing-ord-bin</h3>
+<img src="spacing-ord-bin.svg" alt="spacing-ord-bin">
+<div class="box">latex* 56.887 6.944 0.833&nbsp;&nbsp;|&nbsp;&nbsp;latex 56.887 6.944 0.833 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>thin-space</h3>
+<img src="thin-space.svg" alt="thin-space">
+<div class="box">latex* 32.052 7.500 2.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 32.052 7.500 2.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>quad</h3>
+<img src="quad.svg" alt="quad">
+<div class="box">latex* 43.905 6.944 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 43.905 6.944 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>fraction</h3>
+<img src="fraction.svg" alt="fraction">
+<div class="box">latex* 7.400 13.210 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 7.400 13.210 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>continued-fraction</h3>
+<img src="continued-fraction.svg" alt="continued-fraction">
+<div class="box">latex* 26.557 13.210 10.797&nbsp;&nbsp;|&nbsp;&nbsp;latex 26.557 13.210 10.797 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>nested-fraction</h3>
+<img src="nested-fraction.svg" alt="nested-fraction">
+<div class="box">latex* 8.786 15.797 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 8.786 15.797 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>dfrac</h3>
+<img src="dfrac.svg" alt="dfrac">
+<div class="box">latex* 7.686 11.071 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 7.686 11.071 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>binom</h3>
+<img src="binom.svg" alt="binom">
+<div class="box">latex* 20.725 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 20.725 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>radical</h3>
+<img src="radical.svg" alt="radical">
+<div class="box">latex* 14.049 8.491 1.909&nbsp;&nbsp;|&nbsp;&nbsp;latex 14.049 8.491 1.909 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>sqrt-index</h3>
+<img src="sqrt-index.svg" alt="sqrt-index">
+<div class="box">latex* 32.157 8.283 2.117&nbsp;&nbsp;|&nbsp;&nbsp;latex 32.157 8.283 2.117 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>sqrt-index-frac</h3>
+<img src="sqrt-index-frac.svg" alt="sqrt-index-frac">
+<div class="box">latex* 18.311 15.444 8.956&nbsp;&nbsp;|&nbsp;&nbsp;latex 18.311 15.444 8.956 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>sqrt-index-greek</h3>
+<img src="sqrt-index-greek.svg" alt="sqrt-index-greek">
+<div class="box">latex* 15.481 8.491 1.909&nbsp;&nbsp;|&nbsp;&nbsp;latex 15.481 8.491 1.909 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>sqrt-index-nested</h3>
+<img src="sqrt-index-nested.svg" alt="sqrt-index-nested">
+<div class="box">latex* 24.674 13.629 4.771&nbsp;&nbsp;|&nbsp;&nbsp;latex 24.674 13.629 4.771 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>nested-radical</h3>
+<img src="nested-radical.svg" alt="nested-radical">
+<div class="box">latex* 34.049 17.767 6.633&nbsp;&nbsp;|&nbsp;&nbsp;latex 34.049 17.767 6.633 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>quadratic</h3>
+<img src="quadratic.svg" alt="quadratic">
+<div class="box">latex* 89.687 15.898 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 89.687 15.898 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-hat</h3>
+<img src="accent-hat.svg" alt="accent-hat">
+<div class="box">latex* 5.715 6.944 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 5.715 6.944 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-tilde</h3>
+<img src="accent-tilde.svg" alt="accent-tilde">
+<div class="box">latex* 5.715 6.679 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 5.715 6.679 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-vec</h3>
+<img src="accent-vec.svg" alt="accent-vec">
+<div class="box">latex* 7.958 9.672 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 7.958 9.672 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-bar-dot</h3>
+<img src="accent-bar-dot.svg" alt="accent-bar-dot">
+<div class="box">latex* 40.511 6.679 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 40.511 6.679 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-caron</h3>
+<img src="accent-caron.svg" alt="accent-caron">
+<div class="box">latex* 19.110 9.583 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 19.110 9.583 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-ring</h3>
+<img src="accent-ring.svg" alt="accent-ring">
+<div class="box">latex* 5.715 6.944 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 5.715 6.944 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-overline</h3>
+<img src="accent-overline.svg" alt="accent-overline">
+<div class="box">latex* 23.199 7.833 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 23.199 7.833 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-underline</h3>
+<img src="accent-underline.svg" alt="accent-underline">
+<div class="box">latex* 23.199 5.833 3.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 23.199 5.833 3.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>accent-wide</h3>
+<img src="accent-wide.svg" alt="accent-wide">
+<div class="box">latex* 59.097 10.139 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 59.097 10.139 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>left-right</h3>
+<img src="left-right.svg" alt="left-right">
+<div class="box">latex* 19.630 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 19.630 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>left-bracket</h3>
+<img src="left-bracket.svg" alt="left-bracket">
+<div class="box">latex* 17.130 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 17.130 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>big-delimiters</h3>
+<img src="big-delimiters.svg" alt="big-delimiters">
+<div class="box">latex* 48.275 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 48.275 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>matrix</h3>
+<img src="matrix.svg" alt="matrix">
+<div class="box">latex* 35.213 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 35.213 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>bmatrix</h3>
+<img src="bmatrix.svg" alt="bmatrix">
+<div class="box">latex* 30.556 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 30.556 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>vmatrix</h3>
+<img src="vmatrix.svg" alt="vmatrix">
+<div class="box">latex* 27.157 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 27.157 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>Bmatrix</h3>
+<img src="Bmatrix.svg" alt="Bmatrix">
+<div class="box">latex* 35.491 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 35.491 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>determinant</h3>
+<img src="determinant.svg" alt="determinant">
+<div class="box">latex* 27.157 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 27.157 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>tall-matrix</h3>
+<img src="tall-matrix.svg" alt="tall-matrix">
+<div class="box">latex* 38.758 32.500 27.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 38.758 32.500 27.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>braces-delims</h3>
+<img src="braces-delims.svg" alt="braces-delims">
+<div class="box">latex* 21.019 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 21.019 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>floor-delims</h3>
+<img src="floor-delims.svg" alt="floor-delims">
+<div class="box">latex* 18.242 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 18.241 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>angle-delims</h3>
+<img src="angle-delims.svg" alt="angle-delims">
+<div class="box">latex* 19.908 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 19.908 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>norm</h3>
+<img src="norm.svg" alt="norm">
+<div class="box">latex* 18.797 11.500 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 18.797 11.500 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>sum-limits</h3>
+<img src="sum-limits.svg" alt="sum-limits">
+<div class="box">latex* 26.313 16.514 12.799&nbsp;&nbsp;|&nbsp;&nbsp;latex 26.313 16.514 12.799 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>integral</h3>
+<img src="integral.svg" alt="integral">
+<div class="box">latex* 50.903 14.153 9.111&nbsp;&nbsp;|&nbsp;&nbsp;latex 50.903 14.153 9.111 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>oint</h3>
+<img src="oint.svg" alt="oint">
+<div class="box">latex* 37.643 13.611 9.111&nbsp;&nbsp;|&nbsp;&nbsp;latex 37.643 13.611 9.111 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>prod-limits</h3>
+<img src="prod-limits.svg" alt="prod-limits">
+<div class="box">latex* 26.418 16.514 13.028&nbsp;&nbsp;|&nbsp;&nbsp;latex 26.418 16.514 13.028 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>bigcup</h3>
+<img src="bigcup.svg" alt="bigcup">
+<div class="box">latex* 24.802 10.500 13.480&nbsp;&nbsp;|&nbsp;&nbsp;latex 24.802 10.500 13.480 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>lim</h3>
+<img src="lim.svg" alt="lim">
+<div class="box">latex* 58.553 13.444 7.178&nbsp;&nbsp;|&nbsp;&nbsp;latex 58.553 13.444 7.178 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>named-operators</h3>
+<img src="named-operators.svg" alt="named-operators">
+<div class="box">latex* 78.472 8.717 0.833&nbsp;&nbsp;|&nbsp;&nbsp;latex 78.472 8.717 0.833 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>operatorname</h3>
+<img src="operatorname.svg" alt="operatorname">
+<div class="box">latex* 45.507 7.500 2.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 44.674 7.500 2.500 <span class="bad">geometry differs</span></div>
+</div>
+<div class="card"><h3>relations</h3>
+<img src="relations.svg" alt="relations">
+<div class="box">latex* 102.991 6.944 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 102.991 6.944 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>notin</h3>
+<img src="notin.svg" alt="notin">
+<div class="box">latex* 65.212 7.500 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 65.212 7.500 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>arrows</h3>
+<img src="arrows.svg" alt="arrows">
+<div class="box">latex* 78.673 6.833 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 78.673 6.833 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>greek</h3>
+<img src="greek.svg" alt="greek">
+<div class="box">latex* 76.121 6.944 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 76.121 6.944 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>greek-upper</h3>
+<img src="greek-upper.svg" alt="greek-upper">
+<div class="box">latex* 44.306 6.833 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 44.306 6.833 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>mathrm-mathcal</h3>
+<img src="mathrm-mathcal.svg" alt="mathrm-mathcal">
+<div class="box">latex* 28.168 6.944 0.000&nbsp;&nbsp;|&nbsp;&nbsp;latex 28.168 6.944 0.000 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>text-in-math</h3>
+<img src="text-in-math.svg" alt="text-in-math">
+<div class="box">latex* 90.437 6.944 1.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 90.438 6.944 1.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>operatorname-star</h3>
+<img src="operatorname-star.svg" alt="operatorname-star">
+<div class="box">latex* 55.465 7.500 8.944&nbsp;&nbsp;|&nbsp;&nbsp;latex 55.465 7.500 8.944 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>maxwell</h3>
+<img src="maxwell.svg" alt="maxwell">
+<div class="box">latex* 65.976 16.437 6.860&nbsp;&nbsp;|&nbsp;&nbsp;latex 65.976 16.437 6.860 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>derivative</h3>
+<img src="derivative.svg" alt="derivative">
+<div class="box">latex* 107.053 14.500 9.500&nbsp;&nbsp;|&nbsp;&nbsp;latex 107.053 14.500 9.500 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>gaussian</h3>
+<img src="gaussian.svg" alt="gaussian">
+<div class="box">latex* 82.101 14.153 9.945&nbsp;&nbsp;|&nbsp;&nbsp;latex 82.101 14.153 9.945 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>standard-deviation</h3>
+<img src="standard-deviation.svg" alt="standard-deviation">
+<div class="box">latex* 94.031 21.196 15.204&nbsp;&nbsp;|&nbsp;&nbsp;latex 94.031 21.196 15.204 <span class="ok">geometry matches</span></div>
+</div>
+<div class="card"><h3>binomial-sum</h3>
+<img src="binomial-sum.svg" alt="binomial-sum">
+<div class="box">latex* 70.588 16.514 13.028&nbsp;&nbsp;|&nbsp;&nbsp;latex 70.588 16.514 13.028 <span class="ok">geometry matches</span></div>
+</div>
+</body></html>

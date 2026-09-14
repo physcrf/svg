@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="96.149414pt" height="25.125275pt" viewBox="-0.9305725 -15.083481 96.149414 25.125275">
+<text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">Γ</text>
+<text x="6.2500153" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="10.138916" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑧</text>
+<text x="15.229218" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text>
+<text x="21.895828" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<g transform="translate(32.45134,0.0012365722656255684) scale(0.01,-0.01)"><path d="M943 1268C943 1322 889 1361 834 1361C758 1361 702 1252 647 1048C644 1037 508 535 398 -119C372 -272 343 -439 310 -578C292 -651 246 -839 165 -839C129 -839 104 -816 104 -816C136 -814 153 -792 153 -767C153 -734 128 -718 105 -718C81 -718 56 -733 56 -768C56 -819 106 -861 167 -861C319 -861 376 -627 447 -337C524 -21 589 298 643 619C680 832 717 1032 751 1161C763 1210 797 1339 836 1339C867 1339 892 1320 896 1316C863 1314 846 1292 846 1267C846 1234 871 1218 894 1218C918 1218 943 1233 943 1268Z"/></g>
+<g transform="translate(42.451355,-11.139023) scale(1.138890299719217,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">∞</text>
+</g>
+<text x="38.006912" y="9.111221" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">0</text>
+<text x="52.590225" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑡</text>
+<g transform="translate(56.20134,-4.1289215) scale(1.1736526946107784,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑧</text>
+</g>
+<g transform="translate(60.30902,-4.1289215) scale(1.1479584830169263,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">−</text>
+</g>
+<text x="66.55904" y="-4.1289215" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<text x="71.045166" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑒</text>
+<g transform="translate(75.70143,-4.1289215) scale(1.1479584830169263,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">−</text>
+</g>
+<g transform="translate(81.95145,-4.1289215) scale(1.1950578471887705,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑡</text>
+</g>
+<text x="85.47229" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<text x="90.677155" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑡</text>
+</svg>

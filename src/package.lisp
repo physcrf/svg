@@ -14,6 +14,8 @@
    title desc script viewbox
    px in cm mm pt pc
    latex
+   latex* latex*-svg latex*-inner-svg latex-typeset parse-latex-math
+   latex-math-fonts
    *latex-packages*
    set-latex-packages get-latex-packages
    define-marker

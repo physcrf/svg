@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="54.64615pt" height="24.512497pt" viewBox="-0.90786743 -16.745117 54.64615 24.512497">
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">φ</text>
+<text x="9.319382" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="21.07489" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">1</text>
+<text x="28.297073" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<g transform="translate(38.297043,-15.037286376953125) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="46.6304" y="-15.437271" width="5.0000153" height="0.39997864" fill="black"/>
+<text x="46.6304" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">5</text>
+<rect x="21.07489" y="-2.699997" width="30.555527" height="0.39997864" fill="black"/>
+<text x="33.852646" y="6.859497" font-family="Latin Modern Roman" font-size="10.0">2</text>
+</svg>

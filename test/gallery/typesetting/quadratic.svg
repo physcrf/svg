@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="91.50745pt" height="24.578491pt" viewBox="-0.91030884 -16.80867 91.50745 24.578491">
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="8.492981" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="20.24849" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">−</text>
+<text x="28.02629" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<text x="34.540115" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">±</text>
+<g transform="translate(44.540085,-15.098397827148437) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="52.873444" y="-15.498383" width="35.613388" height="0.39997864" fill="black"/>
+<text x="52.873444" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<text x="57.1651" y="-9.653961" font-family="LM Roman Seven" font-size="7.0">2</text>
+<text x="63.873398" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">−</text>
+<text x="73.87337" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">4</text>
+<text x="78.87338" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="84.15927" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<rect x="20.24849" y="-2.699997" width="68.23834" height="0.39997864" fill="black"/>
+<text x="49.224716" y="6.859497" font-family="Latin Modern Roman" font-size="10.0">2</text>
+<text x="54.22473" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+</svg>

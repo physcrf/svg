@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="58.237198pt" height="31.527084pt" viewBox="-1.1676636 -17.681595 58.237198 31.527084">
+<g transform="translate(3.5480652,-12.500046) scale(1.138890299719217,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">∞</text>
+</g>
+<g transform="translate(0.3119417911360446,-0.03555018833705503) scale(0.009962658957374623,-0.009962642996651786)"><path d="M1387 -130H1362C1323 -234 1217 -302 1102 -332C1081 -337 983 -363 791 -363H188L697 234C704 242 706 245 706 250C706 250 706 255 699 265L233 902H781C915 902 1006 888 1015 886C1069 878 1156 861 1235 811C1260 795 1328 750 1362 669H1387L1266 950H84C61 950 60 949 57 943C56 940 56 921 56 910L585 186L67 -421C57 -433 57 -439 57 -439C57 -450 66 -450 84 -450H1266Z"/></g>
+<g transform="translate(0.0,11.677826) scale(1.1765222854528088,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑛</text>
+</g>
+<text x="4.943329" y="11.677826" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">=</text>
+<text x="11.082245" y="11.677826" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<text x="20.67923" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">1</text>
+<rect x="17.934998" y="-2.699997" width="10.48848" height="0.39997864" fill="black"/>
+<text x="17.934998" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑛</text>
+<text x="23.937347" y="3.9706116" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<text x="32.401184" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="44.156693" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝜋</text>
+<text x="50.215744" y="-10.393997" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<rect x="44.156693" y="-2.699997" width="10.545181" height="0.39997864" fill="black"/>
+<text x="46.929276" y="6.859497" font-family="Latin Modern Roman" font-size="10.0">6</text>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="39.255203pt" height="26.742249pt" viewBox="-0.990448 -16.64058 39.255203 26.742249">
+<g transform="translate(0.0,0.0012365722656255684) scale(0.01,-0.01)"><path d="M943 1268C943 1322 889 1361 834 1361C758 1361 702 1252 647 1048C644 1037 508 535 398 -119C372 -272 343 -439 310 -578C292 -651 246 -839 165 -839C129 -839 104 -816 104 -816C136 -814 153 -792 153 -767C153 -734 128 -718 105 -718C81 -718 56 -733 56 -768C56 -819 106 -861 167 -861C319 -861 376 -627 447 -337C524 -21 589 298 643 619C680 832 717 1032 751 1161C763 1210 797 1339 836 1339C867 1339 892 1320 896 1316C863 1314 846 1292 846 1267C846 1234 871 1218 894 1218C918 1218 943 1233 943 1268Z"/></g>
+<text x="10.000015" y="-11.139023" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<text x="5.5555725" y="9.111221" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">0</text>
+<text x="16.152771" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="21.868042" y="-4.1289215" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<text x="26.354172" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<text x="31.559036" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="43.048706pt" height="26.352234pt" viewBox="-0.9760132 -17.739288 43.048706 26.352234">
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝜔</text>
+<text x="9.361023" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<g transform="translate(19.916534,-1.863067626953125) scale(0.01,-0.01)"><path d="M1020 1430C1020 1441 1012 1450 1000 1450C984 1450 981 1437 978 1423L466 -752H465L249 250L118 44C111 35 111 32 111 32C111 28 125 16 125 16L193 123L424 -950C457 -950 460 -950 466 -924L1016 1409C1018 1416 1020 1425 1020 1430Z"/></g>
+<rect x="29.91655" y="-16.363297" width="11.18013" height="0.39997864" fill="black"/>
+<text x="32.746185" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑘</text>
+<rect x="31.116547" y="-2.699997" width="8.780136" height="0.39997864" fill="black"/>
+<text x="31.116547" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑚</text>
+</svg>

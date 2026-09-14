@@ -13,7 +13,8 @@ A Common Lisp library for generating SVG (Scalable Vector Graphics) files, with 
 - **Path macro syntax** — compose paths from intuitive command forms.
 - **Global attributes system** — shared defaults with dynamic, scoped overrides.
 - **Marker system** — built-in marker types with per-reference scaling.
-- **LaTeX rendering** — compile LaTeX to SVG via `dvisvgm` and embed it inline.
+- **LaTeX rendering** — `latex` compiles via `dvisvgm`; `latex*` typesets math
+  natively (no TeX toolchain) with a vendored TeX engine (`src/tex/`).
 - **Pattern matching** — elegant dispatch via the `trivia` library.
 - **Built on** `alexandria`, `cl-ppcre`, `str`, `trivia`.
 
@@ -41,11 +42,14 @@ cd ~/.quicklisp/local-projects
 
 ### LaTeX prerequisites (optional)
 
-LaTeX rendering requires a TeX distribution and `dvisvgm`:
+The external `latex` command requires a TeX distribution and `dvisvgm`:
 
 ```bash
 sudo apt install texlive dvisvgm
 ```
+
+The native `latex*` command needs neither — it typesets in-process with the
+TeX engine vendored under `src/tex/`.
 
 ## 🚀 Quick Start
 
@@ -484,6 +488,110 @@ The default packages are `amsmath`, `amssymb`, and `physics`.
 
 Each `latex` call writes a `.tex` file, compiles it to `.dvi`, converts it to `.svg`, embeds the inner content, and then removes every temporary file (`.tex`, `.dvi`, `.svg`, `.aux`, `.log`) via `unwind-protect`. No manual cleanup is needed.
 
+### Native math rendering — `latex*` (no TeX toolchain)
+
+```lisp
+(latex* position formula &rest attrs)
+```
+
+`latex*` parses the LaTeX math syntax into a TeX mlist and typesets it
+in-process with the TeX engine vendored under `src/tex/` (a port of tex.web:
+node model, box packing, `mlist_to_hlist`, `var_delimiter`). No `latex`, no
+`dvisvgm`, no temporary files, no TeX installation, and no dependency on any
+other system. Placement matches `latex`:
+the formula's baseline-left origin goes to `position` and `:scale` scales it
+about that origin; `:math-style` selects `:display` (default) or `:text` style.
+
+```lisp
+(latex* (p 160 40) "$E = mc^2$")
+
+(latex* (p 160 90) "$\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}$" :scale 0.8)
+```
+
+The engine is compiled into `svg`'s own `svg-tex` package (see `src/tex/`), so
+`(ql:quickload :svg)` is all that is needed.
+
+Supported syntax (a practical subset, typeset with TeX-exact geometry):
+
+- groups `{...}`, scripts `x_i^2`, explicit spaces `\, \: \; \! \ ` and `\quad \qquad`
+- `\frac \dfrac \tfrac`, `\binom`, `\sqrt` and `\sqrt[n]`
+- `\overline \underline`, accents `\hat \tilde \bar \vec \dot \ddot \acute \grave \check \breve \mathring`,
+  and the wide accents `\widehat \widetilde` (drawn as outlines, since cmex's
+  designs have no spacing Unicode glyph)
+- `\left...\right` with scalable `( ) [ ] \{ \} | \| \langle \rangle \lfloor \rfloor \lceil \rceil`
+- big operators `\sum \prod \coprod \int \oint \bigcup \bigcap \bigvee \bigwedge \bigoplus \bigotimes \bigodot \biguplus \bigsqcup`
+- named operators `\sin \cos \tan \log \ln \exp \lim \max \min \det \gcd \dots`
+- text/alphabets `\mathrm \mathit \mathcal \text` (spaces inside `\text{...}`
+  count, as in LaTeX) and `\operatorname{...}` / `\operatorname*{...}` (the
+  starred form puts its scripts above and below in display style)
+- Greek letters and the LaTeX symbol set from `fontmath.ltx` (relations, arrows, binary operators, `\infty \nabla \partial \ell \aleph \emptyset \forall \exists …`)
+- matrices `\begin{matrix|pmatrix|bmatrix|Bmatrix|vmatrix|Vmatrix}…\end{…}` (`&` columns, `\\` rows)
+- `\not` / `\neq` negation overlays, `\ldots \cdots`
+
+The box geometry agrees with real LaTeX to within a rounding unit (1sp = 1/65536pt)
+for these constructs. `test/test-latex-compare.lisp` renders every construct
+twice — once through `latex`/`dvisvgm`, once through `latex*` — on a shared
+baseline, and reports both the two box geometries and the two pictures, so a
+glyph that is the wrong shape, size or slant shows up as a shift in the card
+(its gallery goes to `test/gallery-compare/`).
+
+The Latin Modern outlines that the vendored engine's glyph table does not carry
+are generated into `src/latex-extra-glyph-paths.lisp` by
+`tools/gen-lm-extra-glyph-paths.py`: the ceiling/floor/angle bracket variants,
+the contour integral, the large operators besides `\sum \prod \int`, and the
+`\not` slash. Each is registered with the ink box cmex10 draws it in (measured
+off a real LaTeX run), which is what keeps a stacked fence closed and puts
+`\bigcup` where LaTeX puts it rather than showing the integral sign or its raw
+font slot:
+
+```bash
+python3 tools/gen-lm-extra-glyph-paths.py     # after changing that list
+```
+
+`test/test-latex-star.lisp` guards the same ground from the other side: it pins
+the box geometry of a corpus of formulas (measured with real LaTeX), checks
+that every math accent previews as its Latin Modern spacing glyph, that the
+italic preview alphabet uses the code points Unicode actually assigns (the
+Math Alphanumeric block has a hole at U+1D455 — italic h lives at U+210E), and
+that every symbol slot the tables can typeset draws either an outline or a
+mapped preview instead of its raw font code.
+
+Known deviations:
+
+- matrices follow LaTeX rather than TeX's `\halign`: the engine's grid gives
+  every row LaTeX's `\strut`, a 1em column gap (`\arraycolsep`) and centers the
+  result with `\vcenter`, so `matrix`/`pmatrix`/`bmatrix`/`vmatrix` match a real
+  LaTeX run; `smallmatrix` is laid out like `matrix` instead of LaTeX's tighter
+  script-size grid;
+- radical indices (`\sqrt[3]{x}`) sit in the crook of the radical sign the way
+  LaTeX puts them, and add neither height nor depth to the box;
+- ligature/kern programs are not implemented (the engine carries none), so a
+  punctuation kern such as `,` before `\epsilon` can differ by one mu, `ffi`
+  stays three glyphs, and a text pair that LaTeX kerns (e.g. `Tr` in
+  `\operatorname{Tr}`) comes out up to .08em wider;
+- `\not<rel>` (and `\neq`) is the zero-advance cmsy slash at the base's origin,
+  exactly as in LaTeX; `\notin` is `\c@ncel`, which overlays the text slash
+  centred over the base — width, height and depth all match a real LaTeX run,
+  and the slash's ink is placed by its own outline box;
+- `\lhook`/`\rhook` are the one gap this leaves: Latin Modern Math ships only
+  the whole `\hookrightarrow`/`\hookleftarrow` arrows, not their hook strokes,
+  so those two slots still draw their raw font code (a comma-like mark), and
+  the arrows that use them inherit it; `\lhook`/`\rhook` themselves need
+  cmmi10's outlines embedded to fix;
+- `\mathit` uses the math-italic alphabet (cmmi) rather than LaTeX's cmti10
+  text italic, so its widths differ slightly;
+- `\cong`, `\doteq`, `\bowtie` and the `\long...` arrows are assembled from CM
+  glyph parts and approximate TeX's overlays/leaders.
+
+Helper entry points:
+
+```lisp
+(latex*-svg formula &key math-style fonts) ; standalone SVG string
+(latex*-inner-svg formula &key ...)     ; embedded markup (no <svg> wrapper)
+(latex-typeset formula &key ...)        ; the TeX box (geometry checks)
+(parse-latex-math formula)              ; the mlist (debugging)
+```
+
 ## 🔧 Utility Functions
 
 ### Coordinates
@@ -602,8 +710,18 @@ svg/
 │   ├── core.lisp        # core: open/close/with-svg, frame, attribute serialization
 │   ├── shapes.lisp      # shape primitives and text
 │   ├── path.lisp        # path commands (generated by def-path-cmd)
-│   ├── latex.lisp       # LaTeX rendering with auto-cleanup
+│   ├── latex.lisp       # external LaTeX rendering (latex/dvisvgm)
+│   ├── latex-star.lisp  # native math typesetting (latex*, no TeX toolchain)
+│   ├── latex-tables.lisp# generated symbol/accent/delimiter/font tables
+│   ├── latex-extra-glyph-paths.lisp # generated LM outlines the engine lacks
+│   ├── tex/             # vendored TeX engine (package svg-tex, see tex/README.md)
+│   │   ├── package.lisp ⁄ scaled.lisp ⁄ node.lisp ⁄ pack.lisp ⁄ delim.lisp
+│   │   ├── mlist.lisp ⁄ math-*.lisp ⁄ mock-font.lisp ⁄ render.lisp …
 │   └── plot.lisp        # data plotting frame
+├── tools/
+│   ├── gen-latex-tables.py # regenerate latex-tables.lisp from TeX sources
+│   └── gen-lm-extra-glyph-paths.py # regenerate latex-extra-glyph-paths.lisp
+│                                   # from Latin Modern Math
 └── test/
     ├── test-shapes.lisp
     ├── test-text.lisp
@@ -613,6 +731,12 @@ svg/
     ├── test-marker-scale.lisp
     ├── test-global-attributes.lisp
     ├── test-latex.lisp
+    ├── test-latex-star.lisp
+    ├── test-latex-symbols.lisp
+    ├── test-latex-compare.lisp # gallery: `latex` next to `latex*`
+    ├── gallery-compare/        # its output (index.html + one card per formula)
+    ├── test-latex-star-gallery.lisp # mirrors the sibling `typesetting' corpus
+    ├── gallery/                # its output
     ├── test-frame.lisp
     ├── test-units.lisp
     ├── test-cartesian.lisp

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="72.95155pt" height="31.90509pt" viewBox="-1.1816711 -17.695602 72.95155 31.90509">
+<g transform="translate(4.800934,-12.500046) scale(1.1765222854528088,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑛</text>
+</g>
+<g transform="translate(0.05036037023760709,-0.03555018833705503) scale(0.009962658957374623,-0.009962642996651786)"><path d="M1387 -130H1362C1323 -234 1217 -302 1102 -332C1081 -337 983 -363 791 -363H188L697 234C704 242 706 245 706 250C706 250 706 255 699 265L233 902H781C915 902 1006 888 1015 886C1069 878 1156 861 1235 811C1260 795 1328 750 1362 669H1387L1266 950H84C61 950 60 949 57 943C56 940 56 921 56 910L585 186L67 -421C57 -433 57 -439 57 -439C57 -450 66 -450 84 -450H1266Z"/></g>
+<g transform="translate(0.0,12.027817) scale(1.1665545218506534,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑘</text>
+</g>
+<text x="4.420166" y="12.027817" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">=</text>
+<text x="10.559082" y="12.027817" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">0</text>
+<g transform="translate(16.211838,0.04012207031249915) scale(0.01,-0.01)"><path d="M682 -928C682 -922 679 -917 675 -914C462 -754 314 -311 314 64V436C314 811 462 1254 675 1414C679 1417 682 1422 682 1428C682 1438 674 1446 664 1446C660 1446 656 1444 653 1442C431 1275 226 829 226 436V64C226 -329 431 -775 653 -942C656 -944 660 -946 664 -946C674 -946 682 -938 682 -928Z"/></g>
+<text x="23.572983" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑛</text>
+<text x="23.813736" y="6.8595123" font-family="Latin Modern Math" font-size="10.0">𝑘</text>
+<g transform="translate(29.575333,0.04012207031249915) scale(0.01,-0.01)"><path d="M510 64V436C510 829 305 1275 83 1442C80 1444 76 1446 72 1446C62 1446 54 1438 54 1428C54 1422 57 1417 61 1414C274 1254 422 811 422 436V64C422 -311 274 -754 61 -914C57 -917 54 -922 54 -928C54 -938 62 -946 72 -946C76 -946 80 -944 83 -942C305 -775 510 -329 510 64Z"/></g>
+<text x="36.936478" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛼</text>
+<g transform="translate(43.370514,-4.1289215) scale(1.1665545218506534,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑘</text>
+</g>
+<text x="48.29068" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛽</text>
+<g transform="translate(54.4747,-4.1289215) scale(1.1765222854528088,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑛</text>
+</g>
+<g transform="translate(59.41803,-4.1289215) scale(1.1479584830169263,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">−</text>
+</g>
+<g transform="translate(65.668045,-4.1289215) scale(1.1665545218506534,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑘</text>
+</g>
+</svg>

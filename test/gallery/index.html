@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>svg latex* gallery (mirrors typesetting)</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:2em;background:#fafafa}
+h1{font-size:1.4em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1em}
+.card{background:#fff;border:1px solid #ddd;border-radius:6px;padding:1em}
+.card h3{font-size:0.95em;margin:0 0 0.3em;font-family:monospace}
+.card code{font-size:0.8em;color:#666;display:block;margin:0 0 0.6em}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0.6em}
+.pair figure{margin:0}
+.pair figcaption{font-size:0.7em;color:#888;margin-top:0.3em}
+.card img{max-width:100%;height:auto;display:block;background:#fff}
+</style></head><body>
+<h1>svg <code>latex*</code> gallery</h1>
+<p>43 formulas, mirroring <code>typesetting/examples/render-svgs.lisp</code>. Left: this library (<code>latex*</code>). Right: the sibling <code>typesetting</code> gallery.</p>
+<div class="grid">
+<div class="card"><h3>char-x</h3><code>$x$</code>
+<div class="pair"><figure><img src="char-x.svg" alt="char-x"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/char-x.svg" alt="char-x"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>superscript</h3><code>$x^2$</code>
+<div class="pair"><figure><img src="superscript.svg" alt="superscript"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/superscript.svg" alt="superscript"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>subscript</h3><code>$x_2$</code>
+<div class="pair"><figure><img src="subscript.svg" alt="subscript"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/subscript.svg" alt="subscript"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>both-scripts</h3><code>$x_1^2$</code>
+<div class="pair"><figure><img src="both-scripts.svg" alt="both-scripts"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/both-scripts.svg" alt="both-scripts"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>fraction</h3><code>$\frac{1}{2}$</code>
+<div class="pair"><figure><img src="fraction.svg" alt="fraction"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/fraction.svg" alt="fraction"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>nested-fraction</h3><code>$\frac{\frac{1}{2}}{3}$</code>
+<div class="pair"><figure><img src="nested-fraction.svg" alt="nested-fraction"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/nested-fraction.svg" alt="nested-fraction"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>radical</h3><code>$\sqrt{x}$</code>
+<div class="pair"><figure><img src="radical.svg" alt="radical"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/radical.svg" alt="radical"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>frac-sqrt</h3><code>$\frac{\sqrt{x}}{2}$</code>
+<div class="pair"><figure><img src="frac-sqrt.svg" alt="frac-sqrt"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/frac-sqrt.svg" alt="frac-sqrt"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>nested-superscript</h3><code>$x^{y^2}$</code>
+<div class="pair"><figure><img src="nested-superscript.svg" alt="nested-superscript"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/nested-superscript.svg" alt="nested-superscript"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>overline</h3><code>$\overline{x}$</code>
+<div class="pair"><figure><img src="overline.svg" alt="overline"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/overline.svg" alt="overline"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>under-rule</h3><code>$\underline{x}$</code>
+<div class="pair"><figure><img src="under-rule.svg" alt="under-rule"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/under-rule.svg" alt="under-rule"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>accent</h3><code>$\tilde{x}$</code>
+<div class="pair"><figure><img src="accent.svg" alt="accent"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/accent.svg" alt="accent"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>accent-hat</h3><code>$\hat{x}$</code>
+<div class="pair"><figure><img src="accent-hat.svg" alt="accent-hat"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/accent-hat.svg" alt="accent-hat"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>delimited</h3><code>$(x)$</code>
+<div class="pair"><figure><img src="delimited.svg" alt="delimited"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/delimited.svg" alt="delimited"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>matrix-2x2</h3><code>$\begin{matrix}a&amp;b\\c&amp;d\end{matrix}$</code>
+<div class="pair"><figure><img src="matrix-2x2.svg" alt="matrix-2x2"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/matrix-2x2.svg" alt="matrix-2x2"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>binomial</h3><code>$\binom{n}{k}$</code>
+<div class="pair"><figure><img src="binomial.svg" alt="binomial"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/binomial.svg" alt="binomial"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>spacing-ord-bin-ord</h3><code>$a-b$</code>
+<div class="pair"><figure><img src="spacing-ord-bin-ord.svg" alt="spacing-ord-bin-ord"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/spacing-ord-bin-ord.svg" alt="spacing-ord-bin-ord"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>op-limits-scripts</h3><code>$\sum_0^n$</code>
+<div class="pair"><figure><img src="op-limits-scripts.svg" alt="op-limits-scripts"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/op-limits-scripts.svg" alt="op-limits-scripts"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>continued-fraction</h3><code>$\frac{1}{\frac{1}{\frac{1}{2}}}$</code>
+<div class="pair"><figure><img src="continued-fraction.svg" alt="continued-fraction"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/continued-fraction.svg" alt="continued-fraction"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>nested-radical</h3><code>$\sqrt{\sqrt{\sqrt{x}}}$</code>
+<div class="pair"><figure><img src="nested-radical.svg" alt="nested-radical"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/nested-radical.svg" alt="nested-radical"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>superscripts-deep</h3><code>$x^{y^{z^2}}$</code>
+<div class="pair"><figure><img src="superscripts-deep.svg" alt="superscripts-deep"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/superscripts-deep.svg" alt="superscripts-deep"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>sqrt-compound</h3><code>$\sqrt{b^2-4ac}$</code>
+<div class="pair"><figure><img src="sqrt-compound.svg" alt="sqrt-compound"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/sqrt-compound.svg" alt="sqrt-compound"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>integral</h3><code>$\int_0^1 x^2 dx$</code>
+<div class="pair"><figure><img src="integral.svg" alt="integral"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/integral.svg" alt="integral"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>left-fraction</h3><code>$\left(\frac{1}{2}\right)$</code>
+<div class="pair"><figure><img src="left-fraction.svg" alt="left-fraction"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/left-fraction.svg" alt="left-fraction"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>left-fraction-nested</h3><code>$\left(\frac{\frac{1}{2}}{\frac{3}{4}}\right)$</code>
+<div class="pair"><figure><img src="left-fraction-nested.svg" alt="left-fraction-nested"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/left-fraction-nested.svg" alt="left-fraction-nested"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>sum-fraction</h3><code>$\sum_{i=1}^{n}\frac{1}{i^2}$</code>
+<div class="pair"><figure><img src="sum-fraction.svg" alt="sum-fraction"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/sum-fraction.svg" alt="sum-fraction"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>quadratic</h3><code>$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$</code>
+<div class="pair"><figure><img src="quadratic.svg" alt="quadratic"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/quadratic.svg" alt="quadratic"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-alphabet</h3><code>$\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega\alpha\beta\gamma\delta\epsilon\zeta\eta\theta\iota\kappa\lambda\mu\nu\xi\pi\rho\sigma\tau\upsilon\phi\chi\psi\omega$</code>
+<div class="pair"><figure><img src="greek-alphabet.svg" alt="greek-alphabet"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-alphabet.svg" alt="greek-alphabet"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-alpha-plus-beta</h3><code>$\alpha+\beta$</code>
+<div class="pair"><figure><img src="greek-alpha-plus-beta.svg" alt="greek-alpha-plus-beta"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-alpha-plus-beta.svg" alt="greek-alpha-plus-beta"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-pi-over-two</h3><code>$\frac{\pi}{2}$</code>
+<div class="pair"><figure><img src="greek-pi-over-two.svg" alt="greek-pi-over-two"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-pi-over-two.svg" alt="greek-pi-over-two"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-sqrt-alpha</h3><code>$\sqrt{\alpha}$</code>
+<div class="pair"><figure><img src="greek-sqrt-alpha.svg" alt="greek-sqrt-alpha"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-sqrt-alpha.svg" alt="greek-sqrt-alpha"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-gamma-function</h3><code>$\Gamma(\frac{n}{2})$</code>
+<div class="pair"><figure><img src="greek-gamma-function.svg" alt="greek-gamma-function"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-gamma-function.svg" alt="greek-gamma-function"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-euler-pi</h3><code>$e^{i\pi}+1=0$</code>
+<div class="pair"><figure><img src="greek-euler-pi.svg" alt="greek-euler-pi"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-euler-pi.svg" alt="greek-euler-pi"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-trig</h3><code>$\sin^2\theta+\cos^2\theta=1$</code>
+<div class="pair"><figure><img src="greek-trig.svg" alt="greek-trig"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-trig.svg" alt="greek-trig"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-euler-trig</h3><code>$\cos\theta+i\sin\theta=e^{i\theta}$</code>
+<div class="pair"><figure><img src="greek-euler-trig.svg" alt="greek-euler-trig"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-euler-trig.svg" alt="greek-euler-trig"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-discriminant</h3><code>$\Delta=\beta^2-4\alpha\gamma$</code>
+<div class="pair"><figure><img src="greek-discriminant.svg" alt="greek-discriminant"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-discriminant.svg" alt="greek-discriminant"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-golden-ratio</h3><code>$\varphi=\frac{1+\sqrt{5}}{2}$</code>
+<div class="pair"><figure><img src="greek-golden-ratio.svg" alt="greek-golden-ratio"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-golden-ratio.svg" alt="greek-golden-ratio"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-binomial-sum</h3><code>$\sum_{k=0}^{n}\binom{n}{k}\alpha^k\beta^{n-k}$</code>
+<div class="pair"><figure><img src="greek-binomial-sum.svg" alt="greek-binomial-sum"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-binomial-sum.svg" alt="greek-binomial-sum"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-standard-deviation</h3><code>$\sigma=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2}$</code>
+<div class="pair"><figure><img src="greek-standard-deviation.svg" alt="greek-standard-deviation"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-standard-deviation.svg" alt="greek-standard-deviation"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-gamma-integral</h3><code>$\Gamma(z)=\int_0^\infty t^{z-1}e^{-t}dt$</code>
+<div class="pair"><figure><img src="greek-gamma-integral.svg" alt="greek-gamma-integral"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-gamma-integral.svg" alt="greek-gamma-integral"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-wave</h3><code>$\psi(x)=A\sin(kx+\varphi)$</code>
+<div class="pair"><figure><img src="greek-wave.svg" alt="greek-wave"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-wave.svg" alt="greek-wave"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-omega-frequency</h3><code>$\omega=\sqrt{\frac{k}{m}}$</code>
+<div class="pair"><figure><img src="greek-omega-frequency.svg" alt="greek-omega-frequency"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-omega-frequency.svg" alt="greek-omega-frequency"><figcaption>typesetting</figcaption></figure></div>
+</div>
+<div class="card"><h3>greek-pi-squared-sixth</h3><code>$\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}$</code>
+<div class="pair"><figure><img src="greek-pi-squared-sixth.svg" alt="greek-pi-squared-sixth"><figcaption>latex*</figcaption></figure><figure><img src="typesetting/greek-pi-squared-sixth.svg" alt="greek-pi-squared-sixth"><figcaption>typesetting</figcaption></figure></div>
+</div>
+</div></body></html>

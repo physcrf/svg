@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="540" height="1118">
+  <rect x="0" y="0" width="540" height="1118" fill="white" />
+  <g transform="translate(24,26) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝐸</text>
+<text x="10.736023" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="21.291534" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑚</text>
+<text x="30.07167" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="34.39923" y="-4.1289215" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text></g>
+  <g transform="translate(24,52) scale(0.50)" ><g transform="translate(0.0,0.0012365722656255684) scale(0.01,-0.01)"><path d="M943 1268C943 1322 889 1361 834 1361C758 1361 702 1252 647 1048C644 1037 508 535 398 -119C372 -272 343 -439 310 -578C292 -651 246 -839 165 -839C129 -839 104 -816 104 -816C136 -814 153 -792 153 -767C153 -734 128 -718 105 -718C81 -718 56 -733 56 -768C56 -819 106 -861 167 -861C319 -861 376 -627 447 -337C524 -21 589 298 643 619C680 832 717 1032 751 1161C763 1210 797 1339 836 1339C867 1339 892 1320 896 1316C863 1314 846 1292 846 1267C846 1234 871 1218 894 1218C918 1218 943 1233 943 1268Z"/></g>
+<g transform="translate(10.000015,-11.139023) scale(1.138890299719217,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">∞</text>
+</g>
+<text x="5.5555725" y="9.111221" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">0</text>
+<text x="20.138885" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑒</text>
+<g transform="translate(24.79515,-4.1289215) scale(1.1479584830169263,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">−</text>
+</g>
+<g transform="translate(31.045166,-4.1289215) scale(1.133486810288143,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑥</text>
+</g>
+<text x="35.579895" y="-7.1467133" font-family="LM Roman Five, Latin Modern Roman" font-size="5.0">2</text>
+<text x="39.982727" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<text x="45.18759" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="53.680573" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<g transform="translate(65.43608,-13.967828369140625) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="73.76944" y="-14.367813" width="6.0590515" height="0.39997864" fill="black"/>
+<text x="73.76944" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝜋</text>
+<rect x="65.43608" y="-2.699997" width="14.39241" height="0.39997864" fill="black"/>
+<text x="70.13228" y="6.859497" font-family="Latin Modern Roman" font-size="10.0">2</text></g>
+  <g transform="translate(24,78) scale(0.50)" ><g transform="translate(4.75058,-12.500046) scale(1.1765222854528088,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑛</text>
+</g>
+<g transform="translate(-0.000008892457705411694,-0.03555018833705503) scale(0.009962658957374623,-0.009962642996651786)"><path d="M1387 -130H1362C1323 -234 1217 -302 1102 -332C1081 -337 983 -363 791 -363H188L697 234C704 242 706 245 706 250C706 250 706 255 699 265L233 902H781C915 902 1006 888 1015 886C1069 878 1156 861 1235 811C1260 795 1328 750 1362 669H1387L1266 950H84C61 950 60 949 57 943C56 940 56 921 56 910L585 186L67 -421C57 -433 57 -439 57 -439C57 -450 66 -450 84 -450H1266Z"/></g>
+<g transform="translate(0.7450714,11.798645) scale(1.173202738443238,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑖</text>
+</g>
+<text x="3.574356" y="11.798645" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">=</text>
+<text x="9.713272" y="11.798645" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<text x="16.1111" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="21.82637" y="-4.1289215" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<g transform="translate(21.82637,2.472168) scale(1.173202738443238,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑖</text>
+</g></g>
+  <g transform="translate(24,104) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛼</text>
+<text x="6.4340363" y="0.0" font-family="Latin Modern Math" font-size="10.0">,</text>
+<text x="10.8784485" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛽</text>
+<text x="17.06247" y="0.0" font-family="Latin Modern Math" font-size="10.0">,</text>
+<text x="21.506882" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛾</text>
+<text x="27.23973" y="0.0" font-family="Latin Modern Math" font-size="10.0">,</text>
+<text x="31.684143" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛿</text></g>
+  <g transform="translate(24,130) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛼</text>
+<text x="8.656204" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="18.656174" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛽</text>
+<text x="27.062363" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="37.062332" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛾</text>
+<text x="45.01735" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="55.01732" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝛿</text>
+<text x="62.062393" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="72.06236" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝜀</text></g>
+  <g transform="translate(24,156) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">∇</text>
+<text x="10.555527" y="0.0" font-family="Latin Modern Math" font-size="10.0">×</text>
+<g transform="translate(28.638907470703124,-2.47777099609375) scale(0.01,-0.01)"><path d="M-56 616C-56 623 -61 628 -67 630C-103 642 -132 668 -148 702C-150 707 -155 711 -161 711C-170 711 -176 704 -176 696C-176 694 -176 692 -175 690C-165 667 -149 647 -130 631H-457C-465 631 -472 624 -472 616C-472 608 -465 601 -457 601H-130C-149 585 -165 565 -175 542C-176 540 -176 538 -176 536C-176 528 -170 521 -161 521C-155 521 -150 525 -148 530C-132 564 -103 590 -67 602C-61 604 -56 609 -56 616Z"/></g>
+<text x="20.555496" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝐸</text>
+<text x="31.29152" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="41.84703" y="0.0" font-family="Latin Modern Math" font-size="10.0">−</text>
+<text x="50.82483" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">∂</text>
+<g transform="translate(64.83708862304688,-9.2428466796875) scale(0.01,-0.01)"><path d="M-56 616C-56 623 -61 628 -67 630C-103 642 -132 668 -148 702C-150 707 -155 711 -161 711C-170 711 -176 704 -176 696C-176 694 -176 692 -175 690C-165 667 -149 647 -130 631H-457C-465 631 -472 624 -472 616C-472 608 -465 601 -457 601H-130C-149 585 -165 565 -175 542C-176 540 -176 538 -176 536C-176 528 -170 521 -161 521C-155 521 -150 525 -148 530C-132 564 -103 590 -67 602C-61 604 -56 609 -56 616Z"/></g>
+<text x="56.689423" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝐵</text>
+<rect x="50.82483" y="-2.699997" width="13.951401" height="0.39997864" fill="black"/>
+<text x="53.062683" y="6.859497" font-family="Latin Modern Math" font-size="10.0">∂</text>
+<text x="58.927277" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑡</text></g>
+  <g transform="translate(24,182) scale(0.50)" ><text x="10.778427" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">1</text>
+<rect x="1.199997" y="-2.699997" width="24.156876" height="0.39997864" fill="black"/>
+<text x="1.199997" y="7.348343" font-family="Latin Modern Roman" font-size="10.0">1</text>
+<text x="8.42218" y="7.348343" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="19.896439" y="3.411026" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<rect x="19.622147" y="4.648346" width="4.534729" height="0.39997864" fill="black"/>
+<g transform="translate(19.622147,10.796738) scale(1.133486810288143,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑥</text>
+</g></g>
+  <g transform="translate(24,208) scale(0.50)" ><g transform="translate(0.0,-1.1658935546875) scale(0.01,-0.01)"><path d="M1020 830C1020 841 1012 850 1000 850C987 850 983 841 978 830L462 -246L249 250L110 143L125 127L196 181L424 -350C455 -350 456 -349 466 -330L1013 812C1020 825 1020 827 1020 830Z"/></g>
+<rect x="10.000015" y="-9.666" width="32.171265" height="0.39997864" fill="black"/>
+<text x="10.000015" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="15.715286" y="-2.8888855" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<text x="22.423584" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="32.423553" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text>
+<text x="37.68515" y="-2.8888855" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text>
+<text x="44.94899" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="55.5045" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑟</text></g>
+  <g transform="translate(24,234) scale(0.50)" ><text x="1.3020935" y="0.0" font-family="Latin Modern Roman" font-size="10.0">l</text>
+<text x="4.0798798" y="0.0" font-family="Latin Modern Roman" font-size="10.0">i</text>
+<text x="6.857666" y="0.0" font-family="Latin Modern Roman" font-size="10.0">m</text>
+<g transform="translate(0.0,6.177765) scale(1.133486810288143,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑥</text>
+</g>
+<g transform="translate(4.534729,6.177765) scale(1.1388907417361922,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">→</text>
+</g>
+<text x="12.506989" y="6.177765" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">0</text>
+<text x="19.359741" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">s</text>
+<text x="23.304184" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">i</text>
+<text x="26.08197" y="-6.7650757" font-family="Latin Modern Roman" font-size="10.0">n</text>
+<text x="33.30417" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<rect x="19.359741" y="-2.699997" width="19.659698" height="0.39997864" fill="black"/>
+<text x="26.331955" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="42.997147" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="53.552658" y="0.0" font-family="Latin Modern Roman" font-size="10.0">1</text></g>
+  <g transform="translate(24,260) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="8.492981" y="0.0" font-family="Latin Modern Math" font-size="10.0">≤</text>
+<text x="19.048508" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text>
+<text x="27.087814" y="0.0" font-family="Latin Modern Math" font-size="10.0">≥</text>
+<text x="37.64334" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑧</text>
+<g transform="translate(46.180733036933646,-0.16925003051757814) scale(0.01277891968087243,-0.009285)"><path d="M445 730C445 741 436 750 425 750C416 750 409 745 406 737L57 -223C56 -225 56 -228 56 -230C56 -241 65 -250 76 -250C85 -250 92 -245 95 -237L444 723C445 725 445 728 445 730Z"/></g>
+<text x="45.511353" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="56.066864" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑤</text>
+<text x="66.27283" y="0.0" font-family="Latin Modern Math" font-size="10.0">∈</text>
+<text x="75.717224" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑆</text>
+<text x="85.20325" y="0.0" font-family="Latin Modern Math" font-size="10.0">⊂</text>
+<text x="95.75877" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑇</text></g>
+  <g transform="translate(24,286) scale(0.50)" ><g transform="translate(0.0,0.04009155273437415) scale(0.01,-0.01)"><path d="M539 -632C539 -627 537 -623 534 -620C367 -495 251 -154 251 132V368C251 654 367 995 534 1120C537 1123 539 1127 539 1132C539 1140 533 1146 525 1146C522 1146 519 1145 516 1144C341 1012 179 669 179 368V132C179 -169 341 -512 516 -644C519 -645 522 -646 525 -646C533 -646 539 -640 539 -632Z"/></g>
+<text x="7.172226" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="7.172226" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="7.669342" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(13.658112,0.04009155273437415) scale(0.01,-0.01)"><path d="M418 132V368C418 669 256 1012 81 1144C78 1145 75 1146 72 1146C64 1146 58 1140 58 1132C58 1127 60 1123 63 1120C230 995 346 654 346 368V132C346 -154 230 -495 63 -620C60 -623 58 -627 58 -632C58 -640 64 -646 72 -646C75 -646 78 -645 81 -644C256 -512 418 -169 418 132Z"/></g></g>
+  <g transform="translate(24,312) scale(0.50)" ><g transform="translate(0.0,0.000091552734375) scale(0.01,-0.01)"><path d="M448 -624C448 -610 436 -598 422 -598H278V1098H422C436 1098 448 1110 448 1124C448 1138 436 1150 422 1150H226V-650H422C436 -650 448 -638 448 -624Z"/></g>
+<text x="5.922241" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="5.922241" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="6.4193573" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(12.408127,0.000091552734375) scale(0.01,-0.01)"><path d="M246 1150H50C36 1150 24 1138 24 1124C24 1110 36 1098 50 1098H194V-598H50C36 -598 24 -610 24 -624C24 -638 36 -650 50 -650H246Z"/></g></g>
+  <g transform="translate(24,338) scale(0.50)" ><g transform="translate(0.0,0.04012207031249915) scale(0.01,-0.01)"><path d="M682 -928C682 -922 679 -917 675 -914C462 -754 314 -311 314 64V436C314 811 462 1254 675 1414C679 1417 682 1422 682 1428C682 1438 674 1446 664 1446C660 1446 656 1444 653 1442C431 1275 226 829 226 436V64C226 -329 431 -775 653 -942C656 -944 660 -946 664 -946C674 -946 682 -938 682 -928Z"/></g>
+<text x="7.361145" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑛</text>
+<text x="7.601898" y="6.8595123" font-family="Latin Modern Math" font-size="10.0">𝑘</text>
+<g transform="translate(13.363495,0.04012207031249915) scale(0.01,-0.01)"><path d="M510 64V436C510 829 305 1275 83 1442C80 1444 76 1446 72 1446C62 1446 54 1438 54 1428C54 1422 57 1417 61 1414C274 1254 422 811 422 436V64C422 -311 274 -754 61 -914C57 -917 54 -922 54 -928C54 -938 62 -946 72 -946C76 -946 80 -944 83 -942C305 -775 510 -329 510 64Z"/></g></g>
+  <g transform="translate(24,364) scale(0.50)" ><rect x="0.0" y="-7.433243" width="23.199005" height="0.39997864" fill="black"/>
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="7.937439" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="17.937408" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text></g>
+  <g transform="translate(24,390) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">d</text>
+<text x="5.5555725" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text></g>
+  <g transform="translate(24,416) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">s</text>
+<text x="3.9444427" y="0.0" font-family="Latin Modern Roman" font-size="10.0">i</text>
+<text x="6.722229" y="0.0" font-family="Latin Modern Roman" font-size="10.0">n</text>
+<text x="12.2778015" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="16.166702" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="21.881973" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text></g>
+  <g transform="translate(24,442) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">g</text>
+<text x="5.0000153" y="0.0" font-family="Latin Modern Roman" font-size="10.0">c</text>
+<text x="9.444458" y="0.0" font-family="Latin Modern Roman" font-size="10.0">d</text>
+<text x="15.0000305" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="18.888931" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="24.17482" y="0.0" font-family="Latin Modern Math" font-size="10.0">,</text>
+<text x="28.619232" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<text x="32.91089" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text></g>
+  <g transform="translate(24,468) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">⟨</text>
+<text x="3.8889008" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="9.604172" y="0.0" font-family="Latin Modern Math" font-size="10.0">,</text>
+<text x="14.048584" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text>
+<text x="19.31018" y="0.0" font-family="Latin Modern Math" font-size="10.0">⟩</text></g>
+  <g transform="translate(24,494) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝜋</text>
+<text x="6.0590515" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑟</text>
+<text x="10.848419" y="-4.1289215" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">2</text></g>
+  <g transform="translate(24,520) scale(0.50)" ><g transform="translate(0.0,0.05015258789062216) scale(0.01,-0.01)"><path d="M823 -1224C823 -1217 820 -1211 814 -1207C559 -1015 379 -468 379 0V500C379 968 559 1515 814 1707C820 1711 823 1717 823 1724C823 1735 813 1745 802 1745C797 1745 793 1743 790 1741C522 1539 277 990 277 500V0C277 -490 522 -1039 790 -1241C793 -1243 797 -1245 802 -1245C813 -1245 823 -1235 823 -1224Z"/></g>
+<g transform="translate(12.667282,-12.500046) scale(1.1765222854528088,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑛</text>
+</g>
+<g transform="translate(7.916693378050107,-0.03555018833705503) scale(0.009962658957374623,-0.009962642996651786)"><path d="M1387 -130H1362C1323 -234 1217 -302 1102 -332C1081 -337 983 -363 791 -363H188L697 234C704 242 706 245 706 250C706 250 706 255 699 265L233 902H781C915 902 1006 888 1015 886C1069 878 1156 861 1235 811C1260 795 1328 750 1362 669H1387L1266 950H84C61 950 60 949 57 943C56 940 56 921 56 910L585 186L67 -421C57 -433 57 -439 57 -439C57 -450 66 -450 84 -450H1266Z"/></g>
+<g transform="translate(8.661774,11.798645) scale(1.173202738443238,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑖</text>
+</g>
+<text x="11.491058" y="11.798645" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">=</text>
+<text x="17.629974" y="11.798645" font-family="LM Roman Seven, Latin Modern Roman" font-size="7.0">1</text>
+<text x="24.027802" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑖</text>
+<g transform="translate(27.47293,0.05015258789062216) scale(0.01,-0.01)"><path d="M598 0V500C598 990 353 1539 85 1741C82 1743 78 1745 73 1745C62 1745 52 1735 52 1724C52 1717 55 1711 61 1707C316 1515 496 968 496 500V0C496 -468 316 -1015 61 -1207C55 -1211 52 -1217 52 -1224C52 -1235 62 -1245 73 -1245C78 -1245 82 -1243 85 -1241C353 -1039 598 -490 598 0Z"/></g></g>
+  <g transform="translate(24,546) scale(0.50)" ><text x="4.0576324" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<rect x="1.199997" y="-2.699997" width="10.9201355" height="0.39997864" fill="black"/>
+<text x="1.199997" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<text x="6.4048615" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<g transform="translate(14.986755,0.04012207031249915) scale(0.01,-0.01)"><path d="M682 -928C682 -922 679 -917 675 -914C462 -754 314 -311 314 64V436C314 811 462 1254 675 1414C679 1417 682 1422 682 1428C682 1438 674 1446 664 1446C660 1446 656 1444 653 1442C431 1275 226 829 226 436V64C226 -329 431 -775 653 -942C656 -944 660 -946 664 -946C674 -946 682 -938 682 -928Z"/></g>
+<g transform="translate(22.3479,0.0012365722656255684) scale(0.01,-0.01)"><path d="M943 1268C943 1322 889 1361 834 1361C758 1361 702 1252 647 1048C644 1037 508 535 398 -119C372 -272 343 -439 310 -578C292 -651 246 -839 165 -839C129 -839 104 -816 104 -816C136 -814 153 -792 153 -767C153 -734 128 -718 105 -718C81 -718 56 -733 56 -768C56 -819 106 -861 167 -861C319 -861 376 -627 447 -337C524 -21 589 298 643 619C680 832 717 1032 751 1161C763 1210 797 1339 836 1339C867 1339 892 1320 896 1316C863 1314 846 1292 846 1267C846 1234 871 1218 894 1218C918 1218 943 1233 943 1268Z"/></g>
+<g transform="translate(32.347916,-11.139023) scale(1.133486810288143,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑥</text>
+</g>
+<g transform="translate(27.903473,9.111221) scale(1.1722982112340572,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑎</text>
+</g>
+<text x="39.04927" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑓</text>
+<text x="45.02153" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="48.91043" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑡</text>
+<text x="52.521545" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text>
+<text x="58.077072" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<text x="63.281937" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑡</text>
+<g transform="translate(66.89305,0.04012207031249915) scale(0.01,-0.01)"><path d="M510 64V436C510 829 305 1275 83 1442C80 1444 76 1446 72 1446C62 1446 54 1438 54 1428C54 1422 57 1417 61 1414C274 1254 422 811 422 436V64C422 -311 274 -754 61 -914C57 -917 54 -922 54 -928C54 -938 62 -946 72 -946C76 -946 80 -944 83 -942C305 -775 510 -329 510 64Z"/></g>
+<text x="77.031906" y="0.0" font-family="Latin Modern Roman" font-size="10.0">=</text>
+<text x="87.58742" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑓</text>
+<text x="93.55968" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="97.44858" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="103.16385" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text></g>
+  <g transform="translate(24,572) scale(0.50)" ><g transform="translate(2.34027099609375,-2.52777099609375) scale(0.01,-0.01)"><path d="M277 685 549 562 561 584 278 744 -5 584 6 562Z"/></g>
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝐻</text></g>
+  <g transform="translate(24,598) scale(0.50)" ><g transform="translate(1.952545166015625,-2.6389007568359375) scale(0.01,-0.01)"><path d="M499 713 995 575 1003 599 500 772 -4 599 4 575Z"/></g>
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="5.2858887" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<text x="9.577545" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑐</text></g>
+  <g transform="translate(24,624) scale(0.50)" ><g transform="translate(1.952545166015625,-2.6389007568359375) scale(0.01,-0.01)"><path d="M989 750C962 736 816 662 689 662C616 662 572 680 503 710C455 730 406 750 337 750C220 750 104 694 0 644L10 624C37 638 183 712 310 712C383 712 427 694 496 664C544 644 593 624 662 624C779 624 895 680 999 730Z"/></g>
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="5.2858887" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<text x="9.577545" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑐</text></g>
+  <g transform="translate(24,650) scale(0.50)" ><g transform="translate(0.8113555908203125,-0.0) scale(0.01,-0.01)"><path d="M1436 750C1315 711 1147 657 985 657C880 657 798 684 791 686L690 719C658 730 581 750 490 750C361 750 210 712 102 677L0 644L7 623C128 662 296 716 458 716C563 716 645 689 652 687L753 654C785 643 862 623 953 623C1082 623 1233 661 1341 696L1443 729Z"/></g>
+<text x="0.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="5.715271" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text>
+<text x="10.976868" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑧</text></g>
+  <g transform="translate(24,676) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">a</text>
+<text x="8.333267" y="0.0" font-family="Latin Modern Roman" font-size="10.0">b</text></g>
+  <g transform="translate(24,702) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">i</text>
+<text x="2.7777863" y="0.0" font-family="Latin Modern Roman" font-size="10.0">f</text>
+<text x="9.166611" y="0.0" font-family="Latin Modern Roman" font-size="10.0">a</text>
+<text x="14.166626" y="0.0" font-family="Latin Modern Roman" font-size="10.0">n</text>
+<text x="19.722198" y="0.0" font-family="Latin Modern Roman" font-size="10.0">d</text>
+<text x="28.611023" y="0.0" font-family="Latin Modern Roman" font-size="10.0">o</text>
+<text x="33.61104" y="0.0" font-family="Latin Modern Roman" font-size="10.0">n</text>
+<text x="39.16661" y="0.0" font-family="Latin Modern Roman" font-size="10.0">l</text>
+<text x="41.944397" y="0.0" font-family="Latin Modern Roman" font-size="10.0">y</text>
+<text x="50.55545" y="0.0" font-family="Latin Modern Roman" font-size="10.0">i</text>
+<text x="53.333237" y="0.0" font-family="Latin Modern Roman" font-size="10.0">f</text></g>
+  <g transform="translate(24,728) scale(0.50)" ><text x="0.0" y="0.0" font-family="Latin Modern Roman" font-size="10.0">a</text>
+<text x="5.0000153" y="0.0" font-family="Latin Modern Roman" font-size="10.0">r</text>
+<text x="8.916687" y="0.0" font-family="Latin Modern Roman" font-size="10.0">g</text>
+<text x="15.7221985" y="0.0" font-family="Latin Modern Roman" font-size="10.0">m</text>
+<text x="24.055557" y="0.0" font-family="Latin Modern Roman" font-size="10.0">a</text>
+<text x="29.055573" y="0.0" font-family="Latin Modern Roman" font-size="10.0">x</text>
+<g transform="translate(14.8993225,7.9444427) scale(1.133486810288143,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="7.0">𝑥</text>
+</g>
+<text x="36.0" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑓</text>
+<text x="41.97226" y="0.0" font-family="Latin Modern Roman" font-size="10.0">(</text>
+<text x="45.86116" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="51.57643" y="0.0" font-family="Latin Modern Roman" font-size="10.0">)</text></g>
+  <g transform="translate(24,754) scale(0.50)" ><rect x="0.0" y="-14.500015" width="0.0" height="12.000015" fill="black"/>
+<text x="0.0" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="15.742508" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<rect x="0.0" y="-2.5" width="0.0" height="12.000015" fill="black"/>
+<text x="0.4791565" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="15.285904" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑑</text></g>
+  <g transform="translate(24,780) scale(0.50)" ><g transform="translate(0.0,0.04012207031249915) scale(0.01,-0.01)"><path d="M682 -928C682 -922 679 -917 675 -914C462 -754 314 -311 314 64V436C314 811 462 1254 675 1414C679 1417 682 1422 682 1428C682 1438 674 1446 664 1446C660 1446 656 1444 653 1442C431 1275 226 829 226 436V64C226 -329 431 -775 653 -942C656 -944 660 -946 664 -946C674 -946 682 -938 682 -928Z"/></g>
+<rect x="7.361145" y="-14.500015" width="0.0" height="12.000015" fill="black"/>
+<text x="7.361145" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="23.103653" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<rect x="7.361145" y="-2.5" width="0.0" height="12.000015" fill="black"/>
+<text x="7.8403015" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="22.647049" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<g transform="translate(27.851913,0.04012207031249915) scale(0.01,-0.01)"><path d="M510 64V436C510 829 305 1275 83 1442C80 1444 76 1446 72 1446C62 1446 54 1438 54 1428C54 1422 57 1417 61 1414C274 1254 422 811 422 436V64C422 -311 274 -754 61 -914C57 -917 54 -922 54 -928C54 -938 62 -946 72 -946C76 -946 80 -944 83 -942C305 -775 510 -329 510 64Z"/></g></g>
+  <g transform="translate(24,806) scale(0.50)" ><g transform="translate(0.0,0.0001220703125) scale(0.01,-0.01)"><path d="M509 -921C509 -905 496 -892 480 -892H291V1392H480C496 1392 509 1405 509 1421C509 1437 496 1450 480 1450H233V-950H480C496 -950 509 -937 509 -921Z"/></g>
+<rect x="5.277817" y="-14.500015" width="0.0" height="12.000015" fill="black"/>
+<text x="5.277817" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="21.020325" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<rect x="5.277817" y="-2.5" width="0.0" height="12.000015" fill="black"/>
+<text x="5.7569733" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="20.56372" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<g transform="translate(25.768585,0.0001220703125) scale(0.01,-0.01)"><path d="M295 1450H48C32 1450 19 1437 19 1421C19 1405 32 1392 48 1392H237V-892H48C32 -892 19 -905 19 -921C19 -937 32 -950 48 -950H295Z"/></g></g>
+  <g transform="translate(24,832) scale(0.50)" ><g transform="translate(0.9023132343533673,-8.313322143554688) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,-2.3132611083984376) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,3.6867999267578124) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,9.686860961914062) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<rect x="3.3333435" y="-14.500015" width="0.0" height="12.000015" fill="black"/>
+<text x="3.3333435" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="19.075851" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<rect x="3.3333435" y="-2.5" width="0.0" height="12.000015" fill="black"/>
+<text x="3.8125" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="18.619247" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<g transform="translate(24.72642517282993,-8.313322143554688) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,-2.3132611083984376) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,3.6867999267578124) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,9.686860961914062) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g></g>
+  <g transform="translate(24,858) scale(0.50)" ><g transform="translate(0.9023132343533673,-5.313291625976563) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(3.114019512707674,-5.313291625976563) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,0.6867694091796874) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(3.114019512707674,0.6867694091796874) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,6.686830444335937) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(3.114019512707674,6.686830444335937) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<text x="6.7555695" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="6.7555695" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="7.2526855" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(14.143768312478368,-5.313291625976563) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(16.355474590832674,-5.313291625976563) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(14.143768312478368,0.6867694091796874) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(16.355474590832674,0.6867694091796874) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(14.143768312478368,6.686830444335937) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(16.355474590832674,6.686830444335937) scale(0.00542269549792326,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g></g>
+  <g transform="translate(24,884) scale(0.50)" ><g transform="translate(0.0,0.000091552734375) scale(0.01,-0.01)"><path d="M569 -632C569 -623 563 -616 555 -614C450 -593 375 -503 375 -425V25C375 120 288 209 179 250C288 291 375 380 375 475V925C375 1003 450 1093 555 1114C563 1116 569 1123 569 1132C569 1142 561 1150 551 1150H547C411 1122 291 1027 291 925V475C291 388 217 289 111 268C103 266 97 259 97 250C97 241 103 234 111 232C217 211 291 112 291 25V-425C291 -527 411 -622 547 -650H551C561 -650 569 -642 569 -632Z"/></g>
+<text x="7.866684" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="7.866684" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="8.3638" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(14.35257,0.000091552734375) scale(0.01,-0.01)"><path d="M570 250C570 259 564 266 556 268C450 289 376 388 376 475V925C376 1027 256 1122 120 1150H116C106 1150 98 1142 98 1132C98 1123 104 1116 112 1114C217 1093 292 1003 292 925V475C292 380 379 291 488 250C379 209 292 120 292 25V-425C292 -503 217 -593 112 -614C104 -616 98 -623 98 -632C98 -642 106 -650 116 -650H120C256 -622 376 -527 376 -425V25C376 112 450 211 556 232C564 234 570 241 570 250Z"/></g></g>
+  <g transform="translate(24,910) scale(0.50)" ><g transform="translate(0.0,0.000091552734375) scale(0.01,-0.01)"><path d="M502 1124C502 1138 490 1150 476 1150H196V-624C196 -638 208 -650 222 -650C236 -650 248 -638 248 -624V1098H476C490 1098 502 1110 502 1124Z"/></g>
+<text x="6.4778137" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="6.4778137" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="6.97493" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(12.963699,0.000091552734375) scale(0.01,-0.01)"><path d="M332 -624V1150H52C38 1150 26 1138 26 1124C26 1110 38 1098 52 1098H280V-624C280 -638 292 -650 306 -650C320 -650 332 -638 332 -624Z"/></g></g>
+  <g transform="translate(24,936) scale(0.50)" ><g transform="translate(0.0,0.000091552734375) scale(0.01,-0.01)"><path d="M555 -624C555 -621 554 -617 553 -614L213 250L553 1114C554 1117 555 1121 555 1124C555 1138 543 1150 529 1150C518 1150 509 1143 505 1134L161 260C160 257 159 253 159 250C159 247 160 243 161 240L505 -634C509 -643 518 -650 529 -650C543 -650 555 -638 555 -624Z"/></g>
+<text x="7.3111267" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="7.3111267" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="7.808243" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<g transform="translate(13.797012,0.000091552734375) scale(0.01,-0.01)"><path d="M452 250C452 253 451 257 450 260L106 1134C102 1143 93 1150 82 1150C68 1150 56 1138 56 1124C56 1121 57 1117 58 1114L398 250L58 -614C57 -617 56 -621 56 -624C56 -638 68 -650 82 -650C93 -650 102 -643 106 -634L450 240C451 243 452 247 452 250Z"/></g></g>
+  <g transform="translate(24,962) scale(0.50)" ><g transform="translate(0.9023132343533673,-8.313322143554688) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,-2.3132611083984376) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,3.6867999267578124) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(0.9023132343533673,9.686860961914062) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<rect x="3.3333435" y="-14.500015" width="0.0" height="12.000015" fill="black"/>
+<text x="3.3333435" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<text x="19.075851" y="-6.0" font-family="Latin Modern Math" font-size="10.0">𝑏</text>
+<rect x="3.3333435" y="-2.5" width="0.0" height="12.000015" fill="black"/>
+<text x="3.8125" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑐</text>
+<text x="18.619247" y="6.0000153" font-family="Latin Modern Math" font-size="10.0">𝑑</text>
+<g transform="translate(24.72642517282993,-8.313322143554688) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,-2.3132611083984376) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,3.6867999267578124) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g>
+<g transform="translate(24.72642517282993,9.686860961914062) scale(0.005422697429415546,-0.005321143938975406)"><path d="M179 0 178 1202H100V0Z"/></g></g>
+  <g transform="translate(24,988) scale(0.50)" ><text x="2.7777863" y="-3.6833344" font-family="LM Roman Five, Latin Modern Roman" font-size="5.0">3</text>
+<g transform="translate(0.6250458,-7.48262939453125) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="8.958405" y="-7.882614" width="23.199005" height="0.39997864" fill="black"/>
+<text x="8.958405" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text>
+<text x="16.895844" y="0.0" font-family="Latin Modern Roman" font-size="10.0">+</text>
+<text x="26.895813" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑦</text></g>
+  <g transform="translate(24,1014) scale(0.50)" ><text x="2.7777863" y="-3.8766632" font-family="LM Roman Five, Latin Modern Roman" font-size="5.0">3</text>
+<g transform="translate(0.6250458,-0.543609619140625) scale(0.01,-0.01)"><path d="M1020 1430C1020 1441 1012 1450 1000 1450C984 1450 981 1437 978 1423L466 -752H465L249 250L118 44C111 35 111 32 111 32C111 28 125 16 125 16L193 123L424 -950C457 -950 460 -950 466 -924L1016 1409C1018 1416 1020 1425 1020 1430Z"/></g>
+<rect x="10.625061" y="-15.0438385" width="7.6858826" height="0.39997864" fill="black"/>
+<text x="11.825058" y="-6.7650757" font-family="Latin Modern Math" font-size="10.0">𝑎</text>
+<rect x="11.825058" y="-2.699997" width="5.2858887" height="0.39997864" fill="black"/>
+<text x="12.322174" y="6.859497" font-family="Latin Modern Math" font-size="10.0">𝑏</text></g>
+  <g transform="translate(24,1040) scale(0.50)" ><g transform="translate(2.7777863,-3.9333344) scale(1.3978062413674033,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="5.0">𝛽</text>
+</g>
+<g transform="translate(1.4323273,-7.690957641601562) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="9.765686" y="-8.090942" width="5.715271" height="0.39997864" fill="black"/>
+<text x="9.765686" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text></g>
+  <g transform="translate(24,1066) scale(0.50)" ><g transform="translate(2.7777863,-3.9333344) scale(1.4674225284083686,1.0)">
+<text x="0" y="0" font-family="Latin Modern Math" font-size="5.0">𝑛</text>
+</g>
+<g transform="translate(1.6262054,-7.690957641601562) scale(0.01,-0.01)"><path d="M853 20C853 31 845 40 833 40C821 40 818 33 812 21L389 -855L211 -463C207 -455 205 -449 198 -449C195 -449 193 -449 184 -457L85 -532C74 -541 73 -542 73 -546C73 -553 77 -557 83 -557C86 -557 88 -557 97 -549L149 -510L347 -945C353 -959 355 -960 366 -960C382 -960 384 -956 391 -941L847 3C852 14 853 15 853 20Z"/></g>
+<rect x="9.959564" y="-8.090942" width="5.715271" height="0.39997864" fill="black"/>
+<text x="9.959564" y="0.0" font-family="Latin Modern Math" font-size="10.0">𝑥</text></g>
+</svg>
