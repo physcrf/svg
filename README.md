@@ -551,10 +551,12 @@ python3 tools/gen-lm-extra-glyph-paths.py     # after changing that list
 `test/test-latex-star.lisp` guards the same ground from the other side: it pins
 the box geometry of a corpus of formulas (measured with real LaTeX), checks
 that every math accent previews as its Latin Modern spacing glyph, that the
-italic preview alphabet uses the code points Unicode actually assigns (the
-Math Alphanumeric block has a hole at U+1D455 — italic h lives at U+210E), and
-that every symbol slot the tables can typeset draws either an outline or a
-mapped preview instead of its raw font code.
+italic and `\mathcal` preview alphabets use the code points Unicode actually
+assigns (the Math Alphanumeric block has holes where the glyph lives in
+Letterlike Symbols — italic h at U+210E, script ℒ at U+2112 — so an arithmetic
+mapping would leave a letter with no glyph at all), and that every symbol slot
+the tables can typeset draws either an outline or a mapped preview instead of
+its raw font code.
 
 Known deviations:
 

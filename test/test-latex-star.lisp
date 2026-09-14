@@ -245,6 +245,44 @@ cmex/cmmi's own hook outlines."
             pass fail (length seen) known)
     (when (plusp fail) (error "latex* symbol glyph coverage failed"))))
 
+(defparameter *latex-star-script-holes*
+  ;; capitals with no Mathematical Script codepoint, which Unicode keeps in
+  ;; Letterlike Symbols: B E F H I L M R
+  '((1 . #x212C) (4 . #x2130) (5 . #x2131) (7 . #x210B)
+    (8 . #x2110) (11 . #x2112) (12 . #x2133) (17 . #x211B)))
+
+(defun latex-star-script-preview-code (letter)
+  "The code point the SVG must preview LETTER with inside \\mathcal, per the
+Math Alphanumeric block: A -> U+1D49C, but the block leaves holes at the
+capitals above (e.g. U+1D4A7 -> ℒ U+2112). See MATH_ALPHABET_HOLES in
+tools/gen-latex-tables.py."
+  (let ((index (- (char-code letter) (char-code #\A))))
+    (or (cdr (assoc index *latex-star-script-holes*)) (+ #x1D49C index))))
+
+(defun test-latex-star-script-letters ()
+  "Check \\mathcal's alphabet the way TEST-LATEX-STAR-ITALIC-LETTERS checks the
+math italic one. latex.ltx declares \\mathcal rather than listing it in
+fontmath.ltx's symbol tables, so nothing derived from those tables reached
+cmsy10's 26 calligraphic capitals -- \\mathcal{L} previewed as its raw font
+code, a plain upright \"L\"."
+  (format t "~%=== Test native LaTeX script alphabet previews (latex*) ===~%")
+  (let ((pass 0) (fail 0) (drawn nil))
+    (loop for i from 0 below 26
+          for letter = (code-char (+ 65 i))
+          for cp = (latex-star-script-preview-code letter)
+          do (let* ((svg (latex*-svg (format nil "$\\mathcal{~a}$" letter)))
+                    (ok (search (format nil ">~a</text>" (code-char cp)) svg)))
+               (if ok (incf pass) (incf fail))
+               (push cp drawn)
+               (format t "~:[FAIL~;ok  ~] ~10a preview U+~4,'0X ~a~%"
+                       ok letter cp (code-char cp))))
+    (let ((distinct (= 26 (length (remove-duplicates drawn)))))
+      (if distinct (incf pass) (incf fail))
+      (format t "~:[FAIL~;ok  ~] ~10a ~d distinct previews~%"
+              distinct "alphabet" (length (remove-duplicates drawn))))
+    (format t "~%~d passed, ~d failed~%" pass fail)
+    (when (plusp fail) (error "latex* script alphabet tests failed"))))
+
 (defun render-latex-star-gallery (filename)
   ;; one 26pt row per case plus top and bottom margins; the canvas has to grow
   ;; with the case list or the tail of the gallery falls outside the viewport.
@@ -260,5 +298,6 @@ cmex/cmmi's own hook outlines."
 (test-latex-star)
 (test-latex-star-accents)
 (test-latex-star-italic-letters)
+(test-latex-star-script-letters)
 (test-latex-star-symbol-glyphs)
 (render-latex-star-gallery "test/test-latex-star.svg")

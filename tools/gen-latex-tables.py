@@ -265,7 +265,17 @@ ALPHABET = {1: (0x1D434, 0x1D44E),   # cmmi10: \mitA.., \mita..
 # the hole at all (the browser then draws nothing).  Italic small h is the one
 # in the ranges above: U+1D455 is unassigned and U+210E (Planck's constant) is
 # the italic h.  A codepoint in here maps to the value instead.
-MATH_ALPHABET_HOLES = {0x1D455: 0x210E}
+MATH_ALPHABET_HOLES = {0x1D455: 0x210E,   # italic h  -> ℎ  Planck constant
+                       # script capitals with no Mathematical Script
+                       # codepoint live in Letterlike Symbols instead
+                       0x1D49D: 0x212C,   # B -> ℬ
+                       0x1D4A0: 0x2130,   # E -> ℰ
+                       0x1D4A1: 0x2131,   # F -> ℱ
+                       0x1D4A3: 0x210B,   # H -> ℋ
+                       0x1D4A4: 0x2110,   # I -> ℐ
+                       0x1D4A7: 0x2112,   # L -> ℒ
+                       0x1D4A8: 0x2133,   # M -> ℳ
+                       0x1D4AD: 0x211B}   # R -> ℛ
 
 def alphabet_cp(fam, name):
     "Math alphanumeric codepoint for a single ASCII LETTER in alphabet FAM."
@@ -355,6 +365,14 @@ for name, (cls, small, large) in delims.items():
     while code is not None:
         uni_entries.setdefault((3, code), cp)
         code = cmex_next.get(code)
+
+# \mathcal is a math *alphabet*, declared in latex.ltx rather than listed in
+# fontmath.ltx's symbol tables, so nothing above reaches cmsy10's calligraphic
+# capitals (65..90): they previewed as their raw font code, i.e. as plain
+# upright letters -- \mathcal{L} came out as an "L".
+for i in range(26):
+    cp = 0x1D49C + i
+    uni_entries.setdefault((2, 65 + i), MATH_ALPHABET_HOLES.get(cp, cp))
 
 lines.append("(defparameter *latex-glyph-unicode*")
 lines.append("  ;; (family . code) -> Unicode codepoint used for the SVG preview glyph")
